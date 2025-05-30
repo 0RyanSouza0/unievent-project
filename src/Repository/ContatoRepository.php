@@ -3,47 +3,45 @@
 namespace src\Repository;
 
 use PDOException;
-use src\Model\Contato;
-use src\Config\Connection;
-use src\Model\ResponsavelEvento;
-use src\Service\ContatoService;
-class ContatoRepository{
 
-    public function insert(){
-        $conexao= new Connection();
-        $service = new ContatoService($conexao);
-        if($_SERVER['REQUEST_METHOD']== 'POST'){
+class ContatoRepository {
+    private $conexao;
 
-            if(
-               isset($_POST['email_contato'])&&
-               isset($_POST['telefone_contato'])&&
-               isset($_POST['nome'])
-               
-            ){
-                $email_contato=trim($_POST['email_contato']);
-                $telefone_contato=trim($_POST['telefone_contato']);
-                $nome=trim($_POST['nome']);
-                if(empty($email_contato)|| empty($telefone_contato)|| empty($nome)){
-                    echo "preencha todos os campos";
-                }
-                else{
-                    try{
-                        $contato = new Contato();
-                        $contato->setEmailContato($email_contato);
-                        $contato->setTelefoneContato($telefone_contato);
-                        $responsavel = new ResponsavelEvento();
-                        $responsavel->setNome($nome);
-                        return $service->save($contato,$responsavel);
-                    }catch(PDOException $e){
-                        echo "Error".$e;
-                    }
-                }
+    public function __construct($conexao) {
+        $this->conexao = $conexao;
+    }
+    
+
+    public function save($contato,$responsavel_evento) {
+        try {
+            $this->conexao->beginTransaction();
+
+            $sql = "INSERT INTO contato (email_contato, telefone_contato) VALUES (?, ?)";
+            $stmt = $this->conexao->prepare($sql);
+
+            $stmt->exec([
+                $contato->getEmailContato(),
+                $contato->getTelefoneContato()
+            ]);
+
+
+            $id_contato = $this->conexao->lastInsertId();
+
+
+            $sql = "INSERT INTO responsavelevento(nome,id_contato_fk) VALUES (?,?)";
+            $stmt=$this->conexao->prepare($sql);
+            $responsavel_evento->setIdContatoFk($id_contato);
+            $stmt->exec([$responsavel_evento->getNome(),$responsavel_evento->getIdContatoFk()]);
+             $this->conexao->commit();
+             return  true;
+
+        } catch (PDOException $e) {
+            if ($this->conexao->inTransaction()) {
+                $this->conexao->rollBack();
             }
-
+           
+            throw $e;
         }
-
-
     }
 }
-
 ?>
