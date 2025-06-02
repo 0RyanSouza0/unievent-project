@@ -9,7 +9,7 @@ use src\Model\ResponsavelEvento;
 class ContatoRepository {
    
     private $pdo;
-  public function save($contato, $responsavel_evento): ResponsavelEvento {
+    public function save($contato, $responsavel_evento): ResponsavelEvento {
     try {
         require_once(__DIR__ . '/../../Config/Connection.php');
         $conexao = new Connection();

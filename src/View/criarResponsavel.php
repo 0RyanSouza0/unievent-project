@@ -20,7 +20,7 @@
     <div class="campos">
         <div class="campos-1">
             <p class="titulos">Nome Responsavel</p>
-            <form action="/UniEvent-Project/public/index.php?action=processar" class="campos-3" method="post">
+            <form action="/UniEvent-Project/public/index.php?action=processarResponsavel" class="campos-3" method="post">
                 <div class="input-container-titulo">
                     <input type="text" name="nome" class="input-titulo" required />
                 </div>
@@ -38,8 +38,6 @@
 
             <input type="submit" value="enviar">
         </div>
-
-
         </form>
 
     </div>
