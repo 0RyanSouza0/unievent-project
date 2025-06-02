@@ -11,8 +11,8 @@ use src\Service\ContatoService;
 class ResponsavelEventoController{
 
     public function processarFormulario(){
-        $conexao= new Connection();
-        $repository = new ContatoRepository($conexao);
+       
+        $repository = new ContatoRepository();
 
         if($_SERVER['REQUEST_METHOD']== 'POST'){
 

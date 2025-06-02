@@ -2,46 +2,51 @@
 
 namespace src\Repository;
 
+use src\Config\Connection;
 use PDOException;
+use src\Model\ResponsavelEvento;
 
 class ContatoRepository {
-    private $conexao;
+   
+    private $pdo;
+  public function save($contato, $responsavel_evento): ResponsavelEvento {
+    try {
+        require_once(__DIR__ . '/../../Config/Connection.php');
+        $conexao = new Connection();
+        $this->pdo = $conexao->getConnection(); 
 
-    public function __construct($conexao) {
-        $this->conexao = $conexao;
-    }
+        $this->pdo->beginTransaction();
+
     
+        $sql = "INSERT INTO contato (email_contato, telefone_contato) VALUES (?, ?)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            $contato->getEmailContato(),
+            $contato->getTelefoneContato()
+        ]);
 
-    public function save($contato,$responsavel_evento) {
-        try {
-            $this->conexao->beginTransaction();
+        $id_contato = $this->pdo->lastInsertId();
 
-            $sql = "INSERT INTO contato (email_contato, telefone_contato) VALUES (?, ?)";
-            $stmt = $this->conexao->prepare($sql);
+        
+        $sql = "INSERT INTO responsavelevento(nome, id_contato_fk) VALUES (?, ?)";
+        $stmt = $this->pdo->prepare($sql);
+        $responsavel_evento->setIdContatoFk($id_contato);
+        $stmt->execute([
+            $responsavel_evento->getNome(),
+            $responsavel_evento->getIdContatoFk()
+        ]);
 
-            $stmt->exec([
-                $contato->getEmailContato(),
-                $contato->getTelefoneContato()
-            ]);
+        $this->pdo->commit(); 
 
+        return $responsavel_evento; 
 
-            $id_contato = $this->conexao->lastInsertId();
-
-
-            $sql = "INSERT INTO responsavelevento(nome,id_contato_fk) VALUES (?,?)";
-            $stmt=$this->conexao->prepare($sql);
-            $responsavel_evento->setIdContatoFk($id_contato);
-            $stmt->exec([$responsavel_evento->getNome(),$responsavel_evento->getIdContatoFk()]);
-             $this->conexao->commit();
-             return  true;
-
-        } catch (PDOException $e) {
-            if ($this->conexao->inTransaction()) {
-                $this->conexao->rollBack();
-            }
-           
-            throw $e;
+    } catch (PDOException $e) {
+        if ($this->pdo && $this->pdo->inTransaction()) {
+            $this->pdo->rollBack();
         }
+        throw $e;
     }
+}
+
 }
 ?>
