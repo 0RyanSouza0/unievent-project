@@ -34,6 +34,34 @@ class EventoController{
                 $dataEvento=trim($_POST['dataEvento']);
                 $categoriaEvento=trim($_POST['categoriaEvento']);
 
+                if (!empty($_FILES['thumbnail']['name'])) {
+                    $nomeArquivo = $_FILES['thumbnail']['name'];
+                    $tipo = $_FILES['thumbnail']['type'];
+                    $nomeTemporario = $_FILES['thumbnail']['tmp_name'];
+                    $erros = array();
+
+                    // Validação de extensão
+                    $arquivosPermitidos = ["png", "jpg", "jpeg"];
+                    $extensao = pathinfo($nomeArquivo, PATHINFO_EXTENSION);
+                    if (!in_array($extensao, $arquivosPermitidos)) {
+                        $erros[] = "Arquivo não permitido.<br>";
+                    }
+
+                    // Validação de MIME type
+                    $typesPermitidos = ["image/png", "image/jpg", "image/jpeg"];
+                    if (!in_array($tipo, $typesPermitidos)) {
+                        $erros[] = "Tipo de arquivo não permitido.<br>";
+                    }
+
+                    if (!empty($erros)) {
+                        foreach ($erros as $erro) {
+                            echo $erro;
+                        }
+                    }else {
+                        echo 'continuar upload';
+                        $caminho = __DIR__ . '/../../public/images/uploads/'
+                    }
+                }
                 if
                 (
                     empty($titulo)|| empty($descricao)|| 
