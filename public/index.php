@@ -14,6 +14,10 @@ switch ($action) {
         $controller = new src\Controller\ResponsavelEventoController();
         $controller->processarFormulario();
         break;
+    case 'updateResponsavel':
+        $controller = new src\Controller\ResponsavelEventoController();
+        $controller->processarUpdateResponsavel();
+        break;
     case 'processarEvento':
         $controller = new src\Controller\EventoController();
         $controller->processarFormulario();
