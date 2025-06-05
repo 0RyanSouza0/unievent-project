@@ -48,5 +48,33 @@ class ContatoRepository {
     }
 }
 
+
+ // $responsavelRepository->updateResponsavel('id', 22, ['name'=>'alexa'])
+    public function updateResponsavel(string|int $id, string $nome, int $telefone_contato) {
+        try {
+            require_once(__DIR__ . '/../../Config/Connection.php');
+            $conexao = new Connection();
+            $this->pdo = $conexao->getConnection(); 
+            $this->pdo->beginTransaction();
+
+            $sql_nome = "update responsavelevento set nome = ? where id = ?";
+            $stmt = $this->pdo->prepare($sql_nome);
+            $stmt->execute([$nome, $id]);
+            
+            $sql_telefone = "update contato set telefone_contato = ? where id = ?";
+            $stmt = $this->pdo->prepare($sql_telefone);
+            $stmt->execute([$telefone_contato, $id]);
+
+            return $this->pdo->commit();
+
+            echo 'dados enviados';
+        } catch (PDOException $e) {
+            if ($this->pdo && $this->pdo->inTransaction()) {
+                $this->pdo->rollBack();
+            }
+            throw $e;
+        }
+    }
+
 }
 ?>

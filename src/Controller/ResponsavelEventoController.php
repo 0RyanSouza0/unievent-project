@@ -41,11 +41,36 @@ class ResponsavelEventoController{
                         echo "Error".$e;
                     }
                 }
+
+
+
             }
 
         }
 
 
+    }
+
+    public function processarUpdateResponsavel() {
+        $repository = new ContatoRepository();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            if (isset($_POST['nome'])&&isset($_POST['telefone_contato'])) {
+                $nome=trim($_POST['nome']);
+                $telefone_contato=trim($_POST['telefone_contato']);
+
+                if (empty($nome) && empty($telefone_contato)) {
+                    echo 'Preencha todos os campos.';
+                } else {
+                    try {
+                        return $repository->updateResponsavel(1, $nome, $telefone_contato);
+                    } catch(PDOException $e){
+                        echo "Error".$e;
+                    }
+                }
+            }
+        }
     }
     
 }
