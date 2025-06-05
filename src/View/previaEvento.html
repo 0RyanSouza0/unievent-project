@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prévia do Evento</title>
+    <link rel="stylesheet" href="assets/css/stylePreviaEvento.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <img src="assets/images/logo3.png" alt="" class="logo" />
+      <p>Prévia Evento</p>
+    </header>
+    <div class="container-app">
+      <div class="tela">
+        <div class="header-app">
+          <img src="assets/images/voltar.png" class="icones" />
+          <img src="assets/images/favorito.png" class="icones" />
+        </div>
+
+        <img src="assets/images/evento.png" alt="teckrock" class="imgEvento" />
+
+        <h1>The Rock - 5ºEdição</h1>
+
+        <div class="informações">
+          <div class="local">
+            <img src="assets/images/local.png" class="icones" />
+            <p>Fatec Feraz de Vasconcelos</p>
+          </div>
+          <div class="container-data-hora">
+            <div class="data">
+              <img src="assets/images/calendario.png" class="icones" />
+              <p>25/01/2026</p>
+            </div>
+
+            <div class="linhadivisao-1"></div>
+
+            <div class="hora">
+              <img src="assets/images/relogio.png" class="icone-relogio" />
+              <p>19:00 Horas</p>
+            </div>
+          </div>
+          <br />
+          <div class="tipo">
+            <img src="assets/images/tipo.png" class="icones" />
+            <p>Música</p>
+          </div>
+        </div>
+        <div class="container">
+          <p class="organizador">Organizador</p>
+          <div class="info-unidade">
+            <img src="assets/images/tipo.png" class="icones" />
+            <p>Fatec Ferraz de Vasconcelos</p>
+            <button>Saiba Mais</button>
+          </div>
+
+          <div class="linhadivisao-2"></div>
+          <div class="descrição">
+            <h1>Sobre o evento</h1>
+            <p>
+              Nosso tão esperado TeckRock acontece amanhã aqui na unidade!
+              🎸🤘<br />
+              <br />
+              Um show incrível de rock com a banda formada por alunos dos cursos
+              de GPI, ADS e GE!<br />
+              <br />
+              Entrada gratuita, mas pedimos a doação de produtos de higiene
+              (fraldas, absorventes, pasta de dente, escova de dente, lenço
+              umedecido).<br />
+              <br />
+              Solidariedade: Todos os itens arrecadados serão doados à ONG
+              ECAC/Pé de Pitanga, ajudando crianças e mulheres em situação de
+              vulnerabilidade
+            </p>
+          </div>
+          <div class="button-reservar">
+            <button>GARANTIR INGRESSO</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button
+      onclick="window.location.href = 'gerenciarEvento.html';"
+      type="submit"
+      class="criar"
+    >
+      Criar
+    </button>
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+  </body>
+</html>

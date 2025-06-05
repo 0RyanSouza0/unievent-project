@@ -1,0 +1,131 @@
+:root {
+  --primary-orange: #f56f22;
+  --primary-black: #272727;
+  --primary-white: #ffffff;
+  --primary-gray: #d9d9d9;
+  --primary-font: "Plus Jakarta Sans", sans-serif;
+}
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--primary-black);
+  font-size: 16px;
+}
+
+.container-sup {
+  align-items: center;
+  display: inline-flex;
+  gap: 300px;
+  margin-left: 80px;
+}
+
+.seleção {
+  align-items: center;
+  display: inline-flex;
+  background-color: #f56f22;
+  width: 500px;
+  height: 200px;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  gap: 30px;
+  padding: 0;
+}
+
+.logo {
+  width: 350px;
+}
+
+.logo-unidade, .logo-suporte{
+  width: 150px;
+  margin-left: 30px;
+  margin-top: 20px;
+}
+
+
+.unidade, .suporte{
+   display: block;
+   width: 250px;
+}
+
+.unidade {
+  margin-left: 20px;
+}
+
+p {
+  font-family: var(--primary-font);
+  font-weight: 800;
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--primary-white);
+}
+
+a {
+  text-decoration: none
+}
+.txt-unidade {
+  display: flex;
+  margin: 3% 10% 10% 15%;
+}
+
+.txt-suporte {
+  display: flex;
+  margin: 3% 10% 10% 30%;
+}
+
+.funcionalidades {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: 15% auto 0 auto;
+  width: 80vw;
+}
+
+.criar-evento, .gerenciar-evento, .gerenciar-pessoas, .gerenciar-certificados {
+  width: 350px;
+  height: 250px;
+  display: block;
+  align-items: center;
+  padding-top: 10px;
+  border-radius: 20px;
+}
+
+.img-pessoas, .img-certificados {
+  display: flex;
+  margin-left: 20%;
+  width: 150px;
+}
+
+.img-criar-evento, .img-geren-evento {
+  display: flex;
+  margin: auto auto auto 25%;
+  width: 150px;
+}
+
+
+.txt-funcionalidade-evento {
+  display: flex;
+  margin: 10% 10% 10% 30%;
+} 
+
+.txt-funcionalidade-geren {
+  display: flex;
+  margin: 10% 10% 10% 23%;
+}
+
+.txt-funcionalidade-pessoas {
+  display: flex;
+  margin: 10% 10% 10% 21%;
+}
+
+.txt-funcionalidade-cert {
+  display: flex;
+  margin: 10% 10% 10% 15%;
+}
