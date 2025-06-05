@@ -39,6 +39,7 @@ class ContatoRepository {
         $this->pdo->commit(); 
 
         return $responsavel_evento; 
+        
 
     } catch (PDOException $e) {
         if ($this->pdo && $this->pdo->inTransaction()) {

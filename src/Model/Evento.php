@@ -2,7 +2,9 @@
 
 namespace src\Model;
 
-class Evento {
+use src\Config\Connection;
+
+class Evento extends Connection {
     private $id;
     private $nome;
     private $descricao;
@@ -13,6 +15,14 @@ class Evento {
     private $thumbnail;
     private $id_responsavel_evento_fk;
     private $id_endereco_fk;
+
+    private $table;
+    function __construct()
+    {
+        parent::__construct();
+        $this->table='evento';
+
+    }
 
     public function setId($id) {
         return $this->id = $id;

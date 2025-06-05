@@ -41,10 +41,10 @@ header p {
 
 .campos {
   align-items: center;
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  gap: 10%;
-  margin: 5% 0% 0% 0%;
+  margin-top: 465656965650px;
   justify-content: center;
 }
 
@@ -54,7 +54,6 @@ header p {
   padding: 8px 12px;
   background-color: transparent;
   color: var(--primary-white);
-  gap: 10px;
 }
 
 .input-titulo {
@@ -228,8 +227,6 @@ button {
   font-family: var(--primary-font);
   font-weight: 800;
   font-size: 20px;
-  background-color: var(--primary-orange);
-  color: #ffffff;
   border-radius: 8px;
   border: 0 none;
 }
@@ -241,22 +238,29 @@ button {
   margin-top: 10%;
 }
 
-button:hover {
-  background-color: transparent;
-  border-color: var(--primary-white);
-  transition: 0.3s ease-in-out all;
-  cursor: pointer;
-  border-color: var(--primary-white);
-  border: 1px solid #ffffff;
-}
-
 span {
-  padding: 8px;
+  padding: 6px;
   background-color: transparent;
   border: 1px solid var(--primary-orange);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  width: 200px;
+  margin-top: 55px;
+  transition: 0.2s all ease-in-out;
+}
+span .btn {
+  background-color: transparent;
+  color: var(--primary-white);
+  font-size: 1.1rem;
+}
+span i {
+  font-size: 1.1rem;
+  color: var(--primary-white);
+}
+span:hover {
+  background-color: var(--primary-orange);
+  cursor: pointer;
+  transition: 0.2s all ease-in-out;
 }

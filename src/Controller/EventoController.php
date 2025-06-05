@@ -60,7 +60,7 @@ class EventoController
                         }
                     }
                 }
-
+                
                 $titulo = trim($_POST['titulo']);
                 $descricao = trim($_POST['descricao']);
                 $capacidade = trim($_POST['capacidade']);
@@ -97,5 +97,7 @@ class EventoController
             }
         }
     }
-  
+
+
+    
 }

@@ -4,6 +4,7 @@ namespace src\Repository;
 
 use src\Config\Connection;
 use PDOException;
+use PDO;
 use src\Model\Evento;
 
 class EventoRepository {
@@ -42,6 +43,21 @@ class EventoRepository {
         throw $e;
     }
 }
+public static function getAll(){
+    try{
+        
+       $conexao = new Connection();
+        $pdo = $conexao->getConnection(); 
+        $consulta = $pdo->query("SELECT nome FROM evento;");
 
+
+        while ($linha = $consulta->fetchAll(PDO::FETCH_ASSOC)) {
+            echo "Nome: {$linha['nome']} <br />";
+}
+    }catch(PDOException $e){
+        throw $e;
+    }
+    }
+  
 }
 ?>
