@@ -43,9 +43,12 @@
             </div>
             <p class="titulos">Imagem</p>
             <div class="input-container-img">
-                <input type="file" name="thumbnail" id="upload" class="input-img" accept="image/*" required />
-                <a href="javascript:escolherArquivo()"><img class="img-upload" src="assets/images/upload.png" /></a>
+                <input type="file" name='thumbnail' id="upload" class="input-img" accept="image/*" required />
+                <label for="upload" class="upload-label">
+                    <img class="img-upload" src="assets/images/upload.png" />
+                </label>
             </div>
+
             <div class="input-container-data">
                 <p class="titulos">Data</p>
                 <input type="date" name="dataEvento" class="input-data" required />
