@@ -35,7 +35,7 @@ class ResponsavelEventoController{
                         $contato->setTelefoneContato($telefone_contato);
                         $responsavel = new ResponsavelEvento();
                         $responsavel->setNome($nome);
-                        ResponsavelEventoController::chamar();
+                        
                         return  $repository->save($contato,$responsavel);
                     }catch(PDOException $e){
                         echo "Error".$e;
@@ -47,9 +47,7 @@ class ResponsavelEventoController{
 
 
     }
-    public static function chamar(){
-        echo "salve";
-    }
+    
 }
 
 ?>

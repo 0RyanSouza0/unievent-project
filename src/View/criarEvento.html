@@ -10,62 +10,94 @@
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
       rel="stylesheet"
     />
-    <title>UniEvent</title>
+
+    <title>Criar Evento</title>
   </head>
   <body>
     <header>
-     <img src="assets/images/logo3.png" alt="" class="logo">
-     <p>Criar Evento</p>
+      <img src="assets/images/logo3.png" alt="" class="logo" />
+      <p>Criar Evento</p>
     </header>
     <div class="campos">
-    <div class="campos-1">
-      <p class="titulos">Título</p>
-      <form action="/src/" class="campos-3" method="post">
-      <div class="input-container-titulo">
-      <input type="text" name="Título" class="input-titulo" required/>
+      <div class="campos-1">
+        <p class="titulos">Título</p>
+        <div class="input-container-titulo">
+          <input type="text" name="Título" class="input-titulo" required />
+        </div>
+        <p class="titulos">Descrição</p>
+        <div class="input-container-desc">
+          <textarea class="input-desc" name="descricao" required></textarea>
+        </div>
+        <p class="titulos">Capacidade</p>
+        <div class="input-container-cap">
+          <input
+            type="number"
+            name="capacidade"
+            placeholder="N° máximo de pessoas"
+            class="input-cap"
+            required
+          />
+        </div>
       </div>
-      <p class="titulos">Descrição</p>
-      <div class="input-container-desc">
-      <textarea class="input-desc"></textarea>
+      <div class="campos-2">
+        <p class="titulos">Responsável</p>
+        <div class="input-container-res">
+          <select name="Responsável" class="input-res" required>
+            <option value="ana">Ana</option>
+          </select>
+        </div>
+        <p class="titulos">Imagem</p>
+        <div class="input-container-img">
+          <input
+            type="file"
+            name="thumbnail"
+            id="upload"
+            class="input-img"
+            accept="image/*"
+            required
+          />
+          <a href="javascript:escolherArquivo()"
+            ><img class="img-upload" src="assets/images/upload.png"
+          /></a>
+        </div>
+        <div class="input-container-data">
+          <p class="titulos">Data</p>
+          <input type="date" name="dataEvento" class="input-data" required />
+        </div>
       </div>
-      <p class="titulos">Capacidade</p>
-      <div class="input-container-cap">
-      <input type="text" name="Capacidade" placeholder="N° máximo de pessoas"  class="input-cap" required/>
-      </div>
-    </div>
-    <div class="campos-2">
-      <p class="titulos">Responsável</p>
-      <div class="input-container-res">
-      <input type="text" name="Responsável" class="input-res" required/>
-      </div>
-      <p class="titulos">Imagem</p>
-      <div class="input-container-img">
-      <input type="file" id="upload" class="input-img" accept="image/*" required/>
-      <a href="javascript:escolherArquivo()"><img class="img-upload" src="assets/images/upload.png"/></a>
-      </div>
-      <div class="input-container-hora">
-        <input type="time" name="Hora" class="input-hora" required/>
-      </div>
-      <div class="input-container-data">
-        <input type="date" name="Data" class="input-data" required/>
-      </div>
-    </div>
+      <div>
+        <div class="input-container-hora">
+          <p class="titulos">Hora</p>
+          <input type="time" name="horaEvento" class="input-hora" required />
+        </div>
+        <p class="titulos">Tipo de Evento</p>
 
-        <label>
-          <input type="checkbox" name="option1" value="opcao1">
-          Opção 1
-        </label>
-        <label>
-          <input type="checkbox" name="option2" value="opcao2">
-          Opção 2
-        </label>
-        <label>
-          <input type="checkbox" name="option3" value="opcao3">
-          Opção 3
-        </label>
-      </form>
-    
+        <div class="input-container-res">
+          <select name="categoriaEvento" class="input-res" required>
+            <option value="Palestra">Palestra</option>
+          </select>
+        </div>
+
+        <div class="container-botão">
+          <button
+            onclick="window.location.href = 'previaEvento.html';"
+            type="submit"
+          >
+            Ver Prévia
+          </button>
+        </div>
+      </div>
     </div>
-    <script src="assets/js/upload.js"></script>
+    <script src="assets/js/buttonTiposEvento.js"></script>
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
   </body>
 </html>
