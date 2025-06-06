@@ -10,6 +10,7 @@ use src\Service\EventoService;
 
 class EventoController
 {
+
     public function processarFormulario()
     {
         $repository = new EventoRepository();
@@ -88,7 +89,8 @@ class EventoController
                         $evento->setDataEvento($dataEvento);
                       
                         echo 'Dados enviados';
-                        return $repository->save($evento);
+                       return $repository->save($evento) && header('Location: ../src/View/previaEvento.html');
+                     
                     } catch (PDOException $e) {
                     
                         echo "Error: " . $e->getMessage();
@@ -97,7 +99,7 @@ class EventoController
             }
         }
     }
-
-
+ 
+  
     
 }

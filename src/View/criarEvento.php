@@ -19,61 +19,65 @@
         <img src="assets/images/logo3.png" alt="" class="logo" />
         <p>Criar Evento</p>
     </header>
-    <div class="campos">
-        <div class="campos-1">
-            <p class="titulos">Título</p>
-            <div class="input-container-titulo">
-                <input type="text" name="Título" class="input-titulo" required />
+    <form action="/UniEvent-Project/public/index.php?action=processarEvento" method="post"
+        enctype="multipart/form-data">
+        <div class="campos">
+            <div class="campos-1">
+                <p class="titulos">Título</p>
+                <div class="input-container-titulo">
+                    <input type="text" name="titulo" class="input-titulo" required />
+                </div>
+                <p class="titulos">Descrição</p>
+                <div class="input-container-desc">
+                    <textarea class="input-desc" name="descricao" required></textarea>
+                </div>
+                <p class="titulos">Capacidade</p>
+                <div class="input-container-cap">
+                    <input type="number" name="capacidade" placeholder="N° máximo de pessoas" class="input-cap"
+                        required />
+                </div>
             </div>
-            <p class="titulos">Descrição</p>
-            <div class="input-container-desc">
-                <textarea class="input-desc" name="descricao" required></textarea>
+            <div class="campos-2">
+                <p class="titulos">Responsável</p>
+                <div class="input-container-res">
+                    <select name="responsavel" class="input-res" required>
+                        <option value="ana">Ana</option>
+                    </select>
+                </div>
+                <p class="titulos">Imagem</p>
+                <div class="input-container-img">
+                    <input type="file" name='thumbnail' id="upload" class="input-img" accept="image/*" required />
+                    <label for="upload" class="upload-label">
+                        <img class="img-upload" src="assets/images/upload.png" />
+                    </label>
+                </div>
+
+                <div class="input-container-data">
+                    <p class="titulos">Data</p>
+                    <input type="date" name="dataEvento" class="input-data" required />
+                </div>
             </div>
-            <p class="titulos">Capacidade</p>
-            <div class="input-container-cap">
-                <input type="number" name="capacidade" placeholder="N° máximo de pessoas" class="input-cap" required />
+            <div>
+                <div class="input-container-hora">
+                    <p class="titulos">Hora</p>
+                    <input type="time" name="horaEvento" class="input-hora" required />
+                </div>
+                <p class="titulos">Tipo de Evento</p>
+
+                <div class="input-container-res">
+                    <select name="categoriaEvento" class="input-res" required>
+                        <option value="Palestra">Palestra</option>
+                    </select>
+                </div>
+
+                <div class="container-botão">
+                    <button onclick="window.location.href = 'previaEvento.html';" type="submit">
+                        Ver Prévia
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="campos-2">
-            <p class="titulos">Responsável</p>
-            <div class="input-container-res">
-                <select name="Responsável" class="input-res" required>
-                    <option value="ana">Ana</option>
-                </select>
-            </div>
-            <p class="titulos">Imagem</p>
-            <div class="input-container-img">
-                <input type="file" name='thumbnail' id="upload" class="input-img" accept="image/*" required />
-                <label for="upload" class="upload-label">
-                    <img class="img-upload" src="assets/images/upload.png" />
-                </label>
-            </div>
-
-            <div class="input-container-data">
-                <p class="titulos">Data</p>
-                <input type="date" name="dataEvento" class="input-data" required />
-            </div>
-        </div>
-        <div>
-            <div class="input-container-hora">
-                <p class="titulos">Hora</p>
-                <input type="time" name="horaEvento" class="input-hora" required />
-            </div>
-            <p class="titulos">Tipo de Evento</p>
-
-            <div class="input-container-res">
-                <select name="categoriaEvento" class="input-res" required>
-                    <option value="Palestra">Palestra</option>
-                </select>
-            </div>
-
-            <div class="container-botão">
-                <button onclick="window.location.href = 'previaEvento.html';" type="submit">
-                    Ver Prévia
-                </button>
-            </div>
-        </div>
-    </div>
+    </form>
     <script src="assets/js/buttonTiposEvento.js"></script>
     <div vw class="enabled">
         <div vw-access-button class="active"></div>

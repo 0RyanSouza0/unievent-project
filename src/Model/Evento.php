@@ -4,7 +4,7 @@ namespace src\Model;
 
 use src\Config\Connection;
 
-class Evento extends Connection {
+class Evento  {
     private $id;
     private $nome;
     private $descricao;
@@ -17,12 +17,6 @@ class Evento extends Connection {
     private $id_endereco_fk;
 
     private $table;
-    function __construct()
-    {
-        parent::__construct();
-        $this->table='evento';
-
-    }
 
     public function setId($id) {
         return $this->id = $id;
