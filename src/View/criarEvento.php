@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="container-botão">
-                    <button onclick="window.location.href = 'previaEvento.html';" type="submit">
+                    <button type="submit">
                         Ver Prévia
                     </button>
                 </div>
