@@ -14,7 +14,10 @@
   </head>
   <body>
     <header class="container-sup">
-      <img src="assets/images/logo3.png" alt="" class="logo" />
+      <div class="container-logo">
+        <img src="assets/images/logo3.png" alt="" class="logo" />
+        <p>Olá, Reginaldo</p>
+      </div>
       <div class="seleção">
         <div class="unidade">
           <img src="assets/images/logo-fatec.png" alt="" class="logo-unidade" />
@@ -25,6 +28,7 @@
           <p class="txt-suporte">Suporte</p>
         </div>
       </div>
+      <a href="index.html"><i class="fa-solid fa-person-running"></i> Sair</a>
     </header>
 
     <div class="funcionalidades">
@@ -38,20 +42,26 @@
           <p class="txt-funcionalidade-evento">Criar Evento</p>
         </div>
       </a>
-      <a href="" class="gerenciar-evento">
+      <a href="gerenciarEventos.html" class="gerenciar-evento">
         <div class="gerenciar-evento">
           <img
             src="assets/images/img-gerenciar-evento.png"
             alt=""
             class="img-geren-evento"
           />
-          <p class="txt-funcionalidade-geren">Gerenciar Evento</p>
+          <p class="txt-funcionalidade-geren">Gerenciar Eventos</p>
         </div>
       </a>
       <a href="" class="gerenciar-pessoas">
         <div class="gerenciar-pessoas">
           <img src="assets/images/img-pessoas.png" alt="" class="img-pessoas" />
           <p class="txt-funcionalidade-pessoas">Gerenciar Pessoas</p>
+        </div>
+      </a>
+      <a href="criarResponsavel.php" class="gerenciar-pessoas">
+        <div class="gerenciar-pessoas">
+          <img src="assets/images/img-pessoas.png" alt="" class="img-pessoas" />
+          <p class="txt-funcionalidade-pessoas">Criar Responsavel</p>
         </div>
       </a>
       <a href="" class="gerenciar-certificados">
@@ -75,5 +85,10 @@
     <script>
       new window.VLibras.Widget("https://vlibras.gov.br/app");
     </script>
+
+    <script
+      src="https://kit.fontawesome.com/1c065add65.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

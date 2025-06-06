@@ -16,8 +16,11 @@
 
 <body>
     <header>
-        <img src="assets/images/logo3.png" alt="" class="logo" />
-        <p>Criar Evento</p>
+        <div class="container-logo">
+            <img src="assets/images/logo3.png" alt="" class="logo">
+            <p>Criar Evento</p>
+        </div>
+        <a href="./home.html"><i class="fa-solid fa-arrow-left"></i>Voltar</a>
     </header>
     <form action="/UniEvent-Project/public/index.php?action=processarEvento" method="post"
         enctype="multipart/form-data">
@@ -46,9 +49,10 @@
                 </div>
                 <p class="titulos">Imagem</p>
                 <div class="input-container-img">
-                    <input type="file" name='thumbnail' id="upload" class="input-img" accept="image/*" required />
+                    <input type="file" name='thumbnail' id="upload" accept="image/*" required />
                     <label for="upload" class="upload-label">
-                        <img class="img-upload" src="assets/images/upload.png" />
+                        <input type="hidden">
+                        <img class="img-upload" src="assets/images/upload.png" id="preview" />
                     </label>
                 </div>
 
@@ -89,6 +93,33 @@
     <script>
     new window.VLibras.Widget("https://vlibras.gov.br/app");
     </script>
+
+
+    <script src="https://kit.fontawesome.com/1c065add65.js" crossorigin="anonymous"></script>
+    <script>
+    const input = document.getElementById('upload');
+    const preview = document.getElementById('preview');
+
+    input.addEventListener('change', function() {
+        const file = this.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.addEventListener('load', function() {
+                preview.setAttribute('src', this.result);
+                preview.style.display = 'block';
+                preview.style.width = '290px';
+                preview.style.maxHeight = '140px';
+                preview.style.objectFit = 'cover';
+                preview.style.borderRadius = '10px'
+            });
+
+            reader.readAsDataURL(file);
+        }
+    });
+    </script>
+
 </body>
 
 </html>

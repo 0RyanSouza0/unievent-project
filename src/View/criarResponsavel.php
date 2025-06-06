@@ -14,8 +14,11 @@
 
 <body>
     <header>
-        <img src="assets/images/logo3.png" alt="" class="logo">
-        <p>Criar Responsável</p>
+        <div class="container-logo">
+            <img src="assets/images/logo3.png" alt="" class="logo">
+            <p>Criar Responsável</p>
+        </div>
+        <a href="./home.html"><i class="fa-solid fa-arrow-left"></i>Voltar</a>
     </header>
     <form action="/UniEvent-Project/public/index.php?action=processarResponsavel" method="post" class="campos">
 

@@ -26,24 +26,22 @@ body {
   right: 0;
   background-color: var(--primary-orange);
   height: 80vh; /* 80% da altura da tela */
-  width: 45vw;  /* ← 45% da largura da tela */
+  width: 45vw; /* ← 45% da largura da tela */
   border-top-left-radius: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 3rem 2rem;
-  
 }
 .seleção {
-   margin-top: 10px;
-   align-items: center;
-   position: absolute;
-   top: 35%;
-   left: 30%;
-   margin: -25px 0 0 -25px;
+  margin-top: 10px;
+  align-items: center;
+  position: absolute;
+  top: 35%;
+  left: 30%;
+  margin: -25px 0 0 -25px;
 }
-
 
 .logo {
   width: 400px;
@@ -60,35 +58,35 @@ body {
   color: var(--primary-white);
   margin-bottom: 80%;
   margin-right: 70%;
+  margin-top: 30px;
 }
 
-
 .input-container {
-    margin-bottom: 40px;
-    margin-top: 5px;
-    border-radius: 12px;
-    border: 2px solid #ffffff;
-    padding: 8px 12px;
-    background-color: #C4591B;
-    gap: 10px;
-    display: flex; 
-    align-items: center;
+  margin-bottom: 40px;
+  margin-top: 5px;
+  border-radius: 12px;
+  border: 2px solid #ffffff;
+  padding: 8px 12px;
+  background-color: #c4591b;
+  gap: 10px;
+  display: flex;
+  align-items: center;
 }
 
 input {
-    width: 250px;
-    height: 40px;
-    font-family: var(--primary-font);
-    font-weight: 800;
-    font-size: 17px;
-    background-color: #C4591B;
-    color: var(--primary-white);
-    outline: none;
-    border: 0 none;
+  width: 250px;
+  height: 40px;
+  font-family: var(--primary-font);
+  font-weight: 800;
+  font-size: 17px;
+  background-color: #c4591b;
+  color: var(--primary-white);
+  outline: none;
+  border: 0 none;
 }
 
 .icone {
-    width: 40px;
+  width: 40px;
 }
 
 .subtitulos {
@@ -100,17 +98,17 @@ input {
 }
 
 button {
-     width: 250px;
-     height: 45px;
-     font-family: var(--primary-font);
-     font-weight: 800;
-     font-size: 20px;
-     background-color: #272727;
-     color:#ffffff; 
-     border-radius: 8px;
-     border: 0 none;
-    margin-top: 30px;
-    margin-left: 60px;
+  width: 250px;
+  height: 45px;
+  font-family: var(--primary-font);
+  font-weight: 800;
+  font-size: 20px;
+  background-color: #272727;
+  color: #ffffff;
+  border-radius: 8px;
+  border: 0 none;
+  margin-top: 30px;
+  margin-left: 60px;
 }
 
 button:hover {
