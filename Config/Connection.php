@@ -6,21 +6,26 @@
     class Connection{
         private $server = "localhost";
         private $username= "root";
-        private $db_name= "dbunievent";
+        private $db_name= "bdunievent";
         private $password="";
-        private $port='3307';
+        private $port='3306';
         public $conn;
+
+        function __construct(){
+            $this->getConnection();
+        }
 
         public function getConnection(){
             try{
                 $this->conn=new PDO("mysql:host=$this->server:$this->port;dbname=$this->db_name",$this->username,$this->password);
                 $this->conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION );
                 $this->conn->exec('set names utf8');
+                 return $this->conn;
             }
             catch(PDOException $e){
-                echo"ERROR: ".$e->getMessage();
+               die( "ERROR: ".$e->getMessage());
             }
-            return $this->conn;
+           
         }
         
     }
