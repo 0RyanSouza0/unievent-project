@@ -11,6 +11,10 @@
         private $port='3306';
         public $conn;
 
+        function __construct(){
+            $this->getConnection();
+        }
+
         public function getConnection(){
             try{
                 $this->conn=new PDO("mysql:host=$this->server:$this->port;dbname=$this->db_name",$this->username,$this->password);

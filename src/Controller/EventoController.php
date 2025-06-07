@@ -10,8 +10,46 @@ use src\Service\EventoService;
 
 class EventoController
 {
-    public function processarFormulario()
-    {
+    private $repository;
+    public function __construct() {
+        $this->repository = new EventoRepository();
+    }
+
+    public function listarEventos() {
+        try {
+            $eventos = $this->repository->listarTodos();
+            
+            $this->carregarView('gerenciarEventos.php', [
+                'eventos' => $eventos
+            ]);
+        } catch (\Exception $e) {
+            die("ERRO: " . $e->getMessage() . 
+                "<br>Arquivo: " . $e->getFile() . 
+                "<br>Linha: " . $e->getLine());
+        }
+    }
+
+    private function carregarView($view, $data = []) {
+        extract($data);
+        
+        $viewDir = realpath(__DIR__ . '/../View/');
+        
+        if (!$viewDir) {
+            throw new \Exception("Diretório View não encontrado. Verifique a estrutura de pastas.");
+        }
+        
+        $viewPath = $viewDir . '/' . $view;
+        
+        if (!file_exists($viewPath)) {
+            throw new \Exception("Arquivo de view não encontrado: " . $viewPath . 
+                            "\nViews disponíveis: " . implode(', ', scandir($viewDir)));
+        }
+        
+        require $viewPath;
+    }
+
+    public function processarFormulario() {
+
         $repository = new EventoRepository();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -60,7 +98,7 @@ class EventoController
                         }
                     }
                 }
-
+                
                 $titulo = trim($_POST['titulo']);
                 $descricao = trim($_POST['descricao']);
                 $capacidade = trim($_POST['capacidade']);
@@ -86,10 +124,12 @@ class EventoController
                         $evento->setThumbnail($thumbnail);
                         $evento->setHoraEvento($horaEvento);
                         $evento->setDataEvento($dataEvento);
-                        
+                      
                         echo 'Dados enviados';
-                        return $repository->save($evento);
+                       return $repository->save($evento) && header('Location: ../src/View/previaEvento.html');
+                     
                     } catch (PDOException $e) {
+                    
                         echo "Error: " . $e->getMessage();
                     }
                 }

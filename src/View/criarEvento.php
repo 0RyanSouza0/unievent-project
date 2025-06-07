@@ -1,101 +1,125 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="assets/css/styleCriarEvento.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
-      rel="stylesheet"
-    />
-    <title>UniEvent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet" />
+
+    <title>Criar Evento</title>
 </head>
+
 <body>
     <header>
-        <img src="assets/images/logo3.png" alt="" class="logo">
-        <p>Criar Evento</p>
+        <div class="container-logo">
+            <img src="assets/images/logo3.png" alt="" class="logo">
+            <p>Criar Evento</p>
+        </div>
+        <a href="./home.html"><i class="fa-solid fa-arrow-left"></i>Voltar</a>
     </header>
-    
-    <form action="/UniEvent-Project/public/index.php?action=processarEvento" 
-          class="campos-3" 
-          method="post"
-          enctype="multipart/form-data">
-        
-      <div class="campos">
-        <div class="campos-1">
-            <p class="titulos">Título</p>
-            <div class="input-container-titulo">
-                <input type="text" name="titulo" class="input-titulo" required/>
+    <form action="/UniEvent-Project/public/index.php?action=processarEvento" method="post"
+        enctype="multipart/form-data">
+        <div class="campos">
+            <div class="campos-1">
+                <p class="titulos">Título</p>
+                <div class="input-container-titulo">
+                    <input type="text" name="titulo" class="input-titulo" required />
+                </div>
+                <p class="titulos">Descrição</p>
+                <div class="input-container-desc">
+                    <textarea class="input-desc" name="descricao" required></textarea>
+                </div>
+                <p class="titulos">Capacidade</p>
+                <div class="input-container-cap">
+                    <input type="number" name="capacidade" placeholder="N° máximo de pessoas" class="input-cap"
+                        required />
+                </div>
             </div>
-            
-            <p class="titulos">Descrição</p>
-            <div class="input-container-desc">
-                <textarea class="input-desc" name='descricao' required></textarea>
-            </div>
-            
-            <p class="titulos">Capacidade</p>
-            <div class="input-container-cap">
-                <input type="number" name="capacidade" placeholder="N° máximo de pessoas" class="input-cap" required/>
-            </div>
-        </div>
-        
-        <div class="campos-2">
-            <p class="titulos">Responsável</p>
-            <div class="input-container-res">
-                <input type="text" name="responsavel" class="input-res" required/>
-            </div>
-            
-            <p class="titulos">Imagem</p>
-            <div class="input-container-img">
-                <input type="file" name='thumbnail' id="upload" class="input-img" accept="image/*" required/>
-                <label for="upload" class="upload-label">
-                    <img class="img-upload" src="assets/images/upload.png"/>
-                    <span>Selecionar imagem</span>
-                </label>
-            </div>
-            
-            <div class="input-container-hora">
-                <input type="time" name="horaEvento" class="input-hora" required/>
-            </div>
-            
-            <div class="input-container-data">
-                <input type="date" name="dataEvento" class="input-data" required/>
-            </div>
-        </div>
+            <div class="campos-2">
+                <p class="titulos">Responsável</p>
+                    <div class="input-container-res">
+                    <select name="responsavel" class="input-res" required>
+                        <option value="ana">Ana</option>
+                    </select>
+                    </div>
+                <p class="titulos">Imagem</p>
+                <div class="input-container-img">
+                    <input type="file" name='thumbnail' id="upload" accept="image/*" required />
+                    <label for="upload" class="upload-label">
+                        <input type="hidden">
+                        <img class="img-upload" src="assets/images/upload.png" id="preview" />
+                    </label>
+                </div>
 
-        <div class="categorias">
-            <p class="titulos">Categorias</p>
-            <label>
-              <input type="checkbox" name="categoriaEvento" value="opcao1">
-              Opção 1
-            </label>
-            <label>
-              <input type="checkbox" name="option2" value="opcao2">
-              Opção 2
-            </label>
-            <label>
-              <input type="checkbox" name="option3" value="opcao3">
-              Opção 3
-            </label>  
+                <div class="input-container-data">
+                    <p class="titulos">Data</p>
+                    <input type="date" name="dataEvento" class="input-data" required />
+                </div>
+            </div>
+            <div>
+                <div class="input-container-hora">
+                    <p class="titulos">Hora</p>
+                    <input type="time" name="horaEvento" class="input-hora" required />
+                </div>
+                <p class="titulos">Tipo de Evento</p>
+
+                <div class="input-container-res">
+                    <select name="categoriaEvento" class="input-res" required>
+                        <option value="Palestra">Palestra</option>
+                    </select>
+                </div>
+
+                <div class="container-botão">
+                    <button type="submit">
+                        Ver Prévia
+                    </button>
+                </div>
+            </div>
         </div>
-        
-        <input type="submit" value="Enviar">
-      </div>
     </form>
+    <script src="assets/js/buttonTiposEvento.js"></script>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+    new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
 
-    <!-- <script>
-    // Função simplificada para trigger no input file
-    function escolherArquivo() {
-        document.getElementById('upload').click();
-    }
-    
-    // Mostrar nome do arquivo selecionado (opcional)
-    document.getElementById('upload').addEventListener('change', function(e) {
-        const fileName = e.target.files[0]?.name || 'Nenhum arquivo selecionado';
-        console.log('Arquivo selecionado:', fileName);
+
+    <script src="https://kit.fontawesome.com/1c065add65.js" crossorigin="anonymous"></script>
+    <script>
+    const input = document.getElementById('upload');
+    const preview = document.getElementById('preview');
+
+    input.addEventListener('change', function() {
+        const file = this.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.addEventListener('load', function() {
+                preview.setAttribute('src', this.result);
+                preview.style.display = 'block';
+                preview.style.width = '290px';
+                preview.style.maxHeight = '140px';
+                preview.style.objectFit = 'cover';
+                preview.style.borderRadius = '10px'
+            });
+
+            reader.readAsDataURL(file);
+        }
     });
-    </script> -->
+    </script>
+
 </body>
+
 </html>

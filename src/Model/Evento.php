@@ -2,7 +2,9 @@
 
 namespace src\Model;
 
-class Evento {
+use src\Config\Connection;
+
+class Evento  {
     private $id;
     private $nome;
     private $descricao;
@@ -11,8 +13,12 @@ class Evento {
     private $data_evento;
     private $capacidade;
     private $thumbnail;
+    private $thumbnail2;
+    private $thumbnail3;
     private $id_responsavel_evento_fk;
     private $id_endereco_fk;
+
+    private $table;
 
     public function setId($id) {
         return $this->id = $id;
@@ -61,6 +67,21 @@ class Evento {
     }
     public function getThumbnail() {
         return $this->thumbnail;
+    }
+
+    public function setThumbnail2($thumbnail2) {
+        return $this->thumbnail2 = $thumbnail2;
+    }
+    public function getThumbnail2() {
+        return $this->thumbnail2;
+    }
+
+
+    public function setThumbnail3($thumbnail3) {
+        return $this->thumbnail3 = $thumbnail3;
+    }
+    public function getThumbnail3() {
+        return $this->thumbnail3;
     }
 
     public function setCategoriaEvento($categoria_evento) {

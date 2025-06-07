@@ -39,6 +39,7 @@ class ContatoRepository {
             $this->pdo->commit(); 
 
             return $responsavel_evento; 
+            
 
         } catch (PDOException $e) {
             if ($this->pdo && $this->pdo->inTransaction()) {
@@ -46,8 +47,9 @@ class ContatoRepository {
             }
             throw $e;
         }
-    }    
-    
+    }
+
+
     // $responsavelRepository->updateResponsavel('id', 22, ['name'=>'alexa'])
     public function updateResponsavel(string|int $id, string $nome, int $telefone_contato) {
         try {
@@ -73,6 +75,11 @@ class ContatoRepository {
             }
             throw $e;
         }
+    }
+
+    public function listarResponsaveis(): array {
+        $stmt = $this->pdo->query("SELECT nome FROM responsavelevento ORDER BY nome");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }
