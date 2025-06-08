@@ -19,7 +19,6 @@ try {
     $action = trim($action);
     $action = strtolower($action);
 
-    // Roteamento
     switch ($action) {
         case 'processarresponsavel':
             $controller = new ResponsavelEventoController();
@@ -38,19 +37,36 @@ try {
             $controller = new EventoController();
             $controller->listarEventos();
             break;
+        case 'excluirevento':
+            $controller = new EventoController();
+            $controller->excluirEvento($_GET['id']);
+            break;
+        case 'visualizaratualizarevento':
+            $controller = new EventoController();
+            $controller->visualizarAtualizarEvento($_GET['id']);
+            break;
+        case 'atualizarevento':
+            $controller = new EventoController();
+            $controller->atualizarEvento($_GET['id']);
+            break;
         case 'home':
-            // Página inicial padrão
             header('Location: ../View/home.html');
             exit;
         default:
-            // Página não encontrada
             http_response_code(404);
-            include __DIR__ . '/../View/404.php';
+            $viewPath = realpath(__DIR__ . '/../src/View/404.php');
+            
+            if (file_exists($viewPath)) {
+                include $viewPath;
+            } else {
+                // Fallback básico se o arquivo 404.php não existir
+                echo "<h1>404 Página Não Encontrada</h1>";
+                echo "<p>A página que você está procurando não existe.</p>";
+            }
             exit;
     }
     
 } catch (Exception $e) {
-    // Tratamento de erros global
     http_response_code(500);
     echo "Erro: " . $e->getMessage();
     error_log($e->getMessage());

@@ -205,8 +205,12 @@
                     <td><?= htmlspecialchars($evento->getDescricao()) ?></td>
                     <td><?= htmlspecialchars($evento->getCapacidade()) ?></td>
                     <td class="acoes">
-                        <a class="botao-acao" title="Editar"><i class="fa-solid fa-file-pen"></i></a>
-                        <a class="botao-acao" title="Excluir"><i class="fa-solid fa-trash"></i></a>
+                        <a class="botao-acao" title="Editar" href="/UniEvent-Project/public/index.php?action=visualizarAtualizarEvento&id=<?= $evento->getId() ?>"><i class="fa-solid fa-file-pen"></i></a>
+                        <a class="botao-acao" title="Excluir" 
+                          onclick="return confirm('Tem certeza que deseja excluir este evento?')" 
+                          href="/UniEvent-Project/public/index.php?action=excluirEvento&id=<?= $evento->getId() ?>">
+                          <i class="fa-solid fa-trash"></i>
+                        </a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
