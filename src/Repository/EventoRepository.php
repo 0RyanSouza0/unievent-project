@@ -16,6 +16,27 @@ class EventoRepository {
         $this->pdo = $connection->getConnection();
     }
 
+    public function excluir($id) {
+        try {
+            $this->pdo->beginTransaction();
+
+            // Usando prepared statement para evitar SQL injection
+            $query = "DELETE FROM evento WHERE id = :id";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $this->pdo->commit();
+            
+            return $stmt->rowCount(); // Retorna quantas linhas foram afetadas
+        } catch (PDOException $e) {
+            if ($this->pdo->inTransaction()) {
+                $this->pdo->rollBack();
+            }
+            throw $e;
+        }
+    }
+
     public function listarTodos(): array {
         $stmt = $this->pdo->query("SELECT * FROM evento");
     
@@ -24,6 +45,24 @@ class EventoRepository {
         $eventos = $stmt->fetchAll();
         
         return $eventos;
+    }
+
+    public function buscarPorId($id): ?Evento {
+        try {
+            $query = "SELECT * FROM evento WHERE id = :id";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            
+            $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Evento::class);
+            $evento = $stmt->fetch();
+            
+            return $evento ?: null;
+            
+        } catch (PDOException $e) {
+            error_log("Erro ao buscar evento: " . $e->getMessage());
+            throw $e;
+        }
     }
 
 
@@ -60,9 +99,38 @@ class EventoRepository {
             throw $e;
         }
     }
+    public function atualizar(Evento $evento) : bool {
+        try {
+            require_once(__DIR__ . '/../../Config/Connection.php');
+            $conexao = new Connection();
+            $this->pdo = $conexao->getConnection();
+            $this->pdo->beginTransaction(); 
+
+            $sql = "UPDATE evento SET nome = :nome, descricao = :descricao, categoria_evento = :categoria_evento, hora_evento = :hora_evento, data_evento = :data_evento,
+                        capacidade = :capacidade, thumbnail = :thumbnail WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                ':nome' => $evento->getNome(),
+                ':descricao' => $evento->getDescricao(),
+                ':categoria_evento' => $evento->getCategoriaEvento(),
+                ':hora_evento' => $evento->getHoraEvento(),
+                ':data_evento' => $evento->getDataEvento(),
+                ':capacidade' => $evento->getCapacidade(),
+                ':thumbnail' => $evento->getThumbnail(),
+                ':id' => $evento->getId()
+            ]);
+
+            $this->pdo->commit(); 
+
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
+            $this->pdo->rollBack();
+            throw $e;
+        }
+    }
     public static function getAll(){
         try{    
-        $conexao = new Connection();
+            $conexao = new Connection();
             $pdo = $conexao->getConnection(); 
             $consulta = $pdo->query("SELECT nome FROM evento;");
 

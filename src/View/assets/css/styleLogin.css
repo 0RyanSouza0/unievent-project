@@ -18,6 +18,12 @@ body {
   background-color: var(--primary-black);
   display: inline-flex;
   align-items: center;
+  color: var(--primary-white);
+}
+
+.dark-mode {
+  background-color: var(--primary-gray);
+  color: var(--primary-black);
 }
 
 .conteiner {
@@ -48,6 +54,7 @@ body {
   margin-left: 50%;
   margin-bottom: 100px;
   margin-top: 90%;
+  filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.4));
 }
 
 .titulo {
@@ -55,7 +62,7 @@ body {
   font-weight: 800;
   font-size: 40px;
   text-decoration: none;
-  color: var(--primary-white);
+
   margin-bottom: 80%;
   margin-right: 70%;
   margin-top: 30px;
@@ -85,6 +92,14 @@ input {
   border: 0 none;
 }
 
+::-webkit-input-placeholder {
+  color: var(--primary-gray);
+}
+
+.dark-mode input {
+  color: var(--primary-black);
+}
+
 .icone {
   width: 40px;
 }
@@ -94,7 +109,6 @@ input {
   font-weight: 800;
   font-size: 17px;
   text-decoration: none;
-  color: var(--primary-white);
 }
 
 button {
@@ -103,12 +117,13 @@ button {
   font-family: var(--primary-font);
   font-weight: 800;
   font-size: 20px;
-  background-color: #272727;
+  background-color: var(--primary-black);
   color: #ffffff;
   border-radius: 8px;
   border: 0 none;
   margin-top: 30px;
   margin-left: 60px;
+  color: var(--primary-white);
 }
 
 button:hover {
@@ -127,5 +142,4 @@ button:hover {
   font-weight: 800;
   font-size: 18px;
   text-decoration: none;
-  color: var(--primary-white);
 }
