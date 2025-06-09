@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <title>Tabela de Eventos</title>
     <style>
-      :root {
+    :root {
         --primary-orange: #f56f22;
         --primary-black: #272727;
         --primary-white: #ffffff;
         --primary-gray: #d9d9d9;
         --primary-font: "Plus Jakarta Sans", sans-serif;
-      }
+    }
 
-      * {
+    * {
         margin: 0px;
         padding: 0px;
         box-sizing: border-box;
         font-family: var(--primary-font);
-      }
+    }
 
-      html {
+    html {
         scroll-behavior: smooth;
-      }
+    }
 
-      body {
+    body {
         background-color: var(--primary-black);
-      }
+    }
 
-      header {
+    header {
         display: flex;
         height: 200px;
         align-items: center;
         padding: 20px;
         width: 100%;
         justify-content: space-between;
-      }
+    }
 
-      header .container-logo {
+    header .container-logo {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 5px;
-      }
+    }
 
-      header a {
+    header a {
         text-decoration: none;
         color: var(--primary-white);
         font-size: 1rem;
@@ -58,112 +59,167 @@
         margin-bottom: 20px;
         border-radius: 10px;
         transition: 0.2s all ease-in-out;
-      }
+    }
 
-      header a i {
+    header a i {
         font-size: 1rem;
         color: var(--primary-white);
-      }
+    }
 
-      header a:hover {
+    header a:hover {
         transition: 0.2s all ease-in-out;
         background-color: var(--primary-orange);
         border: var(--primary-orange);
         padding: 8px;
-      }
+    }
 
-      .logo {
+    .logo {
         width: 350px;
         height: 70px;
-      }
+    }
 
-      header p {
+    header p {
         font-family: var(--primary-font);
         font-weight: 800;
         font-size: 40px;
         text-decoration: none;
         color: var(--primary-white);
         margin-top: 15px;
-      }
+    }
 
-      h2 {
+    h2 {
         color: var(--primary-white);
         text-align: center;
 
         font-family: var(--primary-font);
-      }
+    }
 
-      table {
+    table {
         width: 90%;
-        border-collapse: collapse;
         margin-top: 20px;
         background-color: var(--primary-black);
         color: #ffffff;
         border: 1px solid #444;
         margin: 0 auto 0 auto;
-      }
 
-      th,
-      td {
+
+    }
+
+    td {
         padding: 10px;
         text-align: left;
         border: 1px solid #444;
-
         font-family: var(--primary-font);
-      }
 
-      th {
+        color: var(--primary-white);
+    }
+
+    th {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #444;
+        font-family: var(--primary-font);
+
+        color: var(--primary-white);
+    }
+
+    th {
         background-color: var(--primary-orange);
         color: var(--primary-white);
 
         font-family: var(--primary-font);
         font-weight: bold;
-      }
+    }
 
-      td {
+    td {
         background-color: #333;
-      }
+    }
 
-      img {
+    img {
         width: 100px;
         height: auto;
         border-radius: 4px;
         display: block;
         margin: 0 auto;
-      }
+    }
 
-      .acoes {
+    .acoes {
         display: flex;
         gap: 10px;
         background-color: var(--primary-orange);
         align-items: center;
         justify-content: center;
         height: 80px;
-      }
+    }
 
-      .botao-acao {
+    .botao-acao {
         border: none;
         cursor: pointer;
         text-decoration: none;
         font-size: 18px;
-      }
+    }
 
-      .botao-acao i:hover {
+    .botao-acao i:hover {
         color: var(--primary-black);
-      }
-      .botao-acao i {
-        color: var(--primary-white);
-      }
-    </style>
-  </head>
+    }
 
-  <body>
+    .botao-acao i {
+        color: var(--primary-white);
+    }
+
+    .dark-mode a {
+        color: var(--primary-black);
+    }
+
+    .dark-mode a i {
+        color: var(--primary-black);
+    }
+
+    .dark-mode {
+        background-color: var(--primary-gray);
+    }
+
+    .dark-mode header .container-logo p {
+        color: var(--primary-black);
+    }
+
+
+    td {
+        color: var(--primary-white);
+    }
+
+    .dark-mode table td {
+        background-color: rgb(165, 165, 165);
+        color: var(--primary-black);
+    }
+
+    .dark-mode table th {
+        background-color: var(--primary-orange);
+        color: var(--primary-black);
+    }
+
+
+    .dark-mode table .acoes .botao-acao i {
+        color: var(--primary-black);
+    }
+
+    .dark-mode table .acoes .botao-acao i:hover {
+        color: #d9d9d9;
+    }
+
+    .dark-mode table {
+        background-color: #d9d9d9;
+    }
+    </style>
+</head>
+
+<body>
     <header>
-      <div class="container-logo">
-        <img src="/UniEvent-Project/src/View/assets/images/logo3.png" alt="" class="logo" />
-        <p>Listagem de Eventos</p>
-      </div>
-      <a href="/UniEvent-Project/src/View/home.html"><i class="fa-solid fa-arrow-left"></i>Voltar</a>
+        <div class="container-logo">
+            <img src="/UniEvent-Project/src/View/assets/images/logo3.png" alt="" class="logo" />
+            <p>Listagem de Eventos</p>
+        </div>
+        <a href="/UniEvent-Project/src/View/home.html"><i class="fa-solid fa-arrow-left"></i>Voltar</a>
     </header>
 
     <table>
@@ -183,44 +239,65 @@
         </thead>
         <tbody>
             <?php if (empty($eventos)): ?>
-                <tr>
-                    <td colspan="10" style="text-align: center;">Nenhum evento encontrado</td>
-                </tr>
+            <tr>
+                <td colspan="10" style="text-align: center">
+                    Nenhum evento encontrado
+                </td>
+            </tr>
             <?php else: ?>
-                <?php foreach ($eventos as $evento): ?>
-                <tr>
-                    <td><?= htmlspecialchars($evento->getId()) ?></td>
-                    <td><?= htmlspecialchars($evento->getNome()) ?></td>
-                    <td>#Responsavel nao encontrado#</td>
-                    <td><?= htmlspecialchars($evento->getCategoriaEvento()) ?></td>
-                    <td><?= htmlspecialchars($evento->getDataEvento()) ?></td>
-                    <td><?= htmlspecialchars($evento->getHoraEvento()) ?></td>
-                    <td>
-                        <?php if ($evento->getThumbnail()): ?>
-                            <img src="/UniEvent-Project/public<?= htmlspecialchars($evento->getThumbnail()) ?>" alt="Thumbnail" style="width: 100px;">
-                        <?php else: ?>
-                            Sem imagem
-                        <?php endif; ?>
-                    </td>
-                    <td><?= htmlspecialchars($evento->getDescricao()) ?></td>
-                    <td><?= htmlspecialchars($evento->getCapacidade()) ?></td>
-                    <td class="acoes">
-                        <a class="botao-acao" title="Editar" href="/UniEvent-Project/public/index.php?action=visualizarAtualizarEvento&id=<?= $evento->getId() ?>"><i class="fa-solid fa-file-pen"></i></a>
-                        <a class="botao-acao" title="Excluir" 
-                          onclick="return confirm('Tem certeza que deseja excluir este evento?')" 
-                          href="/UniEvent-Project/public/index.php?action=excluirEvento&id=<?= $evento->getId() ?>">
-                          <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
+            <?php foreach ($eventos as $evento): ?>
+            <tr>
+                <td><?= htmlspecialchars($evento->getId()) ?></td>
+                <td><?= htmlspecialchars($evento->getNome()) ?></td>
+                <td>#Responsavel nao encontrado#</td>
+                <td><?= htmlspecialchars($evento->getCategoriaEvento()) ?></td>
+                <td><?= htmlspecialchars($evento->getDataEvento()) ?></td>
+                <td><?= htmlspecialchars($evento->getHoraEvento()) ?></td>
+                <td>
+                    <?php if ($evento->getThumbnail()): ?>
+                    <img src="/UniEvent-Project/public<?= htmlspecialchars($evento->getThumbnail()) ?>" alt="Thumbnail"
+                        style="width: 100px" />
+                    <?php else: ?>
+                    Sem imagem
+                    <?php endif; ?>
+                </td>
+                <td><?= htmlspecialchars($evento->getDescricao()) ?></td>
+                <td><?= htmlspecialchars($evento->getCapacidade()) ?></td>
+                <td class="acoes">
+                    <a class="botao-acao" title="Editar"
+                        href="/UniEvent-Project/public/index.php?action=visualizarAtualizarEvento&id=<?= $evento->getId() ?>"><i
+                            class="fa-solid fa-file-pen"></i></a>
+                    <a class="botao-acao" title="Excluir"
+                        onclick="return confirm('Tem certeza que deseja excluir este evento?')"
+                        href="/UniEvent-Project/public/index.php?action=excluirEvento&id=<?= $evento->getId() ?>">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
             <?php endif; ?>
         </tbody>
     </table>
 
-    <script
-      src="https://kit.fontawesome.com/1c065add65.js"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    <script src="https://kit.fontawesome.com/1c065add65.js" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark") {
+            document.body.classList.add("dark-mode");
+        }
+    });
+    </script>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+    new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+</body>
+
 </html>

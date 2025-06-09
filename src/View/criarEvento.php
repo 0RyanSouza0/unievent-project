@@ -20,7 +20,7 @@
             <img src="assets/images/logo3.png" alt="" class="logo">
             <p>Criar Evento</p>
         </div>
-        <a href="./home.html"><i class="fa-solid fa-arrow-left"></i>Voltar</a>
+        <a href="./home.html" class="b-voltar"><i class="fa-solid fa-arrow-left"></i>Voltar</a>
     </header>
     <form action="/UniEvent-Project/public/index.php?action=processarEvento" method="post"
         enctype="multipart/form-data">
@@ -42,19 +42,21 @@
             </div>
             <div class="campos-2">
                 <p class="titulos">Responsável</p>
-                    <div class="input-container-res">
+                <div class="input-container-res">
                     <select name="responsavel" class="input-res" required>
                         <option value="ana">Ana</option>
                     </select>
-                    </div>
+                </div>
                 <p class="titulos">Imagem</p>
                 <div class="input-container-img">
-                    <input type="file" name='thumbnail' id="upload" accept="image/*" required />
+                    <input type="file" name='thumbnail' id="upload" accept="image/*" required multiple />
                     <label for="upload" class="upload-label">
                         <input type="hidden">
                         <img class="img-upload" src="assets/images/upload.png" id="preview" />
                     </label>
                 </div>
+
+                <p id="nomeArquivo" class="nomeArquivo"></p>
 
                 <div class="input-container-data">
                     <p class="titulos">Data</p>
@@ -99,6 +101,7 @@
     <script>
     const input = document.getElementById('upload');
     const preview = document.getElementById('preview');
+    const nomeArquivo = document.getElementById('nomeArquivo');
 
     input.addEventListener('change', function() {
         const file = this.files[0];
@@ -117,8 +120,35 @@
 
             reader.readAsDataURL(file);
         }
+        if (input.files.length > 0) {
+            const nomes = Array.from(input.files).map(arquivo => arquivo.name);
+            nomeArquivo.textContent = `Arquivos: ${nomes.join(',')}`;
+        } else {
+            nomeArquivo.textContent = 'Nenhum arquivo selecionado';
+        }
+    });
+
+    // Verifica o tema salvo e aplica
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
     });
     </script>
+</body>
+
+</html>
+<div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+    </div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+new window.VLibras.Widget("https://vlibras.gov.br/app");
+</script>
 
 </body>
 

@@ -24,7 +24,8 @@
             <img src="/Unievent-Project/src/View/assets/images/logo3.png" alt="" class="logo">
             <p>Atualizar Evento</p>
         </div>
-        <a href="/UniEvent-Project/public/index.php?action=listarEventos"><i class="fa-solid fa-arrow-left"></i>Voltar</a>
+        <a href="/UniEvent-Project/public/index.php?action=listarEventos" class="b-voltar"><i
+                class="fa-solid fa-arrow-left"></i>Voltar</a>
     </header>
     <form action="/UniEvent-Project/public/index.php?action=atualizarEvento&id=<?= $evento->getId() ?>" method="post"
         enctype="multipart/form-data">
@@ -40,22 +41,23 @@
                 </div>
                 <p class="titulos">Capacidade</p>
                 <div class="input-container-cap">
-                    <input type="number" name="capacidade" placeholder="N° máximo de pessoas" class="input-cap" value="<?= $evento->getCapacidade(); ?>"/>
+                    <input type="number" name="capacidade" placeholder="N° máximo de pessoas" class="input-cap"
+                        value="<?= $evento->getCapacidade(); ?>" />
                 </div>
             </div>
             <div class="campos-2">
                 <p class="titulos">Responsável</p>
-                    <div class="input-container-res">
+                <div class="input-container-res">
                     <select name="responsavel" class="input-res">
                         <option value="ana">Ana</option>
                     </select>
-                    </div>
+                </div>
                 <p class="titulos">Imagem</p>
                 <div class="input-container-img">
                     <input type="file" name='thumbnail' id="upload" accept="image/*" />
                     <label for="upload" class="upload-label">
-                        <input type="hidden">
-                        <img class="img-upload" src="/Unievent-Project/public<?= $evento->getThumbnail() ?>" id="preview"/>
+                        <input type="hidden" src="/Unievent-Project/public<?= $evento->getThumbnail() ?>">
+                        <img class="img-upload" src="/Unievent-Project/src/View/assets/images/logo3.png" id="preview" />
                     </label>
                 </div>
                 <div class="input-container-data">
@@ -71,7 +73,7 @@
                 <p class="titulos">Tipo de Evento</p>
 
                 <div class="input-container-res">
-                    <select name="categoriaEvento" class="input-res" >
+                    <select name="categoriaEvento" class="input-res">
                         <option value="Palestra">Palestra</option>
                     </select>
                 </div>
@@ -100,7 +102,7 @@
     <script src="https://kit.fontawesome.com/1c065add65.js" crossorigin="anonymous"></script>
     <script>
     const input = document.getElementById('upload');
-    const input = document.getElementById('update');
+    const update = document.getElementById('update');
     const preview = document.getElementById('preview');
 
     input.addEventListener('change', function() {
@@ -112,13 +114,21 @@
             reader.addEventListener('load', function() {
                 preview.setAttribute('src', this.result);
                 preview.style.display = 'block';
-                preview.style.width = '290px';
+
                 preview.style.maxHeight = '140px';
                 preview.style.objectFit = 'cover';
                 preview.style.borderRadius = '10px'
             });
 
             reader.readAsDataURL(file);
+        }
+    });
+
+    // Verifica o tema salvo e aplica
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
         }
     });
     </script>

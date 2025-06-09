@@ -18,7 +18,7 @@
             <img src="assets/images/logo3.png" alt="" class="logo">
             <p>Criar Responsável</p>
         </div>
-        <a href="./home.html"><i class="fa-solid fa-arrow-left"></i>Voltar</a>
+        <a href="./home.html" class="b-voltar"><i class="fa-solid fa-arrow-left"></i>Voltar</a>
     </header>
     <form action="/UniEvent-Project/public/index.php?action=processarResponsavel" method="post" class="campos">
 
@@ -32,8 +32,7 @@
         <div>
             <p class="titulos">Email</p>
             <div class="input-container-cap">
-                <input type="email" name="email_contato" placeholder="N° máximo de pessoas" class="input-cap"
-                    required />
+                <input type="email" name="email_contato" class="input-cap" required />
             </div>
 
         </div>
@@ -57,7 +56,15 @@
 
 
     <script src="https://kit.fontawesome.com/1c065add65.js" crossorigin="anonymous"></script>
-    <script src="assets/js/upload.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    });
+    </script>
 </body>
 
 </html>

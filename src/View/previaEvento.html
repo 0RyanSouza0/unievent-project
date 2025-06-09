@@ -84,6 +84,13 @@
       </div>
     </div>
 
+    <button
+      onclick="window.location.href = 'criarEvento.php';"
+      type="submit"
+      class="Alterar"
+    >
+      Alterar
+    </button>
     <!--NAO APAGUE ESTE LINK, PROVAVELMENTE USAREMOS DPS ' ../Controller/eventoController.php';"-->
     <button
       onclick="window.location.href = ' ../View/home.html';"
@@ -101,6 +108,14 @@
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
       new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark") {
+          document.body.classList.add("dark-mode");
+        }
+      });
     </script>
   </body>
 </html>

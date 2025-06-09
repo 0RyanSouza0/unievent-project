@@ -18,6 +18,12 @@ html {
 body {
   background-color: var(--primary-black);
   font-size: 16px;
+  color: var(--primary-white);
+}
+
+.dark-mode {
+  background-color: var(--primary-gray);
+  color: var(--primary-black);
 }
 
 .container-sup {
@@ -42,7 +48,7 @@ body {
   padding: 0;
 }
 
-.container-sup a {
+.btn-sair {
   text-decoration: none;
   color: var(--primary-white);
   font-size: 1rem;
@@ -58,11 +64,21 @@ body {
   border-radius: 10px;
   transition: 0.2s all ease-in-out;
 }
-.container-sup a i {
+
+.dark-mode .btn-sair {
+  color: var(--primary-black);
+}
+
+.btn-sair i {
   font-size: 1rem;
   color: var(--primary-white);
 }
-.container-sup a:hover {
+
+.dark-mode i {
+  color: var(--primary-black);
+}
+
+.btn-sair:hover {
   transition: 0.2s all ease-in-out;
   background-color: var(--primary-orange);
   border: var(--primary-orange);
@@ -110,6 +126,10 @@ p {
 a {
   text-decoration: none;
 }
+
+.dark-mode p {
+  color: var(--primary-black);
+}
 .txt-unidade {
   display: flex;
   margin: 3% 10% 10% 15%;
@@ -140,6 +160,9 @@ a {
   border-radius: 20px;
 }
 
+.img-pessoas {
+  color: var(--primary-orange);
+}
 .img-pessoas,
 .img-certificados {
   display: flex;
