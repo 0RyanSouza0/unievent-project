@@ -13,6 +13,28 @@
 html {
   scroll-behavior: smooth;
 }
+.language-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.language-buttons button {
+  background-color: var(--primary-orange);
+  color: var(--primary-white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.language-buttons button:hover {
+  background-color: #d85e1d;
+}
 
 body {
   background-color: var(--primary-black);
