@@ -18,7 +18,7 @@
             <img src="assets/images/logo3.png" alt="Logo" class="logo" />
             <p data-i18n="create_responsible">Criar Responsável</p>
         </div>
-        <a href="./home.html" class="b-voltar"><i class="fa-solid fa-arrow-left"></i><span data-i18n="back"
+        <a href="./home.php" class="b-voltar"><i class="fa-solid fa-arrow-left"></i><span data-i18n="back"
                 style="border:none; margin:0px; width:auto;">Voltar</span></a>
     </header>
 
@@ -53,11 +53,11 @@
         </div>
     </form>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            form.addEventListener("submit", function (e) {
-                window.alert("Responsável Criado com Sucesso!");
-            });
+    document.addEventListener("DOMContentLoaded", function() {
+        form.addEventListener("submit", function(e) {
+            window.alert("Responsável Criado com Sucesso!");
         });
+    });
     </script>
 
     <script src="https://kit.fontawesome.com/1c065add65.js" crossorigin="anonymous"></script>

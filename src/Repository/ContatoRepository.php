@@ -4,6 +4,7 @@ namespace src\Repository;
 
 use src\Config\Connection;
 use PDOException;
+use PDO;
 use src\Model\ResponsavelEvento;
 
 class ContatoRepository {

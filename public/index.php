@@ -50,7 +50,7 @@ try {
             $controller->atualizarEvento($_GET['id']);
             break;
         case 'home':
-            header('Location: ../View/home.html');
+            header('Location: ../View/home.php');
             exit;
         default:
             http_response_code(404);

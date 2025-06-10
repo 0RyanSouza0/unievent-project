@@ -257,7 +257,8 @@ class EventoController
                         $evento->setDataEvento($dataEvento);
                       
                         echo 'Dados enviados';
-                       return $repository->save($evento) && header('Location: ../src/View/previaEvento.html');
+                        
+                       return $repository->save($evento) && header('Location: ../public/index.php?action=listarEventos');
                      
                     } catch (PDOException $e) {
                     

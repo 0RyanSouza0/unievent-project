@@ -18,7 +18,7 @@
             <img src="assets/images/logo3.png" alt="Logo" class="logo" />
             <p data-i18n="create_event_title">Criar Evento</p>
         </div>
-        <a href="./home.html" class="b-voltar"><i class="fa-solid fa-arrow-left"></i><span data-i18n="back_button"
+        <a href="./home.php" class="b-voltar"><i class="fa-solid fa-arrow-left"></i><span data-i18n="back_button"
                 style="border:none;">Voltar</span></a>
     </header>
 
@@ -83,7 +83,7 @@
 
                 <div class="container-botão">
                     <button type="submit" data-i18n="preview_button">
-                        Ver Prévia
+                        Criar Evento
                     </button>
                 </div>
             </div>
@@ -134,7 +134,7 @@
             label_date: "Date",
             label_time: "Time",
             label_event_type: "Event Type",
-            preview_button: "Preview"
+            preview_button: "Create Event"
         },
         pt: {
             create_event_title: "Criar Evento",
@@ -148,7 +148,7 @@
             label_date: "Data",
             label_time: "Hora",
             label_event_type: "Tipo de Evento",
-            preview_button: "Ver Prévia"
+            preview_button: "Criar Evento"
         }
     };
 

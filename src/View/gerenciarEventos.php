@@ -4,214 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>Tabela de Eventos</title>
-    <style>
-    :root {
-        --primary-orange: #f56f22;
-        --primary-black: #272727;
-        --primary-white: #ffffff;
-        --primary-gray: #d9d9d9;
-        --primary-font: "Plus Jakarta Sans", sans-serif;
-    }
-
-    * {
-        margin: 0px;
-        padding: 0px;
-        box-sizing: border-box;
-        font-family: var(--primary-font);
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        background-color: var(--primary-black);
-    }
-
-    header {
-        display: flex;
-        height: 200px;
-        align-items: center;
-        padding: 20px;
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    header .container-logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-    }
-
-    header a {
-        text-decoration: none;
-        color: var(--primary-white);
-        font-size: 1rem;
-        padding: 8px;
-        border: 1px solid var(--primary-orange);
-        display: flex;
-        font-family: var(--primary-font);
-        font-weight: 800;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-        margin-bottom: 20px;
-        border-radius: 10px;
-        transition: 0.2s all ease-in-out;
-    }
-
-    header a i {
-        font-size: 1rem;
-        color: var(--primary-white);
-    }
-
-    header a:hover {
-        transition: 0.2s all ease-in-out;
-        background-color: var(--primary-orange);
-        border: var(--primary-orange);
-        padding: 8px;
-    }
-
-    .logo {
-        width: 350px;
-        height: 70px;
-    }
-
-    header p {
-        font-family: var(--primary-font);
-        font-weight: 800;
-        font-size: 40px;
-        text-decoration: none;
-        color: var(--primary-white);
-        margin-top: 15px;
-    }
-
-    h2 {
-        color: var(--primary-white);
-        text-align: center;
-
-        font-family: var(--primary-font);
-    }
-
-    table {
-        width: 90%;
-        margin-top: 20px;
-        background-color: var(--primary-black);
-        color: #ffffff;
-        border: 1px solid #444;
-        margin: 0 auto 0 auto;
-
-
-    }
-
-    td {
-        padding: 10px;
-        text-align: left;
-        border: 1px solid #444;
-        font-family: var(--primary-font);
-
-        color: var(--primary-white);
-    }
-
-    th {
-        padding: 10px;
-        text-align: left;
-        border: 1px solid #444;
-        font-family: var(--primary-font);
-
-        color: var(--primary-white);
-    }
-
-    th {
-        background-color: var(--primary-orange);
-        color: var(--primary-white);
-
-        font-family: var(--primary-font);
-        font-weight: bold;
-    }
-
-    td {
-        background-color: #333;
-    }
-
-
-    img {
-        width: 100px;
-        height: auto;
-        border-radius: 4px;
-        display: block;
-        margin: 0 auto;
-    }
-
-    .acoes {
-        display: flex;
-        gap: 10px;
-        background-color: var(--primary-orange);
-        align-items: center;
-        justify-content: center;
-        min-height: 10vh;
-    }
-
-    .botao-acao {
-        border: none;
-        cursor: pointer;
-        text-decoration: none;
-        font-size: 18px;
-    }
-
-    .botao-acao i:hover {
-        color: var(--primary-black);
-    }
-
-    .botao-acao i {
-        color: var(--primary-white);
-    }
-
-    .dark-mode a {
-        color: var(--primary-black);
-    }
-
-    .dark-mode a i {
-        color: var(--primary-black);
-    }
-
-    .dark-mode {
-        background-color: var(--primary-gray);
-    }
-
-    .dark-mode header .container-logo p {
-        color: var(--primary-black);
-    }
-
-
-    td {
-        color: var(--primary-white);
-    }
-
-    .dark-mode table td {
-        background-color: rgb(165, 165, 165);
-        color: var(--primary-black);
-    }
-
-    .dark-mode table th {
-        background-color: var(--primary-orange);
-        color: var(--primary-black);
-    }
-
-
-    .dark-mode table .acoes .botao-acao i {
-        color: var(--primary-black);
-    }
-
-    .dark-mode table .acoes .botao-acao i:hover {
-        color: #d9d9d9;
-    }
-
-    .dark-mode table {
-        background-color: #d9d9d9;
-    }
-    </style>
+    <link rel="stylesheet" href="/Unievent-Project/src/View/assets/css/styleGerenciarEvento.css" />
 </head>
 
 <body>
@@ -220,7 +13,7 @@
             <img src="/UniEvent-Project/src/View/assets/images/logo3.png" alt="Logo" class="logo" />
             <p data-i18n="event_list_heading">Listagem de Eventos</p>
         </div>
-        <a href="/UniEvent-Project/src/View/home.html">
+        <a href="/UniEvent-Project/src/View/home.php">
             <i class="fa-solid fa-arrow-left"></i>
             <span data-i18n="back_button">Voltar</span>
         </a>
@@ -270,11 +63,18 @@
                         href="/UniEvent-Project/public/index.php?action=visualizarAtualizarEvento&id=<?= $evento->getId() ?>">
                         <i class="fa-solid fa-file-pen"></i>
                     </a>
+
                     <a class="botao-acao" title="Excluir"
                         onclick="return confirm('Tem certeza que deseja excluir este evento?')"
                         href="/UniEvent-Project/public/index.php?action=excluirEvento&id=<?= $evento->getId() ?>">
                         <i class="fa-solid fa-trash"></i>
                     </a>
+
+                    <a class="botao-acao" title="Visualizar Preview" href="/UniEvent-Project/src/View/previaEvento.php">
+                        <img src="/Unievent-Project/src/View/assets/images/previewIcon.svg" alt="" srcset="">
+                    </a>
+
+
                 </td>
             </tr>
             <?php endforeach; ?>
