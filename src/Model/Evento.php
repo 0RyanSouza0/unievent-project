@@ -13,6 +13,8 @@ class Evento  {
     private $data_evento;
     private $capacidade;
     private $thumbnail;
+    private $thumbnail2;
+    private $thumbnail3;
     private $id_responsavel_evento_fk;
     private $id_endereco_fk;
 
@@ -65,6 +67,21 @@ class Evento  {
     }
     public function getThumbnail() {
         return $this->thumbnail;
+    }
+
+    public function setThumbnail2($thumbnail2) {
+        return $this->thumbnail2 = $thumbnail2;
+    }
+    public function getThumbnail2() {
+        return $this->thumbnail2;
+    }
+
+
+    public function setThumbnail3($thumbnail3) {
+        return $this->thumbnail3 = $thumbnail3;
+    }
+    public function getThumbnail3() {
+        return $this->thumbnail3;
     }
 
     public function setCategoriaEvento($categoria_evento) {

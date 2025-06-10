@@ -18,6 +18,10 @@ html {
 body {
   background-color: var(--primary-black);
 }
+.dark-mode {
+  background-color: var(--primary-gray);
+  color: var(--primary-black);
+}
 header {
   height: auto;
   max-height: 60%;
@@ -29,7 +33,7 @@ header .fundo-laranja {
   padding: 0 0 30px 0;
 }
 header .fundo-laranja .container-inicio {
-    width: 80%;
+  width: 80%;
   margin: 0 auto;
   padding: 20px;
 }
@@ -46,6 +50,20 @@ header nav {
   border-radius: 10px;
   align-items: center;
   justify-content: space-between;
+}
+.dark-mode header nav {
+  background-color: var(--primary-gray);
+}
+.dark-mode header nav .login button {
+  background-color: #272727;
+}
+
+.dark-mode header nav .github {
+  background-color: #272727;
+}
+
+.dark-mode header nav .github i {
+  color: var(--primary-gray);
 }
 
 header nav .navegacao {
@@ -172,6 +190,17 @@ header .header-sobre .container-image-sobre img {
   flex-direction: column;
   margin-top: 100px;
 }
+.dark-mode .app {
+  background-color: var(--primary-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  flex-direction: column;
+  margin-top: 100px;
+}
 .app p {
   text-align: center;
   color: var(--primary-white);
@@ -238,7 +267,9 @@ header .header-sobre .container-image-sobre img {
   padding: 20px;
   flex-direction: column;
   margin-top: 100px;
-  
+}
+.dark-mode .integrantes {
+  background-color: var(--primary-gray);
 }
 .integrantes h2 {
   text-align: center;
@@ -247,12 +278,11 @@ header .header-sobre .container-image-sobre img {
   font-weight: 700;
   font-family: var(--primary-font);
   padding-bottom: 50px;
-  
 }
 
 /* CARDS DOS INTEGRANTES */
 .div-container-integrantes {
-  width: 100%;  
+  width: 100%;
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -308,7 +338,6 @@ header .header-sobre .container-image-sobre img {
 .card-integrantes.ryan:hover {
   transform: scale(1.05);
 }
-
 
 /*FOOTER*/
 footer {
@@ -367,7 +396,9 @@ footer .desenvolvido p {
   margin-top: 100px;
   flex-wrap: wrap;
 }
-
+.dark-mode .container-contato {
+  background-color: #bab9b9;
+}
 .div-contato {
   width: 600px;
   max-width: 400px;
@@ -375,7 +406,9 @@ footer .desenvolvido p {
   box-sizing: border-box;
 }
 
-.label-nome, .label-email, .label-contato{
+.label-nome,
+.label-email,
+.label-contato {
   font-family: var(--primary-font);
   font-weight: 500;
   font-size: 15px;
@@ -396,7 +429,8 @@ footer .desenvolvido p {
   padding-bottom: 5%;
 }
 
-.input-nome, .input-email {
+.input-nome,
+.input-email {
   width: 100%;
   height: 35px;
   border: 2px solid rgb(32, 32, 32);
