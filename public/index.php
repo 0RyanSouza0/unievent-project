@@ -20,11 +20,13 @@ try {
     $action = strtolower($action);
 
     switch ($action) {
+        case 'loginentrar':
+            header('Location: ../src/View/home.php');
+            break;
         case 'processarresponsavel':
             $controller = new ResponsavelEventoController();
             $controller->processarFormulario();
             break;
-            
         case 'updateresponsavel':
             $controller = new ResponsavelEventoController();
             $controller->processarUpdateResponsavel();
