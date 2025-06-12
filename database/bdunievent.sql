@@ -49,8 +49,7 @@ id_instituicao_fk integer, foreign key(id_instituicao_fk)
 references instituicao(id) ON DELETE CASCADE ON UPDATE CASCADE
  
 )engine=InnoDB;
- 
- 
+
 CREATE TABLE evento(
 id integer primary key auto_increment,
 nome varchar(80) not null,
@@ -59,9 +58,9 @@ categoria_evento varchar (40) not null,
 data_evento date not null,
 hora_evento time not null,
 capacidade int not null,
-thumbnail varchar(200) not null,
-thumbnail2 varchar(200),
-thumbnail3 varchar(200) ,
+thumbnail varchar(400) not null,
+thumbnail2 varchar(400),
+thumbnail3 varchar(400) ,
 id_responsavel_evento_fk integer, foreign key  (id_responsavel_evento_fk)
 references responsavelevento(id) ON UPDATE CASCADE
 ON DELETE CASCADE,

@@ -16,6 +16,12 @@ html {
 
 body {
   background-color: var(--primary-black);
+  color: var(--primary-white);
+}
+
+.dark-mode {
+  background-color: var(--primary-gray);
+  color: var(--primary-black);
 }
 
 header {
@@ -32,7 +38,7 @@ header .container-logo {
   justify-content: center;
   gap: 5px;
 }
-header a {
+.b-voltar {
   text-decoration: none;
   color: var(--primary-white);
   font-size: 1rem;
@@ -48,16 +54,23 @@ header a {
   border-radius: 10px;
   transition: 0.2s all ease-in-out;
 }
-header a i {
+
+.b-voltar i {
   font-size: 1rem;
   color: var(--primary-white);
 }
-header a:hover {
+
+.b-voltar:hover {
   transition: 0.2s all ease-in-out;
   background-color: var(--primary-orange);
   border: var(--primary-orange);
   padding: 8px;
 }
+
+.dark-mode .b-voltar {
+  color: var(--primary-black);
+}
+
 .logo {
   width: 350px;
   height: 70px;
@@ -68,7 +81,6 @@ header p {
   font-weight: 800;
   font-size: 40px;
   text-decoration: none;
-  color: var(--primary-white);
   margin-top: 15px;
 }
 
@@ -89,6 +101,10 @@ header p {
   color: var(--primary-white);
 }
 
+.dark-mode .input-container-titulo {
+  color: var(--primary-black);
+}
+
 .input-titulo {
   width: 250px;
   height: 40px;
@@ -100,21 +116,8 @@ header p {
   border: 0 none;
 }
 
-textarea {
-  width: 300px;
-  height: 150px;
-  max-width: 400px;
-  max-height: 200px;
-  resize: both;
-  overflow: auto; /*adicona barra de rolagem*/
-  border-radius: 12px;
-  border: 2px solid var(--primary-orange);
-  font-family: var(--primary-font);
-  font-size: 20px;
-  background-color: transparent;
-  color: var(--primary-white);
-  outline: none;
-  padding: 8px 12px;
+.dark-mode .input-titulo {
+  color: var(--primary-black);
 }
 
 .input-container-cap {
@@ -137,12 +140,15 @@ textarea {
   border: 0 none;
 }
 
+.dark-mode .input-cap {
+  color: var(--primary-black);
+}
+
 .titulos {
   font-family: var(--primary-font);
   font-weight: 800;
   font-size: 17px;
   text-decoration: none;
-  color: var(--primary-white);
   margin-top: 10%;
   margin-bottom: 5px;
 }
@@ -167,6 +173,10 @@ textarea {
   border: 0 none;
 }
 
+.dark-mode .input-res {
+  color: var(--primary-black);
+}
+
 .input-container-img {
   width: 300px;
   height: 150px;
@@ -186,33 +196,6 @@ textarea {
 
 .img-upload {
   width: 50px;
-}
-
-.buttons-container {
-  display: grid;
-  grid-template-columns: repeat(2, 150px);
-  gap: 15px;
-}
-
-.event-button {
-  border: 2px solid #ff7a00;
-  border-radius: 6px;
-  padding: 12px 0;
-  text-align: center;
-  color: var(--primary-white);
-  background-color: transparent;
-  cursor: pointer;
-  transition: 0.3s;
-  font-family: var(--primary-font);
-  font-weight: 800;
-}
-
-.event-button:hover {
-  background-color: #ff7a00;
-}
-
-.event-button.selected {
-  background-color: #ff7a00;
 }
 
 .input-data {
@@ -258,6 +241,7 @@ button {
   width: 250px;
   height: 45px;
   font-family: var(--primary-font);
+  color: var(--primary-white);
   font-weight: 800;
   font-size: 20px;
   border-radius: 8px;
@@ -285,12 +269,24 @@ span {
 }
 span .btn {
   background-color: transparent;
-  color: var(--primary-white);
   font-size: 1.1rem;
 }
+
+.btn {
+  color: var(--primary-white);
+}
+
+.dark-mode .btn {
+  color: var(--primary-black);
+}
+
 span i {
   font-size: 1.1rem;
   color: var(--primary-white);
+}
+
+.dark-mode i {
+  color: var(--primary-black);
 }
 span:hover {
   background-color: var(--primary-orange);

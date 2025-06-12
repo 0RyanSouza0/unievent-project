@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/styleLogin.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet" />
+    <title>Login</title>
+</head>
+
+<body>
+    <div>
+        <img src="assets/images/logo.svg" alt="Logo" class="logo" />
+    </div>
+    <div class="conteiner">
+        <div class="titulo">
+            <p data-i18n="login_title">Login</p>
+        </div>
+        <div class="seleção">
+            <div class="inputs">
+                <p class="subtitulos" data-i18n="email_label">E-mail</p>
+                <div class="input-container">
+                    <img src="assets/images/email.png" alt="" class="icone" />
+                    <input type="text" name="E-mail" class="campos" data-i18n-placeholder="email_placeholder"
+                        placeholder="email@email.com.br" required />
+                </div>
+                <p class="subtitulos" data-i18n="password_label">Senha</p>
+                <div class="input-container">
+                    <img src="assets/images/password.png" alt="" class="icone" />
+                    <input type="text" name="Senha" class="campos" data-i18n-placeholder="password_placeholder"
+                        placeholder="Insira aqui sua senha" required />
+                    <img src="assets/images/hide.png" alt="" class="icone" />
+                </div>
+            </div>
+            <div>
+                <div>
+                    <button onclick="window.location.href = 'home.php';" type="submit" data-i18n="login_button">
+                        Login
+                    </button>
+                </div>
+                <div class="seleção-2">
+                    <p data-i18n="forgot_password">Esqueci minha senha</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VLibras Plugin -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+    new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark") {
+            document.body.classList.add("dark-mode");
+        }
+    });
+    </script>
+    <script src="assets/js/traducaoLogin.js"></script>
+</body>
+
+</html>

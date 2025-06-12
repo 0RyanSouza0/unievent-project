@@ -10,28 +10,25 @@ use src\Service\ContatoService;
 class ResponsavelEventoController{
 
     public function processarFormulario(){
-       
         $repository = new ContatoRepository();
 
         if($_SERVER['REQUEST_METHOD']== 'POST'){
-
+            if(
+            isset($_POST['email_contato'])&&
+            isset($_POST['telefone_contato'])&&
+            isset($_POST['nome'])
             
-                if(
-                isset($_POST['email_contato'])&&
-                isset($_POST['telefone_contato'])&&
-                isset($_POST['nome'])
+            ){
                 
-                ){
-                   
-                    $email_contato=trim($_POST['email_contato']);
-                    
-                    $telefone_contato=trim($_POST['telefone_contato']);
-                    $nome=trim($_POST['nome']);
-                    if(empty($email_contato)|| empty($telefone_contato)|| empty($nome)){
-                        echo "preencha todos os campos";
-                    }
-                    else{
-                        if(ContatoService::validarEmail($email_contato)){  
+                $email_contato=trim($_POST['email_contato']);
+                
+                $telefone_contato=trim($_POST['telefone_contato']);
+                $nome=trim($_POST['nome']);
+                if(empty($email_contato)|| empty($telefone_contato)|| empty($nome)){
+                    echo "preencha todos os campos";
+                }
+                else{
+                    if(ContatoService::validarEmail($email_contato)){  
                         try{
                             $contato = new Contato();
                             $contato->setEmailContato($email_contato);
@@ -43,12 +40,11 @@ class ResponsavelEventoController{
                         }catch(PDOException $e){
                             echo "Error".$e;
                         }
-                        
-                     }
                     }
+                }
 
-    }
-    }
+            }
+        }
     }
     public function processarUpdateResponsavel() {
         $repository = new ContatoRepository();
@@ -70,10 +66,7 @@ class ResponsavelEventoController{
                 }
             }
         }
-    }
-
-
-    
+    } 
 }
 
 ?>

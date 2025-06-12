@@ -16,6 +16,12 @@ html {
 
 body {
   background-color: var(--primary-black);
+  color: var(--primary-white);
+}
+
+.dark-mode {
+  background-color: var(--primary-gray);
+  color: var(--primary-black);
 }
 
 header {
@@ -32,7 +38,8 @@ header .container-logo {
   justify-content: center;
   gap: 5px;
 }
-header a {
+
+.dark-mode .b-voltar {
   text-decoration: none;
   color: var(--primary-white);
   font-size: 1rem;
@@ -43,16 +50,40 @@ header a {
   font-weight: 800;
   align-items: center;
   justify-content: center;
+
   gap: 5px;
   margin-bottom: 20px;
   border-radius: 10px;
   transition: 0.2s all ease-in-out;
 }
-header a i {
-  font-size: 1rem;
+
+.b-voltar {
+  text-decoration: none;
   color: var(--primary-white);
+  font-size: 1rem;
+  padding: 8px;
+  border: 1px solid var(--primary-orange);
+  display: flex;
+  font-family: var(--primary-font);
+  font-weight: 800;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  transition: 0.2s all ease-in-out;
 }
-header a:hover {
+
+.dark-mode .b-voltar {
+  color: var(--primary-black);
+}
+
+.b-voltar i {
+  font-size: 1rem;
+}
+
+.b-voltar:hover {
   transition: 0.2s all ease-in-out;
   background-color: var(--primary-orange);
   border: var(--primary-orange);
@@ -69,7 +100,7 @@ header p {
   font-weight: 800;
   font-size: 40px;
   text-decoration: none;
-  color: var(--primary-white);
+
   margin-top: 15px;
 }
 
@@ -87,7 +118,6 @@ header p {
   border: 2px solid var(--primary-orange);
   padding: 8px 12px;
   background-color: transparent;
-  color: var(--primary-white);
   gap: 10px;
 }
 
@@ -95,11 +125,15 @@ header p {
   width: 250px;
   height: 40px;
   font-family: var(--primary-font);
+  color: var(--primary-white);
   font-size: 17px;
   background-color: transparent;
-  color: var(--primary-white);
   outline: none;
   border: 0 none;
+}
+
+.dark-mode .input-titulo {
+  color: var(--primary-black);
 }
 
 textarea {
@@ -112,11 +146,15 @@ textarea {
   border-radius: 12px;
   border: 2px solid var(--primary-orange);
   font-family: var(--primary-font);
+  color: var(--primary-white);
   font-size: 20px;
   background-color: transparent;
-  color: var(--primary-white);
   outline: none;
   padding: 8px 12px;
+}
+
+.dark-mode textarea {
+  color: var(--primary-black);
 }
 
 .input-container-cap {
@@ -124,7 +162,6 @@ textarea {
   border: 2px solid var(--primary-orange);
   padding: 8px 12px;
   background-color: transparent;
-  color: var(--primary-white);
   gap: 10px;
 }
 
@@ -139,12 +176,15 @@ textarea {
   border: 0 none;
 }
 
+.dark-mode .input-cap {
+  color: var(--primary-black);
+}
+
 .titulos {
   font-family: var(--primary-font);
   font-weight: 800;
   font-size: 17px;
   text-decoration: none;
-  color: var(--primary-white);
   margin-top: 10%;
   margin-bottom: 5px;
 }
@@ -154,7 +194,6 @@ textarea {
   border: 2px solid var(--primary-orange);
   padding: 8px 12px;
   background-color: transparent;
-  color: var(--primary-white);
   gap: 10px;
 }
 
@@ -162,11 +201,15 @@ textarea {
   width: 250px;
   height: 40px;
   font-family: var(--primary-font);
+  color: var(--primary-white);
   font-size: 17px;
   background-color: transparent;
-  color: var(--primary-white);
   outline: none;
   border: 0 none;
+}
+
+.dark-mode .input-res {
+  color: var(--primary-black);
 }
 
 .input-container-img {
@@ -193,6 +236,19 @@ textarea {
   width: 50px;
 }
 
+.nomeArquivo {
+  font-family: var(--primary-font);
+  color: var(--primary-white);
+  font-weight: 400;
+  font-size: 12px;
+  text-decoration: none;
+  margin-top: 10%;
+}
+
+.dark-mode .nomeArquivo {
+  color: var(--primary-black);
+}
+
 .buttons-container {
   display: grid;
   grid-template-columns: repeat(2, 150px);
@@ -212,6 +268,10 @@ textarea {
   font-weight: 800;
 }
 
+.dark-mode .event-button {
+  color: var(--primary-black);
+}
+
 .event-button:hover {
   background-color: #ff7a00;
 }
@@ -226,11 +286,15 @@ textarea {
   border: 2px solid #ff7a00;
   border-radius: 6px;
   text-align: center;
-  color: var(--primary-white);
   background-color: transparent;
   font-family: var(--primary-font);
+  color: var(--primary-white);
   font-weight: 800;
   outline: none;
+}
+
+.dark-mode .input-data {
+  color: var(--primary-black);
 }
 
 .input-hora {
@@ -239,11 +303,15 @@ textarea {
   border: 2px solid #ff7a00;
   border-radius: 6px;
   text-align: center;
-  color: var(--primary-white);
   background-color: transparent;
   font-family: var(--primary-font);
+  color: var(--primary-white);
   font-weight: 800;
   outline: none;
+}
+
+.dark-mode .input-hora {
+  color: var(--primary-black);
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator,
@@ -263,12 +331,16 @@ button {
   width: 250px;
   height: 45px;
   font-family: var(--primary-font);
+  color: var(--primary-white);
   font-weight: 800;
   font-size: 20px;
   background-color: var(--primary-orange);
-  color: #ffffff;
   border-radius: 8px;
   border: 0 none;
+}
+
+.dark-mode button {
+  color: var(--primary-black);
 }
 
 .container-botão {

@@ -6,12 +6,13 @@ class ContatoService{
     public static function validarEmail($email):bool{
 
         if (preg_match('/^[a-zA-Z0-9._%+-]+@fatec\.sp\.gov\.br$/', $email)) {
-            echo "E-mail válido da FATEC.";
+            echo "<script>window.alert('Responsável Criado com Sucesso!')</script>";
+            echo "<script>window.location.href = '/../UniEvent-Project/src/View/home.html';</script>";
             return true;
         } else {
-            echo "E-mail inválido.";
-            return false;   
-            
+            echo "<script>window.alert('Email Inválido!')</script>";
+            echo "<script>window.location.href = '/../UniEvent-Project/src/View/criarResponsavel.php';</script>";
+            return false;
         }
 }
 }
