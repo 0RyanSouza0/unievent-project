@@ -11,6 +11,7 @@ require_once __DIR__ . '/../Config/Connection.php';
 
 use src\Controller\EventoController;
 use src\Controller\ResponsavelEventoController;
+use src\Controller\SecretariaController;
 
 try {
     $action = $_GET['action'] ?? 'home';
@@ -21,7 +22,12 @@ try {
 
     switch ($action) {
         case 'loginentrar':
-            header('Location: ../src/View/home.php');
+            $controller = new SecretariaController();
+            $controller->processarLogin();
+            break;
+        case 'logincadastrar':
+            $controller = new SecretariaController();
+            $controller->processarCadastro();
             break;
         case 'processarresponsavel':
             $controller = new ResponsavelEventoController();

@@ -98,7 +98,6 @@ CREATE TABLE instituicao_evento (
 ) ENGINE=InnoDB;
  
 CREATE TABLE secretaria(
-rgm bigint primary key not null unique,
 nome varchar(80) not null,
 email varchar(200) not null,
 senha varchar(200) not null,

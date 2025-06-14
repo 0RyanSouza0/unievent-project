@@ -23,7 +23,7 @@
             <div class="second-column">
                 <h2 class="titulo titulo-second">Criar conta</h2>
                 <p class="descricao descricao-second">Utilize seu email institucional</p>
-                <form action="#" class="formulario">
+                <form action="/unievent-project/public/index.php?action=loginCadastrar" class="formulario" method='post'>
                     <label class='label-input'>
                         <i class="fa-solid fa-user icon-modify"></i>
                         <input type="text" name="nome" placeholder='Nome'>
@@ -34,7 +34,7 @@
                     </label>
                     <label class='label-input'>
                         <i class="fa-solid fa-lock icon-modify"></i>
-                        <input type="password" name="password" placeholder='Senha'>
+                        <input type="password" name="senha" placeholder='Senha'>
                     </label>
                     <button class="btn btn-second">Cadastrar</button>
                 </form>
@@ -43,6 +43,9 @@
 
         <div class="content second-content">
             <div class="first-column">
+                <a href="index.php" class='arrow-button'>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
                 <h2 class='titulo titulo-primary'>Olá!</h2>
                 <p class="descricao descricao-primary">Para se conectar a nós</p>
                 <p class="descricao descricao-primary">por favor, faça o cadastro</p>
@@ -54,11 +57,11 @@
                 <form action="/unievent-project/public/index.php?action=loginEntrar" class="formulario" method='post'>
                     <label class='label-input'>
                         <i class="fa-solid fa-envelope icon-modify"></i>
-                        <input type="email" name="email" placeholder='Email Institucional'>
+                        <input type="email" name="email" placeholder='Email Institucional' required>
                     </label>
                     <label class='label-input'>
                         <i class="fa-solid fa-lock icon-modify"></i>
-                        <input type="password" name="password" placeholder='Senha'>
+                        <input type="password" name="senha" placeholder='Senha' required>
                     </label>
                     <a class='password' href='#'>Esqueci minha senha</a>
                     <button class="btn btn-second" type='submit'>Entrar</button>
