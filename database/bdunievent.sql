@@ -101,6 +101,8 @@ CREATE TABLE secretaria(
 nome varchar(80) not null,
 email varchar(200) not null,
 senha varchar(200) not null,
+chave varchar(300) unique,
+situacao int not null,
 id_instituicao_fk integer, foreign key (id_instituicao_fk)
 references instituicao(id) ON UPDATE CASCADE ON DELETE CASCADE 
 )engine=INNODB;

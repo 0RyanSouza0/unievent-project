@@ -8,6 +8,11 @@ use src\Model\Secretaria;
 use src\Repository\SecretariaRepository;
 use src\Service\SecretariaService;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+require 'unievent-project/vendor/autoload.php'
+
 class SecretariaController {
 
     private $repository;
@@ -73,7 +78,25 @@ class SecretariaController {
                         $secretaria->setSenha($senhaHash);
                         
                         $repository->criarLoginSecretaria($secretaria);
-                        header('Location: /unievent-project/src/View/home.php');
+                        header('Location: /unievent-project/src/View/login.php');
+
+                        $mail = new PHPMailer(true);
+
+                        //Server settings
+                        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                        $mail->isSMTP();                                            //Send using SMTP
+                        $mail->Host       = 'smtp.example.com';                     //Set the SMTP server to send through
+                        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                        $mail->Username   = 'user@example.com';                     //SMTP username
+                        $mail->Password   = 'secret';                               //SMTP password
+                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+                        try {
+
+                        } catch (Exception $e) {
+                            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                        }
                         exit();
                     } catch (PDOException $e) {
                         echo "Error: " . $e->getMessage();
