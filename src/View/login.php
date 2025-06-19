@@ -1,3 +1,8 @@
+<?php
+session_start();
+ob_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -21,20 +26,28 @@
                 <button id='signin' class='btn btn-primary'>Entrar</button>
             </div>
             <div class="second-column">
+                <div class="message-container">
+                    <?php 
+                    if (isset($_SESSION['msg'])) {
+                        echo $_SESSION['msg'];
+                        unset($_SESSION['msg']);
+                    }
+                    ?>
+                </div>
                 <h2 class="titulo titulo-second">Criar conta</h2>
                 <p class="descricao descricao-second">Utilize seu email institucional</p>
                 <form action="/unievent-project/public/index.php?action=loginCadastrar" class="formulario" method='post'>
                     <label class='label-input'>
                         <i class="fa-solid fa-user icon-modify"></i>
-                        <input type="text" name="nome" placeholder='Nome'>
+                        <input type="text" name="nome" placeholder='Nome' value='teste'>
                     </label>
                     <label class='label-input'>
                         <i class="fa-solid fa-envelope icon-modify"></i>
-                        <input type="email" name="email" placeholder='Email Institucional'>
+                        <input type="email" name="email" placeholder='Email Institucional' value='teste@fatec.sp.gov.br'>
                     </label>
                     <label class='label-input'>
                         <i class="fa-solid fa-lock icon-modify"></i>
-                        <input type="password" name="senha" placeholder='Senha'>
+                        <input type="password" name="senha" placeholder='Senha' value=1234>
                     </label>
                     <button class="btn btn-second">Cadastrar</button>
                 </form>
