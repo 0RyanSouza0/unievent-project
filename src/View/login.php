@@ -28,10 +28,10 @@ ob_start();
             <div class="second-column">
                 <div class="message-container">
                     <?php 
-                    if (isset($_SESSION['msg'])) {
-                        echo $_SESSION['msg'];
-                        unset($_SESSION['msg']);
-                    }
+                        if (isset($_SESSION['msg'])) {
+                            echo $_SESSION['msg'];
+                            unset($_SESSION['msg']);
+                        }
                     ?>
                 </div>
                 <h2 class="titulo titulo-second">Criar conta</h2>
@@ -70,11 +70,11 @@ ob_start();
                 <form action="/unievent-project/public/index.php?action=loginEntrar" class="formulario" method='post'>
                     <label class='label-input'>
                         <i class="fa-solid fa-envelope icon-modify"></i>
-                        <input type="email" name="email" placeholder='Email Institucional' required>
+                        <input type="email" name="email" placeholder='Email Institucional' value='teste@fatec.sp.gov.br' required>
                     </label>
                     <label class='label-input'>
                         <i class="fa-solid fa-lock icon-modify"></i>
-                        <input type="password" name="senha" placeholder='Senha' required>
+                        <input type="password" name="senha" placeholder='Senha' value='1234' required>
                     </label>
                     <a class='password' href='#'>Esqueci minha senha</a>
                     <button class="btn btn-second" type='submit'>Entrar</button>
