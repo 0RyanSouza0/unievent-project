@@ -1,7 +1,3 @@
-CREATE DATABASE bdunievent;
-USE bdunievent;
-DROP DATABASE bdunievent;
- 
 CREATE TABLE contato(
 id integer primary key auto_increment,
 telefone_contato varchar(15) not null,
@@ -98,10 +94,13 @@ CREATE TABLE instituicao_evento (
 ) ENGINE=InnoDB;
  
 CREATE TABLE secretaria(
-rgm bigint primary key not null unique,
+id int not null AUTO_INCREMENT,
 nome varchar(80) not null,
 email varchar(200) not null,
 senha varchar(200) not null,
+chave varchar(300) unique,
+situacao varchar(50) default "inativo",
+PRIMARY KEY (id),
 id_instituicao_fk integer, foreign key (id_instituicao_fk)
 references instituicao(id) ON UPDATE CASCADE ON DELETE CASCADE 
 )engine=INNODB;

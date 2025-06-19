@@ -8,7 +8,7 @@
         private $username= "root";
         private $db_name= "bdunievent";
         private $password="";
-        private $port='3307';
+        private $port='3306';
         public $conn;
 
         function __construct(){

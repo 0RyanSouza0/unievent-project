@@ -11,12 +11,20 @@ class ComposerStaticInitcf20bc221a7da88d2fefd3b5042b2c3c
         array (
             'Tlous\\TesteComposer\\' => 20,
         ),
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'Tlous\\TesteComposer\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
     );
 

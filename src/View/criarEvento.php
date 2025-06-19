@@ -22,31 +22,31 @@
                 style="border:none;">Voltar</span></a>
     </header>
 
-    <form action="/UniEvent-Project/public/index.php?action=processarEvento" method="post"
-        enctype="multipart/form-data">
+    <form action="/UniEvent-Project/public/index.php?action=processarEvento" method="post" enctype="multipart/form-data"
+        id="formulario">
         <div class="campos">
             <div class="campos-1">
                 <p class="titulos" data-i18n="label_title">Título</p>
                 <div class="input-container-titulo">
-                    <input type="text" name="titulo" class="input-titulo" required />
+                    <input type="text" name="titulo" id="titulo" class="input-titulo" />
                 </div>
 
                 <p class="titulos" data-i18n="label_description">Descrição</p>
                 <div class="input-container-desc">
-                    <textarea class="input-desc" name="descricao" required></textarea>
+                    <textarea class="input-desc" id="descricao" name="descricao"></textarea>
                 </div>
 
                 <p class="titulos" data-i18n="label_capacity">Capacidade</p>
                 <div class="input-container-cap">
-                    <input type="number" name="capacidade" placeholder="N° máximo de pessoas" class="input-cap"
-                        data-i18n-placeholder="placeholder_capacity" required />
+                    <input type="number" name="capacidade" id="capacidade" placeholder="N° máximo de pessoas"
+                        class="input-cap" data-i18n-placeholder="placeholder_capacity" />
                 </div>
             </div>
 
             <div class="campos-2">
                 <p class="titulos" data-i18n="label_responsible">Responsável</p>
                 <div class="input-container-res">
-                    <select name="responsavel" class="input-res" required>
+                    <select name="responsavel" id="responsavel" class="input-res">
                         <option value="ana">Ana</option>
                     </select>
                 </div>
@@ -64,31 +64,43 @@
 
                 <div class="input-container-data">
                     <p class="titulos" data-i18n="label_date">Data</p>
-                    <input type="date" name="dataEvento" class="input-data" required />
+                    <input type="date" name="dataEvento" id="data" class="input-data" />
                 </div>
             </div>
 
             <div>
                 <div class="input-container-hora">
                     <p class="titulos" data-i18n="label_time">Hora</p>
-                    <input type="time" name="horaEvento" class="input-hora" required />
+                    <input type="time" name="horaEvento" id="hora" class="input-hora" />
                 </div>
 
                 <p class="titulos" data-i18n="label_event_type">Tipo de Evento</p>
                 <div class="input-container-res">
-                    <select name="categoriaEvento" class="input-res" required>
+                    <select name="categoriaEvento" id="tipoEvento" class="input-res">
                         <option value="Palestra">Palestra</option>
                     </select>
                 </div>
+            </div>
 
-                <div class="container-botão">
-                    <button type="submit" data-i18n="preview_button">
-                        Criar Evento
-                    </button>
-                </div>
+        </div>
+        </div>
+        <div class="container-modal" id="modal">
+            <div class="content-modal">
+                <button type="reset" id="btn-fechar"><i class="fa-solid fa-xmark"></i></button>
+                <img src="assets/images/emoteError.png" id="emote">
+                <p id=conteudo>Tem certeza que deseja criar o evento?</p>
+                <button type="submit" id="btnmodal">Criar</button>
             </div>
         </div>
+
     </form>
+    <div class="container-botão">
+        <button type="submit" data-i18n="preview_button" id="btn" onclick="validaform()">
+            Criar Evento
+        </button>
+    </div>
+
+
 
     <script src="assets/js/buttonTiposEvento.js"></script>
 
@@ -98,19 +110,74 @@
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
-
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const form = document.querySelector("form");
-        const uploadInput = document.getElementById("upload");
+    const btn = document.getElementById("btn");
+    const modal = document.getElementById("modal");
+    const formulario = document.getElementById("formulario");
+    const emoteError = document.getElementById("emote");
+    const emoteAcess = document.getElementById("emoteAcess");
+    var titulo = document.getElementById("titulo");
+    var descricao = document.getElementById("descricao");
+    var hora = document.getElementById("hora");
+    var tipoEvento = document.getElementById("tipoEvento");
+    var imagem = document.getElementById("upload");
+    var responsavel = document.getElementById("responsavel");
+    var data = document.getElementById("data");
+    var capacidade = document.getElementById("capacidade");
+    const conteudo = document.getElementById("conteudo");
+    const btnModal = document.getElementById("btnmodal");
 
-        form.addEventListener("submit", function(e) {
-            if (!uploadInput.files || uploadInput.files.length === 0) {
-                alert("Por favor, selecione uma imagem para o evento.");
-                e.preventDefault(); // Impede envio do formulário
-            }
-        });
-    });
+    function validaform() {
+
+
+        if (
+            titulo.value.trim() === "" ||
+            descricao.value.trim() === "" ||
+            upload.value.trim() === "" ||
+            responsavel.value.trim() === "" ||
+            capacidade.value.trim() === "" ||
+            data.value.trim() === "" ||
+            hora.value.trim() === "" ||
+            tipoEvento.value.trim() === ""
+        ) {
+            const modal = document.getElementById('modal');
+            const conteudo = document.getElementById('conteudo');
+
+            modal.style.display = 'flex';
+            modal.style.position = 'fixed';
+            btnModal.style.display = 'none';
+            emote.style.display = 'flex';
+            emote.style.display = 'assets/images/emote.png';
+            conteudo.style.textAlign = 'center';
+            conteudo.innerHTML = 'Preencha todos os campos';
+            formulario.reset();
+            return false;
+        } else {
+            const modal = document.getElementById('modal');
+            const conteudo = document.getElementById('conteudo');
+
+            modal.style.display = 'flex';
+            emote.style.display = 'flex';
+            emote.src = 'assets/images/emoteAcess.png';
+            btnModal.style.display = 'block';
+            modal.style.position = 'fixed';
+            conteudo.innerHTML = 'Tem certeza que deseja criar este evento?';
+            conteudo.style.textAlign = 'center';
+            return true;
+
+
+        }
+    }
+
+
+    const btnFechar = document.getElementById("btn-fechar");
+    btnFechar.onclick = function() {
+        modal.style.display = "none";
+    }
+    </script>
+    <script>
+
+
     </script>
 
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
