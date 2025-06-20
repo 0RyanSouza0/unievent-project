@@ -28,7 +28,7 @@ class ResponsavelEventoController{
                     echo "preencha todos os campos";
                 }
                 else{
-                    if(ContatoService::validarEmail($email_contato)){  
+                    //if(ContatoService::validarEmail($email_contato)){  
                         try{
                             $contato = new Contato();
                             $contato->setEmailContato($email_contato);
@@ -36,12 +36,13 @@ class ResponsavelEventoController{
                             $responsavel = new ResponsavelEvento();
                             $responsavel->setNome($nome);
                             
-                            return  $repository->save($contato,$responsavel);
+                            return header('Location: ../src/View/home.php')&& $repository->save($contato,$responsavel);
                         }catch(PDOException $e){
                             echo "Error".$e;
                         }
+                    
                     }
-                }
+                //}
 
             }
         }

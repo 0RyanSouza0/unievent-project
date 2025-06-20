@@ -22,45 +22,114 @@
                 style="border:none; margin:0px; width:auto;">Voltar</span></a>
     </header>
 
-    <form action="/UniEvent-Project/public/index.php?action=processarResponsavel" method="post" class="campos">
+    <form action="/UniEvent-Project/public/index.php?action=processarResponsavel" method="post" id="formulario"
+        class="campos">
         <div>
             <p class="titulos" data-i18n="label_name">Nome Responsável</p>
             <div class="input-container-titulo">
-                <input type="text" name="nome" class="input-titulo" required data-i18n-placeholder="placeholder_name"
-                    placeholder="Nome Responsável" />
+                <input type="text" name="nome" id="nome" class="input-titulo" required
+                    data-i18n-placeholder="placeholder_name" placeholder="Nome Responsável" />
             </div>
         </div>
         <div>
             <p class="titulos" data-i18n="label_email">Email</p>
             <div class="input-container-cap">
-                <input type="email" name="email_contato" class="input-cap" required
+                <input type="email" name="email_contato" id="email" class="input-cap" required
                     data-i18n-placeholder="placeholder_email" placeholder="Digite o email" />
             </div>
         </div>
         <div>
             <p class="titulos" data-i18n="label_phone">Telefone</p>
             <div class="input-container-cap">
-                <input type="number" name="telefone_contato" class="input-res" required
+                <input type="number" name="telefone_contato" id="telefone" class="input-res" required
                     data-i18n-placeholder="placeholder_phone" placeholder="Digite o telefone" />
             </div>
         </div>
-        <div>
-            <span>
-                <button class="btn" type="submit" value="enviar" data-i18n="send">
-                    Enviar <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </span>
+
+        <div class="container-modal" id="modal">
+            <div class="content-modal">
+                <button type="reset" id="btn-fechar" onclick="fecharModal();"><i class="fa-solid fa-xmark"></i></button>
+                <img src="assets/images/emoteError.png" id="emote">
+                <p id="conteudo" data-i18n="create"> Tem certeza que deseja criar o responsavel?</p>
+                <p id="conteudo2" data-i18n="fills"> Preencha todos os campos ou verifique o email digitado</p>
+                <button type="submit" id="btn-modal" data-i18n="btn_create">Criar</button>
+            </div>
         </div>
+
     </form>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        form.addEventListener("submit", function(e) {
-            window.alert("Responsável Criado com Sucesso!");
-        });
-    });
-    </script>
+    <div class="container-botão">
+        <button type="submit" data-i18n="send" id="btn" onclick="validaform();">
+            Enviar
+        </button>
+    </div>
+
 
     <script src="https://kit.fontawesome.com/1c065add65.js" crossorigin="anonymous"></script>
+
+    <script>
+    const btn = document.getElementById("btn");
+    const modal = document.getElementById("modal");
+    const formulario = document.getElementById("formulario");
+    const emoteError = document.getElementById("emote");
+    const emoteAcess = document.getElementById("emoteAcess");
+    var nome = document.getElementById("nome");
+    var email = document.getElementById("email");
+    var telefone = document.getElementById("telefone");
+    const conteudo = document.getElementById("conteudo");
+    const btnModal = document.getElementById("btn-modal");
+
+
+
+    function validaform() {
+        if (
+            nome.value.trim() === "" ||
+            email.value.trim() === "" ||
+            telefone.value.trim() === "" ||
+            !validarEmail(email.value)
+        ) {
+            const modal = document.getElementById('modal');
+            const conteudo = document.getElementById('conteudo');
+
+            modal.style.display = 'flex';
+            modal.style.position = 'fixed';
+            btnModal.style.display = 'none';
+            emote.style.display = 'flex';
+            emote.src = 'assets/images/emoteError.png';
+            conteudo.style.textAlign = 'center';
+            conteudo2.style.textAlign = 'center';
+            conteudo2.style.display = 'flex';
+            conteudo.style.display = 'none';
+            formulario.reset();
+            return false;
+        } else {
+            const modal = document.getElementById('modal');
+            const conteudo = document.getElementById('conteudo');
+
+            modal.style.display = 'flex';
+            emote.style.display = 'flex';
+            emote.src = 'assets/images/emoteAcess.png';
+            btnModal.style.display = 'block';
+            modal.style.position = 'fixed';
+            conteudo.style.display = 'flex';
+            conteudo2.style.display = 'none';
+            conteudo.style.textAlign = 'center';
+            return false;
+        }
+    };
+
+    function validarEmail(email) {
+        const regex = /^[a-zA-Z0-9._%+-]+@fatec\.sp\.gov\.br$/;
+        return regex.test(email);
+    }
+
+    const btnFechar = document.getElementById("btn-fechar");
+
+    function fecharModal() {
+        formulario.reset();
+        modal.style.display = "none";
+    }
+    </script>
+
 
     <script>
     const translations = {
@@ -74,7 +143,10 @@
             placeholder_name: "Responsible Name",
             placeholder_email: "Enter email",
             placeholder_phone: "Enter phone number",
-            send: "Send"
+            send: "Send",
+            create: "Are you sure to create this event?",
+            fills: "Fill in all the fields",
+            btn_create: "Create"
         },
         pt: {
             page_title: "UniEvent",

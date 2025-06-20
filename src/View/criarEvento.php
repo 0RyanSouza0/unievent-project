@@ -87,15 +87,16 @@
         <div class="container-modal" id="modal">
             <div class="content-modal">
                 <button type="reset" id="btn-fechar"><i class="fa-solid fa-xmark"></i></button>
-                <img src="assets/images/emoteError.png" id="emote">
-                <p id=conteudo>Tem certeza que deseja criar o evento?</p>
-                <button type="submit" id="btnmodal">Criar</button>
+                <img src="assets/images/warning.png" id="emote">
+                <p id="conteudo" data-i18n="create"> Tem certeza que deseja criar o evento?</p>
+                <p id="conteudo2" data-i18n="fills"> Preencha todos os campos</p>
+                <button type="submit" id="btnmodal" data-i18n="btn_create">Criar</button>
             </div>
         </div>
 
     </form>
     <div class="container-botão">
-        <button type="submit" data-i18n="preview_button" id="btn" onclick="validaform()">
+        <button type="submit" data-i18n="preview_button" id="btn" onclick="validaform();">
             Criar Evento
         </button>
     </div>
@@ -127,6 +128,8 @@
     const conteudo = document.getElementById("conteudo");
     const btnModal = document.getElementById("btnmodal");
 
+
+
     function validaform() {
 
 
@@ -142,18 +145,24 @@
         ) {
             const modal = document.getElementById('modal');
             const conteudo = document.getElementById('conteudo');
+            const conteudo2 = document.getElementById('conteudo2');
 
             modal.style.display = 'flex';
             modal.style.position = 'fixed';
             btnModal.style.display = 'none';
             emote.style.display = 'flex';
-            emote.style.display = 'assets/images/emote.png';
-            conteudo.style.textAlign = 'center';
-            conteudo.innerHTML = 'Preencha todos os campos';
+            emote.src = 'assets/images/emoteError.png';
+            conteudo2.style.textAlign = 'center';
+            conteudo2.style.display = 'flex';
+            conteudo.style.display = 'none';
+
+
             formulario.reset();
             return false;
         } else {
             const modal = document.getElementById('modal');
+
+            const conteudo2 = document.getElementById('conteudo2');
             const conteudo = document.getElementById('conteudo');
 
             modal.style.display = 'flex';
@@ -161,9 +170,11 @@
             emote.src = 'assets/images/emoteAcess.png';
             btnModal.style.display = 'block';
             modal.style.position = 'fixed';
-            conteudo.innerHTML = 'Tem certeza que deseja criar este evento?';
+            conteudo.style.display = 'flex';
+            conteudo2.style.display = 'none';
+
             conteudo.style.textAlign = 'center';
-            return true;
+            return false;
 
 
         }
@@ -172,6 +183,7 @@
 
     const btnFechar = document.getElementById("btn-fechar");
     btnFechar.onclick = function() {
+        formulario.reset();
         modal.style.display = "none";
     }
     </script>
@@ -201,7 +213,10 @@
             label_date: "Date",
             label_time: "Time",
             label_event_type: "Event Type",
-            preview_button: "Create Event"
+            preview_button: "Create Event",
+            create: "Are you sure to create this event?",
+            fills: "Fill in all the fields",
+            btn_create: "Create"
         },
         pt: {
             create_event_title: "Criar Evento",
