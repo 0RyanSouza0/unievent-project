@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/UniEvent-Project/src/View/assets/css/styleCriarEvento.css" />
+    <link rel="stylesheet" href="/UniEvent-Project/src/View/assets/css/styleAtualizarEvento.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
@@ -27,8 +27,7 @@
         </a>
     </header>
 
-    <form action="/UniEvent-Project/public/index.php?action=atualizarEvento&id=<?= $evento->getId() ?>" method="post"
-        enctype="multipart/form-data">
+    <form id="formEdicao" method="post" enctype="multipart/form-data">
         <div class="campos">
             <div class="campos-1">
                 <p class="titulos" data-i18n="title">Título</p>
@@ -82,23 +81,52 @@
                     </select>
                 </div>
                 <div class="container-botão">
-                    <button type="submit" data-i18n="update_event">Atualizar Evento</button>
+                    <button type="submit" data-i18n="update_event"
+                        onclick="confirmaAtualizacao(<?= $evento->getId() ?>);event.preventDefault()">Atualizar
+                        Evento</button>
                 </div>
             </div>
         </div>
+        <div id="modal" class="modal" style="display: none">
+            <div class="content-modal">
+                <p id="conteudo" data-i18n="update">Tem certeza que deseja atualizar este evento?</p>
+                <i class="fa-solid fa-triangle-exclamation" id="emote"></i>
+                <input type="hidden" name="action" value="editarEvento" />
+                <input type="hidden" name="id" id="idEventoParaEditar" />
+                <div class="align-btn">
+                    <button type="submit" id="btn-modal" data-i18n="btn_confirm">Confirmar</button>
+                    <button type="button" id="btn-modal" data-i18n="btn_cancel" onclick="fecharModalEdicao()">
+                        Cancelar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
     </form>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const form = document.querySelector("form");
-        const uploadInput = document.getElementById("upload");
 
-        form.addEventListener("submit", function(e) {
-            if (!uploadInput.files || uploadInput.files.length === 0 || uploadInput.files.length != 0) {
-                alert("Evento Atualizado com Sucesso");
-            }
-        });
-    });
+
+    <script>
+    const modal = document.getElementById("modal");
+    const formulario = document.getElementById("formulario");
+    const emoteError = document.getElementById("emote");
+    const conteudo = document.getElementById("conteudo");
+    const btnModal = document.getElementById("btnmodal");
+
+    function confirmaAtualizacao(idEvento) {
+        document.getElementById("idEventoParaEditar").value = idEvento;
+
+        document.getElementById(
+            "formEdicao"
+        ).action = `/UniEvent-Project/public/index.php?action=atualizarEvento&id=<?= $evento->getId() ?>`;
+
+        document.getElementById("modal").style.display = "flex";
+    }
+
+    function fecharModalEdicao() {
+        document.getElementById("modal").style.display = "none";
+    }
     </script>
 
     <script src="assets/js/buttonTiposEvento.js"></script>
@@ -146,7 +174,10 @@
                 event_type: "Event Type",
                 title_placeholder: "Enter title",
                 desc_placeholder: "Enter description",
-                capacity_placeholder: "Max number of people"
+                capacity_placeholder: "Max number of people",
+                update: "Are you sure you want to update this event?",
+                btn_confirm: "Confirm",
+                btn_cancel: "Cancel"
             },
             pt: {
                 update_event: "Atualizar Evento",
@@ -161,7 +192,10 @@
                 event_type: "Tipo de Evento",
                 title_placeholder: "Digite o título",
                 desc_placeholder: "Digite a descrição",
-                capacity_placeholder: "N° máximo de pessoas"
+                capacity_placeholder: "N° máximo de pessoas",
+                update: "Tem certeza que deseja atualizar este evento?",
+                btn_confirm: "Confirmar",
+                btn_cancel: "Cancelar"
             }
         };
 

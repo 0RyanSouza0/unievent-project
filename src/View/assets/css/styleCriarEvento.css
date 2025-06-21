@@ -337,6 +337,7 @@ button {
   background-color: var(--primary-orange);
   border-radius: 8px;
   border: 0 none;
+  transition: 0.3s all ease-in-out;
 }
 
 .dark-mode button {
@@ -347,20 +348,47 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10%;
+  margin-top: 2%;
+  padding: 20px;
 }
 
-button:hover {
+.dark-mode #btnmodal:hover {
   background-color: transparent;
   border-color: var(--primary-white);
   transition: 0.3s ease-in-out all;
   cursor: pointer;
+  color: var(--primary-black);
+  border: 1px solid var(--primary-orange);
+}
+
+.dark-mode #btn:hover {
+  background-color: transparent;
   border-color: var(--primary-white);
-  border: 1px solid #ffffff;
+  transition: 0.3s ease-in-out all;
+  cursor: pointer;
+  color: var(--primary-black);
+  border: 1px solid var(--primary-orange);
+}
+
+#btnmodal:hover {
+  background-color: transparent;
+  border-color: var(--primary-white);
+  transition: 0.3s ease-in-out all;
+  cursor: pointer;
+  color: var(--primary-white);
+  border: 1px solid var(--primary-orange);
+}
+
+#btn:hover {
+  background-color: transparent;
+  border-color: var(--primary-white);
+  transition: 0.3s ease-in-out all;
+  cursor: pointer;
+  color: var(--primary-white);
+  border: 1px solid var(--primary-orange);
 }
 
 span {
-  padding: 8px;
   background-color: transparent;
   border: 1px solid var(--primary-orange);
   border-radius: 10px;
@@ -368,4 +396,134 @@ span {
   align-items: center;
   justify-content: center;
   gap: 5px;
+}
+#modal {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.746);
+  justify-content: center;
+  align-items: center;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(2px);
+}
+
+.dark-mode #modal .content-modal {
+  display: flex;
+  background-color: var(--primary-white);
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 400px;
+
+  width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--primary-orange);
+}
+
+#modal .content-modal {
+  display: flex;
+  background-color: var(--primary-black);
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 400px;
+  width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--primary-orange);
+}
+.dark-mode #modal .content-modal #btn-modal {
+  display: block;
+  padding: 5px;
+  width: 150px;
+  background-color: transparent;
+  border: 1px solid var(--primary-orange);
+  border-radius: 10px;
+  color: var(--primary-black);
+}
+
+#modal .content-modal #emote {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  filter: invert();
+  display: flex;
+}
+#modal .content-modal #emoteAcess {
+  height: 200px;
+  width: 200px;
+  filter: invert();
+  object-fit: cover;
+  display: flex;
+}
+.dark-mode #modal .content-modal #emote {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  filter: grayscale(100%);
+  display: flex;
+}
+.dark-mode #modal .content-modal #emoteAcess {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  filter: grayscale(100%);
+  display: flex;
+}
+.dark-mode #modal .content-modal #btn-fechar {
+  font-size: 0.9rem;
+  width: 20px;
+  margin-left: 90%;
+  border-radius: 10px;
+  border: 1px solid var(--primary-orange);
+  background-color: transparent;
+  height: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: var(--primary-black);
+}
+#modal .content-modal #btn-fechar {
+  font-size: 0.9rem;
+  width: 20px;
+  margin-left: 90%;
+  border-radius: 10px;
+  border: 1px solid var(--primary-orange);
+  background-color: transparent;
+  height: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: var(--primary-white);
+}
+.dark-mode #modal #conteudo {
+  font-size: 1.2rem;
+  font-family: var(--primary-font);
+  display: none;
+  color: var(--primary-black);
+}
+
+#modal #conteudo {
+  font-size: 1.2rem;
+  font-family: var(--primary-font);
+  color: var(--primary-white);
+  display: none;
+}
+
+.dark-mode #modal #conteudo2 {
+  font-size: 1.2rem;
+  font-family: var(--primary-font);
+  display: none;
+  color: var(--primary-black);
+}
+
+#modal #conteudo2 {
+  font-size: 1.2rem;
+  font-family: var(--primary-font);
+  color: var(--primary-white);
+  display: none;
 }

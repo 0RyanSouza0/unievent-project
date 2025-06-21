@@ -37,7 +37,9 @@
         <tbody>
             <?php if (empty($eventos)): ?>
             <tr>
-                <td colspan="10" style="text-align: center" data-i18n="no_events">Nenhum evento encontrado</td>
+                <td colspan="10" style="text-align: center" data-i18n="no_events">
+                    Nenhum evento encontrado
+                </td>
             </tr>
             <?php else: ?>
             <?php foreach ($eventos as $evento): ?>
@@ -64,26 +66,63 @@
                         <i class="fa-solid fa-file-pen"></i>
                     </a>
 
-                    <a class="botao-acao" title="Excluir"
-                        onclick="return confirm('Tem certeza que deseja excluir este evento?')"
-                        href="/UniEvent-Project/public/index.php?action=excluirEvento&id=<?= $evento->getId() ?>">
+                    <a class="botao-acao" title="Excluir" onclick="confirmaExclusao(<?= $evento->getId() ?>)"
+                        href="javascript:void(0);">
                         <i class="fa-solid fa-trash"></i>
                     </a>
 
                     <a class="botao-acao" title="Visualizar Preview" href="/UniEvent-Project/src/View/previaEvento.php">
-                        <img src="/Unievent-Project/src/View/assets/images/previewIcon.svg" alt="" srcset="">
+                        <img src="/Unievent-Project/src/View/assets/images/previewIcon.svg" alt="" srcset="" />
                     </a>
-
-
                 </td>
             </tr>
             <?php endforeach; ?>
             <?php endif; ?>
         </tbody>
     </table>
+    <div id="modal" class="modal" style="display: none">
+        <div class="content-modal">
+            <p id="conteudo" data-i18n="are_sure">Tem certeza que deseja excluir este evento?</p>
+            <i class="fa-solid fa-triangle-exclamation" id="emote"></i>
+
+            <form method="GET" id="formExclusao">
+                <input type="hidden" name="action" value="excluirEvento" />
+                <input type="hidden" name="id" id="idEventoParaExcluir" />
+                <button type="submit" id="btn-modal" data-i18n="btn_confirm">Confirmar</button>
+                <button type="button" id="btn-modal" data-i18n="btn_cancel" onclick="fecharModalExclusao()">
+                    Cancelar
+                </button>
+            </form>
+        </div>
+    </div>
 
     <script src="https://kit.fontawesome.com/1c065add65.js" crossorigin="anonymous"></script>
 
+    <script>
+    const btn = document.getElementById("btn");
+    const modal = document.getElementById("modal");
+    const formulario = document.getElementById("formulario");
+    const emoteError = document.getElementById("emote");
+    const emoteAcess = document.getElementById("emoteAcess");
+
+    const conteudo = document.getElementById("conteudo");
+    const btnModal = document.getElementById("btnmodal");
+
+    function confirmaExclusao(idEvento) {
+        document.getElementById("idEventoParaExcluir").value = idEvento;
+
+        document.getElementById(
+            "formExclusao"
+        ).action = `/UniEvent-Project/public/index.php`;
+
+        document.getElementById("modal").style.display = "flex";
+        emoteError.src = "assets/images/warning.jpg";
+    }
+
+    function fecharModalExclusao() {
+        document.getElementById("modal").style.display = "none";
+    }
+    </script>
     <script>
     const translations = {
         en: {
@@ -101,7 +140,10 @@
             table_capacity: "Capacity",
             table_actions: "Actions",
             no_events: "No events found",
-            no_image: "No image"
+            no_image: "No image",
+            are_sure: "Are you sure you want to delete this event?",
+            btn_confirm: "Confirm",
+            btn_cancel: "Cancel"
         },
         pt: {
             event_table_title: "Tabela de Eventos",
@@ -118,19 +160,22 @@
             table_capacity: "Capacidade",
             table_actions: "Ações",
             no_events: "Nenhum evento encontrado",
-            no_image: "Sem imagem"
-        }
+            no_image: "Sem imagem",
+            are_sure: "Tem certeza que deseja excluir este evento?",
+            btn_confirm: "Confirmar",
+            btn_cancel: "Cancelar"
+        },
     };
 
     function setLanguage(lang) {
         localStorage.setItem("lang", lang);
-        document.querySelectorAll("[data-i18n]").forEach(el => {
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
             const key = el.getAttribute("data-i18n");
             if (translations[lang][key]) {
                 el.textContent = translations[lang][key];
             }
         });
-        document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
             const key = el.getAttribute("data-i18n-placeholder");
             if (translations[lang][key]) {
                 el.placeholder = translations[lang][key];

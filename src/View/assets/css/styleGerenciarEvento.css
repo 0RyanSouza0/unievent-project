@@ -225,3 +225,132 @@ td {
 .dark-mode table {
   background-color: #d9d9d9;
 }
+
+#modal {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.746);
+  justify-content: center;
+  align-items: center;
+  top: 0px;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  backdrop-filter: blur(2px);
+}
+
+.dark-mode #modal .content-modal {
+  display: flex;
+  background-color: var(--primary-white);
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 400px;
+
+  width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--primary-orange);
+}
+
+#modal .content-modal {
+  display: flex;
+  background-color: var(--primary-black);
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 400px;
+  width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--primary-orange);
+}
+.dark-mode #modal .content-modal #formExclusao #btn-modal {
+  display: block;
+  padding: 7px;
+  width: 150px;
+  background-color: transparent;
+  border: 1px solid var(--primary-orange);
+  font-family: var(--primary-font);
+  border-radius: 10px;
+  font-weight: 800;
+  color: var(--primary-black);
+  font-size: 1.1rem;
+  transition: 0.3s all ease-in-out;
+}
+.dark-mode #modal .content-modal #formExclusao #btn-modal:hover {
+  display: block;
+  padding: 5px;
+  width: 150px;
+  background-color: var(--primary-orange);
+  border: 1px solid var(--primary-orange);
+  border-radius: 10px;
+  color: var(--primary-black);
+}
+
+#modal .content-modal #formExclusao #btn-modal {
+  display: block;
+  padding: 7px;
+  width: 150px;
+  background-color: transparent;
+  border: 1px solid var(--primary-orange);
+
+  font-family: var(--primary-font);
+  border-radius: 10px;
+  font-family: var(--primary-font);
+  font-weight: 800;
+  color: var(--primary-white);
+  font-size: 1.1rem;
+  transition: 0.3s all ease-in-out;
+}
+
+#modal .content-modal #formExclusao #btn-modal:hover {
+  display: block;
+  padding: 5px;
+  transition: 0.3s all ease-in-out;
+  width: 150px;
+  background-color: var(--primary-orange);
+  border: 1px solid var(--primary-orange);
+  border-radius: 10px;
+  color: var(--primary-white);
+}
+
+#modal .content-modal #emote {
+  font-size: 7rem;
+  font-weight: 800;
+  color: var(--primary-white);
+  display: flex;
+}
+.dark-mode #modal .content-modal #emote {
+  font-size: 7rem;
+  font-weight: 800;
+  color: var(--primary-black);
+  display: flex;
+}
+.dark-mode #modal #conteudo {
+  font-size: 1.2rem;
+  font-family: var(--primary-font);
+  color: var(--primary-black);
+  text-align: center;
+}
+
+#modal #conteudo {
+  font-size: 1.2rem;
+  text-align: center;
+  font-family: var(--primary-font);
+  color: var(--primary-white);
+}
+
+#modal .content-modal #formExclusao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.dark-mode #modal .content-modal #formExclusao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--primary-black);
+}
