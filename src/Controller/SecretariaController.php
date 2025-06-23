@@ -102,14 +102,14 @@ class SecretariaController {
         try {
             $mail->CharSet = "UTF-8";
             $mail->isSMTP();
-            $mail->Host       = 'sandbox.smtp.mailtrap.io';
+            $mail->Host       = 'smtp.gmail.io';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'ddc28ad069ebb0';
-            $mail->Password   = '9fb7e6a6c24d0e';
+            $mail->Username   = 'adm.unievent@gmail.com';
+            $mail->Password   = 'jnmmzgexlpvbpwos';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 2525;
             
-            $mail->setFrom('unievent@administracao.com', 'Administração');
+            $mail->setFrom('adm.unievent@gmail.com', 'Administração');
             $mail->addAddress($email, $nome);
             
             $mail->isHTML(true);
