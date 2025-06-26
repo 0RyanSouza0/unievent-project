@@ -100,6 +100,7 @@ email varchar(200) not null,
 senha varchar(200) not null,
 chave varchar(300) unique,
 situacao varchar(50) default "inativo",
+tentativas_login int default 0,
 PRIMARY KEY (id),
 id_instituicao_fk integer, foreign key (id_instituicao_fk)
 references instituicao(id) ON UPDATE CASCADE ON DELETE CASCADE 

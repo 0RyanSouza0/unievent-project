@@ -1,6 +1,6 @@
 const translations = {
     en: {
-        greeting: "Hello, Reginaldo",
+        greeting: "Hello, " + nomeUsuario,
         manage_units: "Manage Units",
         support: "Support",
         logout: "Logout",
@@ -11,7 +11,7 @@ const translations = {
         manage_certificates: "Manage Certificates"
     },
     pt: {
-        greeting: "Olá, Reginaldo",
+        greeting: "Olá, " + nomeUsuario,
         manage_units: "Gerenciar Unidades",
         support: "Suporte",
         logout: "Sair",
