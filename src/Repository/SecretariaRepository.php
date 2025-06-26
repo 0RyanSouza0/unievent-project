@@ -49,46 +49,72 @@ class SecretariaRepository {
 
     public function checarLogin($email, $senha) {
         try {
-            $checkStmt = $this->pdo->prepare("SELECT COUNT(*) as total FROM secretaria WHERE email = :email");
-            $checkStmt->bindParam(':email', $email, PDO::PARAM_STR);
-            $checkStmt->execute();
-            $countResult = $checkStmt->fetch(PDO::FETCH_OBJ);
-            
-            if ($countResult->total > 1) {
-                $_SESSION['msg'] = "<div class='alert-message alert-error'>Erro: Múltiplas contas encontradas com este e-mail. Contate a administração</div>";
-                header("Location: /unievent-project/src/View/login.php");
-                exit();
-            }
-
-            $stmt = $this->pdo->prepare("SELECT id, email, senha, situacao FROM secretaria WHERE email = :email");
+            // Verifica se existe conta com este email
+            $stmt = $this->pdo->prepare("SELECT id, email, senha, nome, situacao, tentativas_login FROM secretaria WHERE email = :email");
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
 
-            if ($stmt->rowCount() > 0) {
-                $resultado = $stmt->fetch(PDO::FETCH_OBJ);
-
-                if ($resultado->situacao == 'aguardando confirmacao') {
-                    $_SESSION['msg'] = "<div class='alert-message alert-error'>Erro: Necessário confirmar o e-mail!</div>";
-                    header("Location: /unievent-project/src/View/login.php");
-                    exit();
-                } 
-                
-                if ($resultado->situacao == 'inativo') {
-                    $_SESSION['msg'] = "<div class='alert-message alert-error'>Erro: Perfil não encontrado!</div>";
-                    header("Location: /unievent-project/src/View/login.php");
-                    exit();
-                }
-
-                if (password_verify($senha, $resultado->senha)) {
-                    return $resultado;
-                }
+            if ($stmt->rowCount() == 0) {
+                return ['status' => 'credenciais_invalidas'];
             }
 
-            return false;
+            $usuario = $stmt->fetch(PDO::FETCH_OBJ);
+
+            // Verifica status da conta
+            if ($usuario->situacao == 'aguardando confirmacao') {
+                return ['status' => 'email_nao_confirmado'];
+            } 
+            
+            if ($usuario->situacao == 'inativo') {
+                return ['status' => 'conta_inativa'];
+            }
+
+            // Verifica a senha
+            if (password_verify($senha, $usuario->senha)) {
+                // Reseta tentativas em caso de sucesso
+                $this->resetarTentativas($usuario->id);
+                return [
+                    'status' => 'sucesso',
+                    'usuario' => $usuario
+                ];
+            } else {
+                // Incrementa tentativas falhas
+                $tentativas = $this->incrementarTentativa($usuario->id);
+                
+                if ($tentativas >= 5) {
+                    return [
+                        'status' => 'conta_bloqueada',
+                        'usuario' => $usuario 
+                    ];
+                }
+                
+                return [
+                    'status' => 'credenciais_invalidas',
+                    'tentativas_restantes' => 5 - $tentativas
+                ];
+            }
 
         } catch (PDOException $e) {
             throw $e;
         }
+    }
+
+    private function incrementarTentativa($usuarioId) {
+        $stmt = $this->pdo->prepare("UPDATE secretaria SET tentativas_login = tentativas_login + 1 WHERE id = :id");
+        $stmt->bindParam(':id', $usuarioId, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        // Retorna o novo número de tentativas
+        $stmt = $this->pdo->prepare("SELECT tentativas_login FROM secretaria WHERE id = :id");
+        $stmt->bindParam(':id', $usuarioId, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
+    private function resetarTentativas($usuarioId) {
+        $stmt = $this->pdo->prepare("UPDATE secretaria SET tentativas_login = 0 WHERE id = :id");
+        $stmt->bindParam(':id', $usuarioId, PDO::PARAM_INT);
+        $stmt->execute();
     }
 }
 

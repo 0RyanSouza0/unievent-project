@@ -125,7 +125,7 @@ class EventoRepository {
 
             return $stmt->rowCount() > 0;
         }else{
-                        $sql = "UPDATE evento SET nome = :nome, descricao = :descricao, categoria_evento = :categoria_evento, hora_evento = :hora_evento, data_evento = :data_evento,
+            $sql = "UPDATE evento SET nome = :nome, descricao = :descricao, categoria_evento = :categoria_evento, hora_evento = :hora_evento, data_evento = :data_evento,
                         capacidade = :capacidade WHERE id = :id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([

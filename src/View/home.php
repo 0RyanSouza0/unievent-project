@@ -1,3 +1,8 @@
+<?php
+session_start();
+ob_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8" />
@@ -14,7 +19,7 @@
     <header class="container-sup">
         <div class="container-logo">
             <img src="assets/images/logo3.png" alt="Logo" class="logo" />
-            <p data-i18n="greeting">Olá, Reginaldo</p>
+            <p data-i18n="greeting">Olá, <?php echo $_SESSION['usuario_nome']; ?></p>
         </div>
         <div class="seleção">
             <div class="unidade">
@@ -85,7 +90,12 @@
     new window.VLibras.Widget("https://vlibras.gov.br/app");
     </script>
 
+    <script>
+        const nomeUsuario = "<?php echo addslashes($_SESSION['usuario_nome']); ?>";
+    </script>
+
     <script src="assets/js/traducaoHome.js"></script>
+
     <script src="https://kit.fontawesome.com/1c065add65.js" crossorigin="anonymous"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
