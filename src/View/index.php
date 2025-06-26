@@ -58,7 +58,7 @@
     </header>
 
     <section class="app" id="aplicativo">
-        <img src="assets/images/letrabranca.svg" alt="" />
+        <img class="img-letra" src="assets/images/letrabranca.svg" alt="" />
         <p data-i18n="app.title">TELAS</p>
 
         <div class="container-image-app">
@@ -90,7 +90,7 @@
     </section>
 
     <section class="integrantes" id="integrantes">
-        <img src="assets/images/letrabranca.svg" alt="" />
+        <img class="img-letra" src="assets/images/letrabranca.svg" alt="" />
         <h2 data-i18n="members.title">INTEGRANTES</h2>
         <div class="div-container-integrantes">
             <div class="card-integrantes">

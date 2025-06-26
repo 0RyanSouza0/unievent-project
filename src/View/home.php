@@ -91,7 +91,7 @@ ob_start();
     </script>
 
     <script>
-        const nomeUsuario = "<?php echo addslashes($_SESSION['usuario_nome']); ?>";
+    const nomeUsuario = "<?php echo addslashes($_SESSION['usuario_nome']); ?>";
     </script>
 
     <script src="assets/js/traducaoHome.js"></script>

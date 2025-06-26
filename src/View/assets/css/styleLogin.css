@@ -26,6 +26,9 @@ body {
   align-items: center;
   height: 100vh;
 }
+.dark-mode {
+  background-color: var(--primary-white);
+}
 
 .arrow-button i {
   text-decoration: none;
@@ -41,6 +44,15 @@ body {
 
 .arrow-button i:hover {
   transform: scale(1.04);
+}
+
+.dark-mode .login-container {
+  position: relative;
+  width: 900px;
+  height: 500px;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: var(--primary-black);
 }
 
 .login-container {
@@ -144,6 +156,10 @@ body {
   color: var(--primary-white);
 }
 
+.dark-mode .descricao-second {
+  color: var(--primary-white);
+}
+
 .descricao-second {
   color: var(--primary-black);
 }
@@ -171,8 +187,19 @@ body {
   color: var(--primary-orange);
 }
 
+.dark-mode .btn-second {
+  background-color: var(--primary-black);
+  border: 1px solid var(--primary-orange);
+  color: var(--primary-orange);
+}
+
 .btn-second {
   background-color: var(--primary-orange);
+  border: 1px solid var(--primary-orange);
+}
+.dark-mode .btn-second:hover {
+  background-color: var(--primary-orange);
+  color: var(--primary-black);
   border: 1px solid var(--primary-orange);
 }
 
@@ -211,12 +238,25 @@ body {
 }
 
 .label-input {
-  background-color: #ecf0f1;
+  background-color: transparent;
   display: flex;
   align-items: center;
   margin: 8px 0;
   border-radius: 8px;
   padding: 0 10px;
+
+  border: 1px solid var(--primary-orange);
+}
+
+.dark-mode .formulario input {
+  height: 45px;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  color: var(--primary-white);
+  outline: none;
+  padding-left: 10px;
 }
 
 .formulario input {
@@ -225,6 +265,7 @@ body {
   border: none;
   background-color: transparent;
   font-size: 16px;
+  outline: none;
   padding-left: 10px;
 }
 
@@ -236,6 +277,13 @@ input:-webkit-autofill {
 .icon-modify {
   color: #7f8c8d;
   font-size: 18px;
+}
+
+.dark-mode .password {
+  color: var(--primary-white);
+  font-size: 14px;
+  margin: 10px 0;
+  text-decoration: none;
 }
 
 .password {

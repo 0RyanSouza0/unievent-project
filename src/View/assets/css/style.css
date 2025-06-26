@@ -19,7 +19,7 @@ body {
   background-color: var(--primary-black);
 }
 .dark-mode {
-  background-color: var(--primary-gray);
+  background-color: var(--primary-white);
   color: var(--primary-black);
 }
 header {
@@ -42,6 +42,14 @@ header .fundo-laranja .container-inicio .container-imagem img {
   object-fit: cover;
   height: auto;
 }
+
+.dark-mode header .fundo-laranja .container-inicio .container-imagem img {
+  width: 100px;
+  object-fit: cover;
+  height: auto;
+  filter: invert(100%);
+}
+
 header nav {
   width: 100%;
   padding: 15px;
@@ -52,7 +60,7 @@ header nav {
   justify-content: space-between;
 }
 .dark-mode header nav {
-  background-color: var(--primary-gray);
+  background-color: var(--primary-white);
 }
 .dark-mode header nav .login button {
   background-color: #272727;
@@ -75,6 +83,13 @@ header a {
   font-weight: 800;
   text-decoration: none;
   color: var(--primary-white);
+}
+
+.dark-mode header a {
+  font-family: var(--primary-font);
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--primary-black);
 }
 
 header .github {
@@ -191,7 +206,7 @@ header .header-sobre .container-image-sobre img {
   margin-top: 100px;
 }
 .dark-mode .app {
-  background-color: var(--primary-gray);
+  background-color: var(--primary-white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -200,6 +215,16 @@ header .header-sobre .container-image-sobre img {
   padding: 20px;
   flex-direction: column;
   margin-top: 100px;
+}
+.dark-mode .app p {
+  text-align: center;
+  color: var(--primary-black);
+  font-size: 2.6rem;
+  font-weight: 700;
+  font-family: var(--primary-font);
+}
+.dark-mode .app .img-letra {
+  filter: invert(100%);
 }
 .app p {
   text-align: center;
@@ -269,7 +294,18 @@ header .header-sobre .container-image-sobre img {
   margin-top: 100px;
 }
 .dark-mode .integrantes {
-  background-color: var(--primary-gray);
+  background-color: var(--primary-white);
+}
+.dark-mode .integrantes h2 {
+  text-align: center;
+  color: var(--primary-black);
+  font-size: 2.6rem;
+  font-weight: 700;
+  font-family: var(--primary-font);
+  padding-bottom: 50px;
+}
+.dark-mode .integrantes .img-letra {
+  filter: invert(100%);
 }
 .integrantes h2 {
   text-align: center;
@@ -397,13 +433,35 @@ footer .desenvolvido p {
   flex-wrap: wrap;
 }
 .dark-mode .container-contato {
-  background-color: #bab9b9;
+  background-color: #e6e3e3;
 }
 .div-contato {
   width: 600px;
   max-width: 400px;
   padding: 10px;
   box-sizing: border-box;
+}
+.dark-mode .label-nome,
+.dark-mode .label-email,
+.dark-mode .label-contato {
+  font-family: var(--primary-font);
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  color: var(--primary-black);
+  padding-top: 4.5%;
+  padding-bottom: 1%;
+  padding-left: 1%;
+}
+
+.dark-mode .contate_nos {
+  font-family: var(--primary-font);
+  font-weight: 800;
+  font-size: 40px;
+  text-decoration: none;
+  color: var(--primary-black);
+  padding-top: 1%;
+  padding-bottom: 5%;
 }
 
 .label-nome,
