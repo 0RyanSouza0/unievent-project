@@ -89,7 +89,8 @@
                 <button type="reset" id="btn-fechar"><i class="fa-solid fa-xmark"></i></button>
                 <img src="assets/images/warning.png" id="emote">
                 <p id="conteudo" data-i18n="create"> Tem certeza que deseja criar o evento?</p>
-                <p id="conteudo2" data-i18n="fills"> Preencha todos os campos</p>
+                <p id="conteudo2" data-i18n="fills"> Preencha todos os campos ou verifique se a data ou a hora é valida.
+                </p>
                 <button type="submit" id="btnmodal" data-i18n="btn_create">Criar</button>
             </div>
         </div>
@@ -129,6 +130,49 @@
     const btnModal = document.getElementById("btnmodal");
 
 
+    const dataString = data;
+
+    function validaData(dataRecebida) {
+        var dataAux = dataRecebida.split("/");
+        var ano = parseInt(dataAux[0]);
+        var mes = parseInt(dataAux[1]);
+        var dia = parseInt(dataAux[2]);
+
+        if (mes > 12 || mes <= 0) {
+            return false;
+        } else if (dia > 31 || mes <= 0) {
+            return false;
+        } else if (dia >= 30 && mes == 2) {
+            return false;
+        } else if (dia == 29 && mes == 2 && (ano % 4) != 0) {
+            return false;
+        } else if (dia == 31 && mes == 2 || (mes == 4) || (mes == 6) || (mes == 9) || (mes == 11)) {
+            return false;
+        } else {
+            return true;
+        }
+
+
+    }
+
+
+    function validaHora(horaRecebida) {
+        var horaAux = horaRecebida.split(":");
+        var hora = parseInt(horaAux[0]);
+        var minutos = parseInt(horaAux[1]);
+
+
+        if (hora > 24 || hora < 0) {
+            return false;
+        } else if (minutos > 59 || minutos < 0) {
+            return false;
+
+        } else {
+            return true;
+        }
+
+
+    }
 
     function validaform() {
 
@@ -141,7 +185,10 @@
             capacidade.value.trim() === "" ||
             data.value.trim() === "" ||
             hora.value.trim() === "" ||
-            tipoEvento.value.trim() === ""
+            tipoEvento.value.trim() === "" ||
+            validaData(data.value.trim()) === false ||
+            validaHora(hora.value.trim()) === false
+
         ) {
             const modal = document.getElementById('modal');
             const conteudo = document.getElementById('conteudo');
@@ -174,11 +221,16 @@
             conteudo2.style.display = 'none';
 
             conteudo.style.textAlign = 'center';
-            return false;
+
+            return true;
 
 
         }
+
     }
+
+
+
 
 
     const btnFechar = document.getElementById("btn-fechar");
@@ -215,7 +267,7 @@
             label_event_type: "Event Type",
             preview_button: "Create Event",
             create: "Are you sure to create this event?",
-            fills: "Fill in all the fields",
+            fills: "Fill in all the fields or check that the date or time is valid.",
             btn_create: "Create"
         },
         pt: {

@@ -21,35 +21,29 @@
 body {
   font-family: var(--primary-font);
   background-color: var(--primary-black);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
+  margin: 0;
 }
-
-.arrow-button i {
-  text-decoration: none;
-  color: var(--primary-white);
-  font-size: 30px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding-left: 20px;
-  padding-top: 20px;
-  transition: all 0.3s ease;
-}
-
-.arrow-button i:hover {
-  transform: scale(1.04);
+.dark-mode {
+  background-color: var(--primary-white);
 }
 
 .login-container {
-  position: relative;
-  width: 900px;
-  height: 500px;
-  border-radius: 15px;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  width: 1000px;
+  height: 700px;
+  border-radius: 20px 0px 0px 0px;
   overflow: hidden;
   background-color: var(--primary-white);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.dark-mode .login-container {
+  background-color: var(--primary-black);
 }
 
 .content {
@@ -121,7 +115,7 @@ body {
 
 /* Conteúdo fixo */
 .titulo {
-  font-size: 28px;
+  font-size: 36px;
   font-weight: bold;
   text-transform: capitalize;
 }
@@ -135,12 +129,16 @@ body {
 }
 
 .descricao {
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 300;
   line-height: 25px;
 }
 
 .descricao-primary {
+  color: var(--primary-white);
+}
+
+.dark-mode .descricao-second {
   color: var(--primary-white);
 }
 
@@ -171,8 +169,19 @@ body {
   color: var(--primary-orange);
 }
 
+.dark-mode .btn-second {
+  background-color: var(--primary-black);
+  border: 1px solid var(--primary-orange);
+  color: var(--primary-orange);
+}
+
 .btn-second {
   background-color: var(--primary-orange);
+  border: 1px solid var(--primary-orange);
+}
+.dark-mode .btn-second:hover {
+  background-color: var(--primary-orange);
+  color: var(--primary-black);
   border: 1px solid var(--primary-orange);
 }
 
@@ -211,12 +220,24 @@ body {
 }
 
 .label-input {
-  background-color: #ecf0f1;
+  background-color: transparent;
   display: flex;
   align-items: center;
   margin: 8px 0;
   border-radius: 8px;
   padding: 0 10px;
+  border: 1px solid var(--primary-orange);
+}
+
+.dark-mode .formulario input {
+  height: 45px;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  color: var(--primary-white);
+  outline: none;
+  padding-left: 10px;
 }
 
 .formulario input {
@@ -225,6 +246,7 @@ body {
   border: none;
   background-color: transparent;
   font-size: 16px;
+  outline: none;
   padding-left: 10px;
 }
 
@@ -238,9 +260,16 @@ input:-webkit-autofill {
   font-size: 18px;
 }
 
+.dark-mode .password {
+  color: var(--primary-white);
+  font-size: 16px;
+  margin: 10px 0;
+  text-decoration: none;
+}
+
 .password {
   color: #34495e;
-  font-size: 14px;
+  font-size: 15px;
   margin: 10px 0;
   text-decoration: none;
 }
@@ -248,6 +277,29 @@ input:-webkit-autofill {
 .password:hover {
   text-decoration: underline;
 }
+
+.div-unievent-logo {
+  position: fixed;
+  bottom: 350px;  
+  left: 250px;
+  display: flex;
+}
+.div-unievent-logo p {
+  position: fixed;
+  margin-top: 344px;
+  margin-left: 430px;
+  color: var(--primary-white);
+  font-family: var(--primary-font);
+  font-weight: 800;
+}
+.dark-mode .unievent-logo{
+  filter: invert(80%);
+}
+.dark-mode .div-unievent-logo p {
+  color: var(--primary-black);
+  font-weight: 800;
+}
+
 
 /* Session CSS*/
 .message-container {
@@ -259,7 +311,7 @@ input:-webkit-autofill {
 .alert-message {
   padding: 15px;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 18px;
   text-align: center;
   animation: fadeIn 0.5s ease-in-out;
   width: 100%;
@@ -279,6 +331,20 @@ input:-webkit-autofill {
   border: 1px solid #f5c6cb;
 }
 
+.arrow-button i {
+  text-decoration: none;
+  color: var(--primary-white);
+  font-size: 30px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  transition: all 0.3s ease;
+}
+
+.arrow-button i:hover {
+  transform: scale(1.04);
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -288,4 +354,4 @@ input:-webkit-autofill {
     opacity: 1;
     transform: translateY(0);
   }
-}
+}   

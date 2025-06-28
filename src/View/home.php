@@ -31,7 +31,7 @@ ob_start();
                 <p class="txt-suporte" data-i18n="support">Suporte</p>
             </a>
         </div>
-        <a href="index.php" class="btn-sair"><i class="fa-solid fa-person-running"></i>
+        <a href="login.php" class="btn-sair"><i class="fa-solid fa-person-running"></i>
             <span data-i18n="logout">Sair</span></a>
     </header>
 
@@ -91,7 +91,7 @@ ob_start();
     </script>
 
     <script>
-        const nomeUsuario = "<?php echo addslashes($_SESSION['usuario_nome']); ?>";
+    const nomeUsuario = "<?php echo addslashes($_SESSION['usuario_nome']); ?>";
     </script>
 
     <script src="assets/js/traducaoHome.js"></script>

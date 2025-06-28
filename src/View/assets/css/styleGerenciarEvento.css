@@ -160,14 +160,13 @@ img {
   height: 30px;
   width: 30px;
   object-fit: cover;
-  filter: invert();
 }
 
 .dark-mode .botao-acao img:hover {
   height: 30px;
   width: 30px;
   object-fit: cover;
-  filter: grayscale(100%);
+  filter: grayscale(0%);
 }
 .botao-acao img:hover {
   height: 30px;
@@ -193,7 +192,7 @@ img {
 }
 
 .dark-mode {
-  background-color: var(--primary-gray);
+  background-color: var(--primary-white);
 }
 
 .dark-mode header .container-logo p {
@@ -205,8 +204,8 @@ td {
 }
 
 .dark-mode table td {
-  background-color: rgb(165, 165, 165);
-  color: var(--primary-black);
+  background-color: var(--primary-black);
+  color: var(--primary-white);
 }
 
 .dark-mode table th {
@@ -215,11 +214,7 @@ td {
 }
 
 .dark-mode table .acoes .botao-acao i {
-  color: var(--primary-black);
-}
-
-.dark-mode table .acoes .botao-acao i:hover {
-  color: #d9d9d9;
+  color: var(--primary-white);
 }
 
 .dark-mode table {

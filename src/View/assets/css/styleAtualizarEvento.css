@@ -20,7 +20,7 @@ body {
 }
 
 .dark-mode {
-  background-color: var(--primary-gray);
+  background-color: var(--primary-white);
   color: var(--primary-black);
 }
 
@@ -342,6 +342,12 @@ button {
 
 .dark-mode button {
   color: var(--primary-black);
+}
+
+.dark-mode .container-botão button:hover {
+  color: var(--primary-black);
+  background-color: transparent;
+  border: 1px solid var(--primary-orange);
 }
 
 .container-botão {

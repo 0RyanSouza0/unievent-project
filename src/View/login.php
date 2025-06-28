@@ -16,16 +16,22 @@ ob_start();
 </head>
 
 <body>
+    <div class="div-unievent-logo">
+        <img src="assets/images/unieventAdminLogo.svg" alt="" class="unievent-logo">
+        <p>ADMIN</p>
+    </div>
+
     <div class="login-container">
         <div class="content first-content">
             <div class="first-column">
                 <a href="index.php" class='arrow-button'>
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
-                <h2 class='titulo titulo-primary'>Bem-Vindo!</h2>
-                <p class="descricao descricao-primary">Entre com seus dados de login</p>
-                <p class="descricao descricao-primary">para começar a experiência</p>
-                <button id='signin' class='btn btn-primary'>Entrar</button>
+
+                <h2 class='titulo titulo-primary' data-i18n="welcome">Bem-Vindo!</h2>
+                <p class="descricao descricao-primary" data-i18n="login_prompt_line1">Entre com seus dados de login</p>
+                <p class="descricao descricao-primary" data-i18n="login_prompt_line2">para começar a experiência</p>
+                <button id='signin' class='btn btn-primary' data-i18n="login_button">Entrar</button>
             </div>
             <div class="second-column">
                 <div class="message-container">
@@ -36,24 +42,27 @@ ob_start();
                         }
                     ?>
                 </div>
-                <h2 class="titulo titulo-second">Criar conta</h2>
-                <p class="descricao descricao-second">Utilize seu email institucional</p>
+
+                <h2 class="titulo titulo-second" data-i18n="create_account">Criar conta</h2>
+                <p class="descricao descricao-second" data-i18n="use_institutional_email">Utilize seu email
+                    institucional</p>
                 <form action="/unievent-project/public/index.php?action=loginCadastrar" class="formulario"
                     method='post'>
                     <label class='label-input'>
                         <i class="fa-solid fa-user icon-modify"></i>
-                        <input type="text" name="nome" placeholder='Nome' value='teste'>
+                        <input type="text" name="nome" data-i18n="name_placeholder" placeholder='Nome' value='teste'>
                     </label>
                     <label class='label-input'>
                         <i class="fa-solid fa-envelope icon-modify"></i>
-                        <input type="email" name="email" placeholder='Email Institucional'
+                        <input type="email" name="email" data-i18n="email_label" placeholder='Email Institucional'
                             value='teste@fatec.sp.gov.br'>
                     </label>
                     <label class='label-input'>
                         <i class="fa-solid fa-lock icon-modify"></i>
-                        <input type="password" name="senha" placeholder='Senha' value=1234>
+                        <input type="password" name="senha" data-i18n="password_placeholder" placeholder='Senha'
+                            value=1234>
                     </label>
-                    <button class="btn btn-second">Cadastrar</button>
+                    <button class="btn btn-second" data-i18n="register_button">Cadastrar</button>
                 </form>
             </div>
         </div>
@@ -63,14 +72,15 @@ ob_start();
                 <a href="index.php" class='arrow-button'>
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
-                <h2 class='titulo titulo-primary'>Olá!</h2>
-                <p class="descricao descricao-primary">Para se conectar a nós</p>
-                <p class="descricao descricao-primary">por favor, faça o cadastro</p>
-                <button id='signup' class='btn btn-primary'>Cadastrar</button>
+                <h2 class='titulo titulo-primary' data-i18n="hello">Olá!</h2>
+                <p class="descricao descricao-primary" data-i18n="connect_prompt_line1">Para se conectar a nós</p>
+                <p class="descricao descricao-primary" data-i18n="connect_prompt_line2">por favor, faça o cadastro</p>
+                <button id='signup' class='btn btn-primary' data-i18n="register_button">Cadastrar</button>
             </div>
             <div class="second-column">
-                <h2 class="titulo titulo-second">Entre para iniciar</h2>
-                <p class="descricao descricao-second">Utilize seu email institucional</p>
+                <h2 class="titulo titulo-second" data-i18n="login_to_start">Entre para iniciar</h2>
+                <p class="descricao descricao-second" data-i18n="use_institutional_email">Utilize seu email
+                    institucional</p>
                 <form action="/unievent-project/public/index.php?action=loginEntrar" class="formulario" method='post'>
                     <label class='label-input'>
                         <i class="fa-solid fa-envelope icon-modify"></i>
@@ -81,8 +91,8 @@ ob_start();
                         <i class="fa-solid fa-lock icon-modify"></i>
                         <input type="password" name="senha" placeholder='Senha' value='1234' required>
                     </label>
-                    <a class='password' href='#'>Esqueci minha senha</a>
-                    <button class="btn btn-second" type='submit'>Entrar</button>
+                    <a class='password' href='#' data-i18n="forgot_password">Esqueci minha senha</a>
+                    <button class="btn btn-second" type='submit' data-i18n="enter">Entrar</button>
                 </form>
             </div>
         </div>
@@ -108,8 +118,9 @@ ob_start();
     });
     </script>
     <script src="assets/js/traducaoLogin.js"></script>
+    <script src="assets/js/Login.js"></script>
 
-    <script src="assets/js/login.js"></script>
+
 </body>
 
 </html>

@@ -42,7 +42,7 @@ body {
 }
 
 .dark-mode {
-  background-color: var(--primary-gray);
+  background-color: var(--primary-white);
   color: var(--primary-black);
 }
 
