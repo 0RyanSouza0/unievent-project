@@ -105,117 +105,116 @@
 
     </form>
 
-
-
     <script>
-    const modal = document.getElementById("modal");
-    const formulario = document.getElementById("formulario");
-    const emoteError = document.getElementById("emote");
-    const conteudo = document.getElementById("conteudo");
-    const btnModal = document.getElementById("btnmodal");
+        const modal = document.getElementById("modal");
+        const formulario = document.getElementById("formulario");
+        const emoteError = document.getElementById("emote");
+        const conteudo = document.getElementById("conteudo");
+        const btnModal = document.getElementById("btnmodal");
 
-    function confirmaAtualizacao(idEvento) {
-        document.getElementById("idEventoParaEditar").value = idEvento;
+        function confirmaAtualizacao(idEvento) {
+            document.getElementById("idEventoParaEditar").value = idEvento;
 
-        document.getElementById(
-            "formEdicao"
-        ).action = `/UniEvent-Project/public/index.php?action=atualizarEvento&id=<?= $evento->getId() ?>`;
+            document.getElementById(
+                "formEdicao"
+            ).action = `/UniEvent-Project/public/index.php?action=atualizarEvento&id=<?= $evento->getId() ?>`;
 
-        document.getElementById("modal").style.display = "flex";
-    }
+            document.getElementById("modal").style.display = "flex";
+        }
 
-    function fecharModalEdicao() {
-        document.getElementById("modal").style.display = "none";
-    }
+        function fecharModalEdicao() {
+            document.getElementById("modal").style.display = "none";
+        }
     </script>
 
     <script src="assets/js/buttonTiposEvento.js"></script>
+
     <script src="https://kit.fontawesome.com/1c065add65.js" crossorigin="anonymous"></script>
+
     <script>
-    const input = document.getElementById('upload');
-    const preview = document.getElementById('preview');
+        const input = document.getElementById('upload');
+        const preview = document.getElementById('preview');
 
-    input.addEventListener('change', function() {
-        const file = this.files[0];
+        input.addEventListener('change', function() {
+            const file = this.files[0];
 
-        if (file) {
-            const reader = new FileReader();
+            if (file) {
+                const reader = new FileReader();
 
-            reader.addEventListener('load', function() {
-                preview.setAttribute('src', this.result);
-                preview.style.display = 'block';
-                preview.style.minHeight = '140px';
-                preview.style.objectFit = 'cover';
-                preview.style.borderRadius = '10px';
+                reader.addEventListener('load', function() {
+                    preview.setAttribute('src', this.result);
+                    preview.style.display = 'block';
+                    preview.style.minHeight = '140px';
+                    preview.style.objectFit = 'cover';
+                    preview.style.borderRadius = '10px';
+                });
+
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+
+            const translations = {
+                en: {
+                    update_event: "Update Event",
+                    back: "Back",
+                    title: "Title",
+                    description: "Description",
+                    capacity: "Capacity",
+                    responsible: "Responsible",
+                    image: "Image",
+                    date: "Date",
+                    time: "Time",
+                    event_type: "Event Type",
+                    title_placeholder: "Enter title",
+                    desc_placeholder: "Enter description",
+                    capacity_placeholder: "Max number of people",
+                    update: "Are you sure you want to update this event?",
+                    btn_confirm: "Confirm",
+                    btn_cancel: "Cancel"
+                },
+                pt: {
+                    update_event: "Atualizar Evento",
+                    back: "Voltar",
+                    title: "Título",
+                    description: "Descrição",
+                    capacity: "Capacidade",
+                    responsible: "Responsável",
+                    image: "Imagem",
+                    date: "Data",
+                    time: "Hora",
+                    event_type: "Tipo de Evento",
+                    title_placeholder: "Digite o título",
+                    desc_placeholder: "Digite a descrição",
+                    capacity_placeholder: "N° máximo de pessoas",
+                    update: "Tem certeza que deseja atualizar este evento?",
+                    btn_confirm: "Confirmar",
+                    btn_cancel: "Cancelar"
+                }
+            };
+
+            const lang = localStorage.getItem('lang') || 'pt';
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
             });
 
-            reader.readAsDataURL(file);
-        }
-    });
-
-    // Tema e tradução
-    document.addEventListener('DOMContentLoaded', function() {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            document.body.classList.add('dark-mode');
-        }
-
-        const translations = {
-            en: {
-                update_event: "Update Event",
-                back: "Back",
-                title: "Title",
-                description: "Description",
-                capacity: "Capacity",
-                responsible: "Responsible",
-                image: "Image",
-                date: "Date",
-                time: "Time",
-                event_type: "Event Type",
-                title_placeholder: "Enter title",
-                desc_placeholder: "Enter description",
-                capacity_placeholder: "Max number of people",
-                update: "Are you sure you want to update this event?",
-                btn_confirm: "Confirm",
-                btn_cancel: "Cancel"
-            },
-            pt: {
-                update_event: "Atualizar Evento",
-                back: "Voltar",
-                title: "Título",
-                description: "Descrição",
-                capacity: "Capacidade",
-                responsible: "Responsável",
-                image: "Imagem",
-                date: "Data",
-                time: "Hora",
-                event_type: "Tipo de Evento",
-                title_placeholder: "Digite o título",
-                desc_placeholder: "Digite a descrição",
-                capacity_placeholder: "N° máximo de pessoas",
-                update: "Tem certeza que deseja atualizar este evento?",
-                btn_confirm: "Confirmar",
-                btn_cancel: "Cancelar"
-            }
-        };
-
-        const lang = localStorage.getItem('lang') || 'pt';
-
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (translations[lang][key]) {
-                el.textContent = translations[lang][key];
-            }
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
         });
-
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-            const key = el.getAttribute('data-i18n-placeholder');
-            if (translations[lang][key]) {
-                el.placeholder = translations[lang][key];
-            }
-        });
-    });
     </script>
-</body>
 
+</body>
 </html>

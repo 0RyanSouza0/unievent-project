@@ -142,7 +142,7 @@ textarea {
   max-width: 400px;
   max-height: 200px;
   resize: both;
-  overflow: auto; /*adicona barra de rolagem*/
+  overflow: auto;
   border-radius: 12px;
   border: 2px solid var(--primary-orange);
   font-family: var(--primary-font);

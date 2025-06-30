@@ -113,135 +113,111 @@
         </div>
     </div>
     <script>
-    const btn = document.getElementById("btn");
-    const modal = document.getElementById("modal");
-    const formulario = document.getElementById("formulario");
-    const emoteError = document.getElementById("emote");
-    const emoteAcess = document.getElementById("emoteAcess");
-    var titulo = document.getElementById("titulo");
-    var descricao = document.getElementById("descricao");
-    var hora = document.getElementById("hora");
-    var tipoEvento = document.getElementById("tipoEvento");
-    var imagem = document.getElementById("upload");
-    var responsavel = document.getElementById("responsavel");
-    var data = document.getElementById("data");
-    var capacidade = document.getElementById("capacidade");
-    const conteudo = document.getElementById("conteudo");
-    const btnModal = document.getElementById("btnmodal");
+        const btn = document.getElementById("btn");
+        const modal = document.getElementById("modal");
+        const formulario = document.getElementById("formulario");
+        const emoteError = document.getElementById("emote");
+        const emoteAcess = document.getElementById("emoteAcess");
+        var titulo = document.getElementById("titulo");
+        var descricao = document.getElementById("descricao");
+        var hora = document.getElementById("hora");
+        var tipoEvento = document.getElementById("tipoEvento");
+        var imagem = document.getElementById("upload");
+        var responsavel = document.getElementById("responsavel");
+        var data = document.getElementById("data");
+        var capacidade = document.getElementById("capacidade");
+        const conteudo = document.getElementById("conteudo");
+        const btnModal = document.getElementById("btnmodal");
 
+        const dataString = data;
 
-    const dataString = data;
+        function validaData(dataRecebida) {
+            var dataAux = dataRecebida.split("/");
+            var ano = parseInt(dataAux[0]);
+            var mes = parseInt(dataAux[1]);
+            var dia = parseInt(dataAux[2]);
 
-    function validaData(dataRecebida) {
-        var dataAux = dataRecebida.split("/");
-        var ano = parseInt(dataAux[0]);
-        var mes = parseInt(dataAux[1]);
-        var dia = parseInt(dataAux[2]);
-
-        if (mes > 12 || mes <= 0) {
-            return false;
-        } else if (dia > 31 || mes <= 0) {
-            return false;
-        } else if (dia >= 30 && mes == 2) {
-            return false;
-        } else if (dia == 29 && mes == 2 && (ano % 4) != 0) {
-            return false;
-        } else if (dia == 31 && mes == 2 || (mes == 4) || (mes == 6) || (mes == 9) || (mes == 11)) {
-            return false;
-        } else {
-            return true;
+            if (mes > 12 || mes <= 0) {
+                return false;
+            } else if (dia > 31 || mes <= 0) {
+                return false;
+            } else if (dia >= 30 && mes == 2) {
+                return false;
+            } else if (dia == 29 && mes == 2 && (ano % 4) != 0) {
+                return false;
+            } else if (dia == 31 && mes == 2 || (mes == 4) || (mes == 6) || (mes == 9) || (mes == 11)) {
+                return false;
+            } else {
+                return true;
+            }
         }
 
+        function validaHora(horaRecebida) {
+            var horaAux = horaRecebida.split(":");
+            var hora = parseInt(horaAux[0]);
+            var minutos = parseInt(horaAux[1]);
 
-    }
+            if (hora > 24 || hora < 0) {
+                return false;
+            } else if (minutos > 59 || minutos < 0) {
+                return false;
 
-
-    function validaHora(horaRecebida) {
-        var horaAux = horaRecebida.split(":");
-        var hora = parseInt(horaAux[0]);
-        var minutos = parseInt(horaAux[1]);
-
-
-        if (hora > 24 || hora < 0) {
-            return false;
-        } else if (minutos > 59 || minutos < 0) {
-            return false;
-
-        } else {
-            return true;
+            } else {
+                return true;
+            }
         }
 
+        function validaform() {
+            if (
+                titulo.value.trim() === "" ||
+                descricao.value.trim() === "" ||
+                upload.value.trim() === "" ||
+                responsavel.value.trim() === "" ||
+                capacidade.value.trim() === "" ||
+                data.value.trim() === "" ||
+                hora.value.trim() === "" ||
+                tipoEvento.value.trim() === "" ||
+                validaData(data.value.trim()) === false ||
+                validaHora(hora.value.trim()) === false
+            ) {
+                const modal = document.getElementById('modal');
+                const conteudo = document.getElementById('conteudo');
+                const conteudo2 = document.getElementById('conteudo2');
 
-    }
+                modal.style.display = 'flex';
+                modal.style.position = 'fixed';
+                btnModal.style.display = 'none';
+                emote.style.display = 'flex';
+                emote.src = 'assets/images/emoteError.png';
+                conteudo2.style.textAlign = 'center';
+                conteudo2.style.display = 'flex';
+                conteudo.style.display = 'none';
+                formulario.reset();
+                return false;
+            } else {
+                const modal = document.getElementById('modal');
 
-    function validaform() {
+                const conteudo2 = document.getElementById('conteudo2');
+                const conteudo = document.getElementById('conteudo');
 
+                modal.style.display = 'flex';
+                emote.style.display = 'flex';
+                emote.src = 'assets/images/emoteAcess.png';
+                btnModal.style.display = 'block';
+                modal.style.position = 'fixed';
+                conteudo.style.display = 'flex';
+                conteudo2.style.display = 'none';
 
-        if (
-            titulo.value.trim() === "" ||
-            descricao.value.trim() === "" ||
-            upload.value.trim() === "" ||
-            responsavel.value.trim() === "" ||
-            capacidade.value.trim() === "" ||
-            data.value.trim() === "" ||
-            hora.value.trim() === "" ||
-            tipoEvento.value.trim() === "" ||
-            validaData(data.value.trim()) === false ||
-            validaHora(hora.value.trim()) === false
+                conteudo.style.textAlign = 'center';
 
-        ) {
-            const modal = document.getElementById('modal');
-            const conteudo = document.getElementById('conteudo');
-            const conteudo2 = document.getElementById('conteudo2');
-
-            modal.style.display = 'flex';
-            modal.style.position = 'fixed';
-            btnModal.style.display = 'none';
-            emote.style.display = 'flex';
-            emote.src = 'assets/images/emoteError.png';
-            conteudo2.style.textAlign = 'center';
-            conteudo2.style.display = 'flex';
-            conteudo.style.display = 'none';
-
-
+                return true;
+            }
+        }
+        const btnFechar = document.getElementById("btn-fechar");
+        btnFechar.onclick = function() {
             formulario.reset();
-            return false;
-        } else {
-            const modal = document.getElementById('modal');
-
-            const conteudo2 = document.getElementById('conteudo2');
-            const conteudo = document.getElementById('conteudo');
-
-            modal.style.display = 'flex';
-            emote.style.display = 'flex';
-            emote.src = 'assets/images/emoteAcess.png';
-            btnModal.style.display = 'block';
-            modal.style.position = 'fixed';
-            conteudo.style.display = 'flex';
-            conteudo2.style.display = 'none';
-
-            conteudo.style.textAlign = 'center';
-
-            return true;
-
-
+            modal.style.display = "none";
         }
-
-    }
-
-
-
-
-
-    const btnFechar = document.getElementById("btn-fechar");
-    btnFechar.onclick = function() {
-        formulario.reset();
-        modal.style.display = "none";
-    }
-    </script>
-    <script>
-
-
     </script>
 
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>

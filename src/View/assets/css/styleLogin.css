@@ -5,7 +5,6 @@
   --primary-gray: #d9d9d9;
   --primary-font: "Plus Jakarta Sans", sans-serif;
 
-  /* Escala de z-index para melhor organização */
   --z-index-base: 1;
   --z-index-middle: 5;
   --z-index-top: 10;
@@ -113,7 +112,6 @@ body {
   border-radius: 15px 0 0 15px;
 }
 
-/* Conteúdo fixo */
 .titulo {
   font-size: 36px;
   font-weight: bold;
@@ -300,8 +298,6 @@ input:-webkit-autofill {
   font-weight: 800;
 }
 
-
-/* Session CSS*/
 .message-container {
   width: 100%;
   margin-bottom: 2px;

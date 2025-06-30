@@ -85,18 +85,21 @@ ob_start();
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
+
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    
     <script>
-    new window.VLibras.Widget("https://vlibras.gov.br/app");
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
     </script>
 
     <script>
-    const nomeUsuario = "<?php echo addslashes($_SESSION['usuario_nome']); ?>";
+        const nomeUsuario = "<?php echo addslashes($_SESSION['usuario_nome']); ?>";
     </script>
 
     <script src="assets/js/traducaoHome.js"></script>
 
     <script src="https://kit.fontawesome.com/1c065add65.js" crossorigin="anonymous"></script>
+
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         const savedTheme = localStorage.getItem("theme");
@@ -105,6 +108,6 @@ ob_start();
         }
     });
     </script>
+    
 </body>
-
 </html>

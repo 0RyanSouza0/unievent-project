@@ -99,98 +99,99 @@
     <script src="https://kit.fontawesome.com/1c065add65.js" crossorigin="anonymous"></script>
 
     <script>
-    const btn = document.getElementById("btn");
-    const modal = document.getElementById("modal");
-    const formulario = document.getElementById("formulario");
-    const emoteError = document.getElementById("emote");
-    const emoteAcess = document.getElementById("emoteAcess");
+        const btn = document.getElementById("btn");
+        const modal = document.getElementById("modal");
+        const formulario = document.getElementById("formulario");
+        const emoteError = document.getElementById("emote");
+        const emoteAcess = document.getElementById("emoteAcess");
 
-    const conteudo = document.getElementById("conteudo");
-    const btnModal = document.getElementById("btnmodal");
+        const conteudo = document.getElementById("conteudo");
+        const btnModal = document.getElementById("btnmodal");
 
-    function confirmaExclusao(idEvento) {
-        document.getElementById("idEventoParaExcluir").value = idEvento;
+        function confirmaExclusao(idEvento) {
+            document.getElementById("idEventoParaExcluir").value = idEvento;
 
-        document.getElementById(
-            "formExclusao"
-        ).action = `/UniEvent-Project/public/index.php`;
+            document.getElementById(
+                "formExclusao"
+            ).action = `/UniEvent-Project/public/index.php`;
 
-        document.getElementById("modal").style.display = "flex";
-        emoteError.src = "assets/images/warning.jpg";
-    }
-
-    function fecharModalExclusao() {
-        document.getElementById("modal").style.display = "none";
-    }
-    </script>
-    <script>
-    const translations = {
-        en: {
-            event_table_title: "Event Table",
-            event_list_heading: "Event Listing",
-            back_button: "Back",
-            table_id: "ID",
-            table_title: "Title",
-            table_responsible: "Responsible",
-            table_event_type: "Event Type",
-            table_date: "Date",
-            table_time: "Time",
-            table_image: "Image",
-            table_description: "Description",
-            table_capacity: "Capacity",
-            table_actions: "Actions",
-            no_events: "No events found",
-            no_image: "No image",
-            are_sure: "Are you sure you want to delete this event?",
-            btn_confirm: "Confirm",
-            btn_cancel: "Cancel"
-        },
-        pt: {
-            event_table_title: "Tabela de Eventos",
-            event_list_heading: "Listagem de Eventos",
-            back_button: "Voltar",
-            table_id: "ID",
-            table_title: "Título",
-            table_responsible: "Responsável",
-            table_event_type: "Tipo de Evento",
-            table_date: "Data",
-            table_time: "Hora",
-            table_image: "Imagem",
-            table_description: "Descrição",
-            table_capacity: "Capacidade",
-            table_actions: "Ações",
-            no_events: "Nenhum evento encontrado",
-            no_image: "Sem imagem",
-            are_sure: "Tem certeza que deseja excluir este evento?",
-            btn_confirm: "Confirmar",
-            btn_cancel: "Cancelar"
-        },
-    };
-
-    function setLanguage(lang) {
-        localStorage.setItem("lang", lang);
-        document.querySelectorAll("[data-i18n]").forEach((el) => {
-            const key = el.getAttribute("data-i18n");
-            if (translations[lang][key]) {
-                el.textContent = translations[lang][key];
-            }
-        });
-        document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
-            const key = el.getAttribute("data-i18n-placeholder");
-            if (translations[lang][key]) {
-                el.placeholder = translations[lang][key];
-            }
-        });
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        const savedTheme = localStorage.getItem("theme");
-        if (savedTheme === "dark") {
-            document.body.classList.add("dark-mode");
+            document.getElementById("modal").style.display = "flex";
+            emoteError.src = "assets/images/warning.jpg";
         }
-        const savedLang = localStorage.getItem("lang") || "pt";
-        setLanguage(savedLang);
-    });
+
+        function fecharModalExclusao() {
+            document.getElementById("modal").style.display = "none";
+        }
+    </script>
+
+    <script>
+        const translations = {
+            en: {
+                event_table_title: "Event Table",
+                event_list_heading: "Event Listing",
+                back_button: "Back",
+                table_id: "ID",
+                table_title: "Title",
+                table_responsible: "Responsible",
+                table_event_type: "Event Type",
+                table_date: "Date",
+                table_time: "Time",
+                table_image: "Image",
+                table_description: "Description",
+                table_capacity: "Capacity",
+                table_actions: "Actions",
+                no_events: "No events found",
+                no_image: "No image",
+                are_sure: "Are you sure you want to delete this event?",
+                btn_confirm: "Confirm",
+                btn_cancel: "Cancel"
+            },
+            pt: {
+                event_table_title: "Tabela de Eventos",
+                event_list_heading: "Listagem de Eventos",
+                back_button: "Voltar",
+                table_id: "ID",
+                table_title: "Título",
+                table_responsible: "Responsável",
+                table_event_type: "Tipo de Evento",
+                table_date: "Data",
+                table_time: "Hora",
+                table_image: "Imagem",
+                table_description: "Descrição",
+                table_capacity: "Capacidade",
+                table_actions: "Ações",
+                no_events: "Nenhum evento encontrado",
+                no_image: "Sem imagem",
+                are_sure: "Tem certeza que deseja excluir este evento?",
+                btn_confirm: "Confirmar",
+                btn_cancel: "Cancelar"
+            },
+        };
+
+        function setLanguage(lang) {
+            localStorage.setItem("lang", lang);
+            document.querySelectorAll("[data-i18n]").forEach((el) => {
+                const key = el.getAttribute("data-i18n");
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+                const key = el.getAttribute("data-i18n-placeholder");
+                if (translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+            }
+            const savedLang = localStorage.getItem("lang") || "pt";
+            setLanguage(savedLang);
+        });
     </script>
 
     <div vw class="enabled">
@@ -199,10 +200,12 @@
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-    new window.VLibras.Widget("https://vlibras.gov.br/app");
-    </script>
-</body>
 
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    
+    <script>
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+    
+</body>
 </html>

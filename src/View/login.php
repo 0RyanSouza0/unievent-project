@@ -97,6 +97,7 @@ ob_start();
             </div>
         </div>
     </div>
+
     <!-- VLibras Plugin -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
@@ -104,7 +105,9 @@ ob_start();
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
+
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
     <script>
     new window.VLibras.Widget("https://vlibras.gov.br/app");
     </script>
@@ -117,10 +120,9 @@ ob_start();
         }
     });
     </script>
+
     <script src="assets/js/traducaoLogin.js"></script>
     <script src="assets/js/Login.js"></script>
-
-
+    
 </body>
-
 </html>

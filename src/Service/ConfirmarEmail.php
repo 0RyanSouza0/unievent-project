@@ -33,7 +33,7 @@
             }
         } else { // Não encontrou a chave no banco de dados
             $_SESSION['msg'] = "<div class='alert-message alert-error'>Erro: endereço inválido.</div>";
-            header("Location: /../unievent-project/src/View/login.php");    
+            header("Location: /../unievent-project/src/View/login.php");  
         }
     } else {
         $_SESSION['msg'] = "<div class='alert-message alert-error'>Erro: endereço inválido.</div>";

@@ -25,8 +25,7 @@ class SecretariaService {
             $_SESSION['msg'] = "<div class='alert-message alert-error'>Erro: Já existe conta com este e-mail.</div>";
             return false;
         } 
-        
-        // Verifica se é um email institucional válido
+
         return (bool) preg_match('/^[a-zA-Z0-9._%+-]+@fatec\.sp\.gov\.br$/i', $email);
     }
 }

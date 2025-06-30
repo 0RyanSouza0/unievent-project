@@ -28,6 +28,7 @@
         <input type="submit" value="Enviar">
         </div>
     </form>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             form.addEventListener("submit", function (e) {
@@ -35,6 +36,6 @@
             });
         });
     </script>
+    
 </body>
-
 </html>

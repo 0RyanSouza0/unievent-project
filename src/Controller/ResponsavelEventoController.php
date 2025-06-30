@@ -27,8 +27,7 @@ class ResponsavelEventoController{
                 if(empty($email_contato)|| empty($telefone_contato)|| empty($nome)){
                     echo "preencha todos os campos";
                 }
-                else{
-                    //if(ContatoService::validarEmail($email_contato)){  
+                else{  
                         try{
                             $contato = new Contato();
                             $contato->setEmailContato($email_contato);
@@ -42,8 +41,6 @@ class ResponsavelEventoController{
                         }
                     
                     }
-                //}
-
             }
         }
     }

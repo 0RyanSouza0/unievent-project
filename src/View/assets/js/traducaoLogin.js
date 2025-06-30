@@ -1,4 +1,3 @@
-
 const translations = {
     en: {
         welcome: "Welcome!",
@@ -41,9 +40,6 @@ const translations = {
         enter: "Entrar"
     }
 };
-// traduçao login
-
-
 
 function setLanguage(lang) {
     localStorage.setItem("lang", lang);

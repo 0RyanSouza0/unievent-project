@@ -34,8 +34,7 @@ class Contato{
 
    public function getTelefoneContato(){
       return $this->telefone_contato;
-   }
-    
+   }  
 }
 
 ?>

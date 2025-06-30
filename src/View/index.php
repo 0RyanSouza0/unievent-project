@@ -171,28 +171,33 @@
             <p data-i18n="footer.designer">Design By Vinicius Santos</p>
         </div>
     </footer>
+
     <script src="https://kit.fontawesome.com/1c065add65.js" crossorigin="anonymous"></script>
+
     <script src="assets/js/script.js"></script>
+
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
+
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
     <script>
-    new window.VLibras.Widget("https://vlibras.gov.br/app");
+        new window.VLibras.Widget("https://vlibras.gov.br/app");
     </script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const savedTheme = localStorage.getItem("theme");
-        if (savedTheme === "dark") {
-            document.body.classList.add("dark-mode");
-        }
-    });
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+            }
+        });
     </script>
+
     <script src="assets/js/traducao.js"></script>
 </body>
-
 </html>

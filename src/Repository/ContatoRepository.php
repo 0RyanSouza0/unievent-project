@@ -40,7 +40,6 @@ class ContatoRepository {
             $this->pdo->commit(); 
 
             return $responsavel_evento; 
-            
 
         } catch (PDOException $e) {
             if ($this->pdo && $this->pdo->inTransaction()) {
@@ -50,8 +49,7 @@ class ContatoRepository {
         }
     }
 
-
-    // $responsavelRepository->updateResponsavel('id', 22, ['name'=>'alexa'])
+    // $responsavelRepository->updateResponsavel('id', 'nome', telefone)
     public function updateResponsavel(string|int $id, string $nome, int $telefone_contato) {
         try {
             require_once(__DIR__ . '/../../Config/Connection.php');

@@ -48,10 +48,6 @@ const translations = {
     }
 };
 
-// traduçao login
-
-
-
 function setLanguage(lang) {
     localStorage.setItem("lang", lang);
     document.querySelectorAll("[data-i18n]").forEach((el) => {

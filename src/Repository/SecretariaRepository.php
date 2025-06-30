@@ -49,8 +49,7 @@ class SecretariaRepository {
 
     public function checarLogin($email, $senha) {
         try {
-            // Verifica se existe conta com este email
-            $stmt = $this->pdo->prepare("SELECT id, email, senha, nome, situacao, tentativas_login FROM secretaria WHERE email = :email");
+            $stmt = $this->pdo->prepare("SELECT id, email, senha, nome, situacao, tentativas_login FROM secretaria WHERE email = :email"); // Verifica se existe conta com este email
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
 
@@ -60,7 +59,6 @@ class SecretariaRepository {
 
             $usuario = $stmt->fetch(PDO::FETCH_OBJ);
 
-            // Verifica status da conta
             if ($usuario->situacao == 'aguardando confirmacao') {
                 return ['status' => 'email_nao_confirmado'];
             } 
@@ -69,16 +67,13 @@ class SecretariaRepository {
                 return ['status' => 'conta_inativa'];
             }
 
-            // Verifica a senha
             if (password_verify($senha, $usuario->senha)) {
-                // Reseta tentativas em caso de sucesso
                 $this->resetarTentativas($usuario->id);
                 return [
                     'status' => 'sucesso',
                     'usuario' => $usuario
                 ];
             } else {
-                // Incrementa tentativas falhas
                 $tentativas = $this->incrementarTentativa($usuario->id);
                 
                 if ($tentativas >= 5) {
