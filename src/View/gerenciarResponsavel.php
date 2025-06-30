@@ -28,6 +28,14 @@
         <input type="submit" value="Enviar">
         </div>
     </form>
-</body>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            form.addEventListener("submit", function (e) {
+                window.alert("Responsável Atualizado com Sucesso!");
+            });
+        });
+    </script>
+    
+</body>
 </html>

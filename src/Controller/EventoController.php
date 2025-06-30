@@ -122,7 +122,7 @@ class EventoController
                     empty($titulo) || empty($descricao) ||
                     empty($capacidade) || empty($responsavel) ||
                     empty($horaEvento) || empty($dataEvento) ||
-                    empty($categoriaEvento) || $thumbnail === null
+                    empty($categoriaEvento) 
                 ) {
                     echo "Preencha todos os campos, incluindo a thumbnail";
                 } else {
@@ -137,7 +137,8 @@ class EventoController
                         $evento->setHoraEvento($horaEvento);
                         $evento->setDataEvento($dataEvento);
                       
-                        echo 'Dados enviados';
+                        header('Location: /UniEvent-Project/public/index.php?action=listarEventos');
+                           
                         if ($repository->atualizar($evento)) {
                             header('Location: /UniEvent-Project/public/index.php?action=listarEventos');
                             exit;
@@ -237,7 +238,13 @@ class EventoController
                     empty($horaEvento) || empty($dataEvento) ||
                     empty($categoriaEvento) || $thumbnail === null
                 ) {
-                    echo "Preencha todos os campos, incluindo a thumbnail";
+                    if (empty($thumbnail)) {
+                        echo "<script>alert('Preencha a thumbnail');</script>";
+                        echo '<br>' . $thumbnail;
+                    } else {
+                        echo "<script>alert('Preencha todos os campos');</script>";
+                        echo '<br>' . $thumbnail;
+                    }
                 } else {
                     try {
                         $evento = new Evento();
@@ -250,7 +257,8 @@ class EventoController
                         $evento->setDataEvento($dataEvento);
                       
                         echo 'Dados enviados';
-                       return $repository->save($evento) && header('Location: ../src/View/previaEvento.html');
+                        
+                       return $repository->save($evento) && header('Location: ../public/index.php?action=listarEventos');
                      
                     } catch (PDOException $e) {
                     

@@ -11,6 +11,7 @@ require_once __DIR__ . '/../Config/Connection.php';
 
 use src\Controller\EventoController;
 use src\Controller\ResponsavelEventoController;
+use src\Controller\SecretariaController;
 
 try {
     $action = $_GET['action'] ?? 'home';
@@ -20,11 +21,18 @@ try {
     $action = strtolower($action);
 
     switch ($action) {
+        case 'loginentrar':
+            $controller = new SecretariaController();
+            $controller->processarLogin();
+            break;
+        case 'logincadastrar':
+            $controller = new SecretariaController();
+            $controller->processarCadastro();
+            break;
         case 'processarresponsavel':
             $controller = new ResponsavelEventoController();
             $controller->processarFormulario();
             break;
-            
         case 'updateresponsavel':
             $controller = new ResponsavelEventoController();
             $controller->processarUpdateResponsavel();
@@ -50,7 +58,7 @@ try {
             $controller->atualizarEvento($_GET['id']);
             break;
         case 'home':
-            header('Location: ../View/home.html');
+            header('Location: ../View/home.php');
             exit;
         default:
             http_response_code(404);

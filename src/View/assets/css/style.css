@@ -18,6 +18,10 @@ html {
 body {
   background-color: var(--primary-black);
 }
+.dark-mode {
+  background-color: var(--primary-white);
+  color: var(--primary-black);
+}
 header {
   height: auto;
   max-height: 60%;
@@ -29,7 +33,7 @@ header .fundo-laranja {
   padding: 0 0 30px 0;
 }
 header .fundo-laranja .container-inicio {
-    width: 80%;
+  width: 80%;
   margin: 0 auto;
   padding: 20px;
 }
@@ -38,6 +42,14 @@ header .fundo-laranja .container-inicio .container-imagem img {
   object-fit: cover;
   height: auto;
 }
+
+.dark-mode header .fundo-laranja .container-inicio .container-imagem img {
+  width: 100px;
+  object-fit: cover;
+  height: auto;
+  filter: invert(100%);
+}
+
 header nav {
   width: 100%;
   padding: 15px;
@@ -46,6 +58,20 @@ header nav {
   border-radius: 10px;
   align-items: center;
   justify-content: space-between;
+}
+.dark-mode header nav {
+  background-color: var(--primary-white);
+}
+.dark-mode header nav .login button {
+  background-color: #272727;
+}
+
+.dark-mode header nav .github {
+  background-color: #272727;
+}
+
+.dark-mode header nav .github i {
+  color: var(--primary-gray);
 }
 
 header nav .navegacao {
@@ -57,6 +83,13 @@ header a {
   font-weight: 800;
   text-decoration: none;
   color: var(--primary-white);
+}
+
+.dark-mode header a {
+  font-family: var(--primary-font);
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--primary-black);
 }
 
 header .github {
@@ -172,6 +205,27 @@ header .header-sobre .container-image-sobre img {
   flex-direction: column;
   margin-top: 100px;
 }
+.dark-mode .app {
+  background-color: var(--primary-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  flex-direction: column;
+  margin-top: 100px;
+}
+.dark-mode .app p {
+  text-align: center;
+  color: var(--primary-black);
+  font-size: 2.6rem;
+  font-weight: 700;
+  font-family: var(--primary-font);
+}
+.dark-mode .app .img-letra {
+  filter: invert(100%);
+}
 .app p {
   text-align: center;
   color: var(--primary-white);
@@ -238,7 +292,20 @@ header .header-sobre .container-image-sobre img {
   padding: 20px;
   flex-direction: column;
   margin-top: 100px;
-  
+}
+.dark-mode .integrantes {
+  background-color: var(--primary-white);
+}
+.dark-mode .integrantes h2 {
+  text-align: center;
+  color: var(--primary-black);
+  font-size: 2.6rem;
+  font-weight: 700;
+  font-family: var(--primary-font);
+  padding-bottom: 50px;
+}
+.dark-mode .integrantes .img-letra {
+  filter: invert(100%);
 }
 .integrantes h2 {
   text-align: center;
@@ -247,12 +314,11 @@ header .header-sobre .container-image-sobre img {
   font-weight: 700;
   font-family: var(--primary-font);
   padding-bottom: 50px;
-  
 }
 
 /* CARDS DOS INTEGRANTES */
 .div-container-integrantes {
-  width: 100%;  
+  width: 100%;
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -308,7 +374,6 @@ header .header-sobre .container-image-sobre img {
 .card-integrantes.ryan:hover {
   transform: scale(1.05);
 }
-
 
 /*FOOTER*/
 footer {
@@ -367,15 +432,41 @@ footer .desenvolvido p {
   margin-top: 100px;
   flex-wrap: wrap;
 }
-
+.dark-mode .container-contato {
+  background-color: #e6e3e3;
+}
 .div-contato {
   width: 600px;
   max-width: 400px;
   padding: 10px;
   box-sizing: border-box;
 }
+.dark-mode .label-nome,
+.dark-mode .label-email,
+.dark-mode .label-contato {
+  font-family: var(--primary-font);
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  color: var(--primary-black);
+  padding-top: 4.5%;
+  padding-bottom: 1%;
+  padding-left: 1%;
+}
 
-.label-nome, .label-email, .label-contato{
+.dark-mode .contate_nos {
+  font-family: var(--primary-font);
+  font-weight: 800;
+  font-size: 40px;
+  text-decoration: none;
+  color: var(--primary-black);
+  padding-top: 1%;
+  padding-bottom: 5%;
+}
+
+.label-nome,
+.label-email,
+.label-contato {
   font-family: var(--primary-font);
   font-weight: 500;
   font-size: 15px;
@@ -396,7 +487,8 @@ footer .desenvolvido p {
   padding-bottom: 5%;
 }
 
-.input-nome, .input-email {
+.input-nome,
+.input-email {
   width: 100%;
   height: 35px;
   border: 2px solid rgb(32, 32, 32);

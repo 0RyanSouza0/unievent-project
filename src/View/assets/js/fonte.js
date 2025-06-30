@@ -1,6 +1,3 @@
-// fonte.js
-
-// Aplica o tamanho salvo, se existir
 document.addEventListener("DOMContentLoaded", () => {
   const tamanhoFonte = localStorage.getItem("tamanhoFonte");
   if (tamanhoFonte) {
@@ -8,14 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Chamada pelo botão na página principal
 function definirFonteGrande() {
-  const novoTamanho = "20px"; // ou outro valor fixo
+  const novoTamanho = "20px";
   localStorage.setItem("tamanhoFonte", novoTamanho);
   document.documentElement.style.fontSize = novoTamanho;
 }
 
 function redefinirFonte() {
   localStorage.removeItem("tamanhoFonte");
-  document.documentElement.style.fontSize = "16px"; // valor padrão
+  document.documentElement.style.fontSize = "16px";
 }

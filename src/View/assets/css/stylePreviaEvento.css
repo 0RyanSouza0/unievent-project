@@ -20,15 +20,74 @@ body {
 }
 
 .dark-mode {
-  background-color: var(--primary-gray);
+  background-color: var(--primary-white);
   color: var(--primary-black);
 }
 
 header {
-  display: inline-flex;
+  display: flex;
   height: 200px;
   align-items: center;
-  margin-left: 80px;
+  padding: 20px;
+  width: 100%;
+  justify-content: space-between;
+}
+header .container-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.dark-mode .b-voltar {
+  text-decoration: none;
+  color: var(--primary-white);
+  font-size: 1rem;
+  padding: 8px;
+  border: 1px solid var(--primary-orange);
+  display: flex;
+  font-family: var(--primary-font);
+  font-weight: 800;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  transition: 0.2s all ease-in-out;
+}
+
+.b-voltar {
+  text-decoration: none;
+  color: var(--primary-white);
+  font-size: 1rem;
+  padding: 8px;
+  border: 1px solid var(--primary-orange);
+  display: flex;
+  font-family: var(--primary-font);
+  font-weight: 800;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  transition: 0.2s all ease-in-out;
+}
+
+.dark-mode .b-voltar {
+  color: var(--primary-black);
+}
+
+.b-voltar i {
+  font-size: 1rem;
+}
+
+.b-voltar:hover {
+  transition: 0.2s all ease-in-out;
+  background-color: var(--primary-orange);
+  border: var(--primary-orange);
+  padding: 8px;
 }
 
 .logo {
@@ -59,9 +118,8 @@ header p {
   width: 400px;
   height: 900px;
   margin-bottom: 5px;
-  border: 1px solid #ffffff;
-  overflow: auto;
-  border-radius: 8px;
+  border: 1px solid var(--primary-orange);
+  border-radius: 20px;
 }
 
 .header-app {

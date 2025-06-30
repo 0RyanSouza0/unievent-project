@@ -106,6 +106,7 @@ class EventoRepository {
             $this->pdo = $conexao->getConnection();
             $this->pdo->beginTransaction(); 
 
+            if(!empty($evento->getThumbnail())){
             $sql = "UPDATE evento SET nome = :nome, descricao = :descricao, categoria_evento = :categoria_evento, hora_evento = :hora_evento, data_evento = :data_evento,
                         capacidade = :capacidade, thumbnail = :thumbnail WHERE id = :id";
             $stmt = $this->pdo->prepare($sql);
@@ -123,6 +124,24 @@ class EventoRepository {
             $this->pdo->commit(); 
 
             return $stmt->rowCount() > 0;
+        }else{
+            $sql = "UPDATE evento SET nome = :nome, descricao = :descricao, categoria_evento = :categoria_evento, hora_evento = :hora_evento, data_evento = :data_evento,
+                        capacidade = :capacidade WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                ':nome' => $evento->getNome(),
+                ':descricao' => $evento->getDescricao(),
+                ':categoria_evento' => $evento->getCategoriaEvento(),
+                ':hora_evento' => $evento->getHoraEvento(),
+                ':data_evento' => $evento->getDataEvento(),
+                ':capacidade' => $evento->getCapacidade(),
+                ':id' => $evento->getId()
+            ]);
+
+            $this->pdo->commit(); 
+
+            return $stmt->rowCount() > 0;
+        }
         } catch (PDOException $e) {
             $this->pdo->rollBack();
             throw $e;
