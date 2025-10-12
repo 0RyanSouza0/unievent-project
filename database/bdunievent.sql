@@ -1,14 +1,7 @@
-CREATE TABLE contato(
-id integer primary key auto_increment,
-telefone_contato varchar(15) not null,
-email_contato varchar(80) not null
-)engine=InnoDB;
- 
 CREATE TABLE responsavelevento(
 id integer primary key auto_increment,
-nome varchar(100)  not null,
-id_contato_fk integer, foreign key (id_contato_fk)
-references contato(id) ON  UPDATE CASCADE ON DELETE CASCADE
+nome varchar(200) not null,
+fotoPerfil varchar(200)
 ) engine=InnoDB;
  
 CREATE TABLE endereco(
@@ -126,18 +119,6 @@ end //
  
 select emailInstitucional('levi@fatec.sp.gov.br');
  
-DELIMITER //
- 
-CREATE TRIGGER valida_email_contato
-BEFORE INSERT ON contato
-FOR EACH ROW
-BEGIN
-  IF (NEW.email_contato NOT LIKE '%@fatec.sp.gov.br') THEN
-    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Email não é institucional.';
-  END IF;
-END //
- 
-DELIMITER ;
  
 DELIMITER //
  

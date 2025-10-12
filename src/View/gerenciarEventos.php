@@ -44,29 +44,35 @@
             <?php else: ?>
             <?php foreach ($eventos as $evento): ?>
             <tr>
-                <td><?= htmlspecialchars($evento->getId()) ?></td>
-                <td><?= htmlspecialchars($evento->getNome()) ?></td>
-                <td>Ana</td>
-                <td><?= htmlspecialchars($evento->getCategoriaEvento()) ?></td>
-                <td><?= htmlspecialchars($evento->getDataEvento()) ?></td>
-                <td><?= htmlspecialchars($evento->getHoraEvento()) ?></td>
+                <td><?= htmlspecialchars($evento['id']) ?></td>
+                <td><?= htmlspecialchars($evento['nome']) ?></td>
                 <td>
-                    <?php if ($evento->getThumbnail()): ?>
-                    <img src="/UniEvent-Project/public<?= htmlspecialchars($evento->getThumbnail()) ?>" alt="Thumbnail"
+                    <?php if (!empty($evento['responsavel_nome'])): ?>
+                        <?= htmlspecialchars($evento['responsavel_nome']) ?>
+                    <?php else: ?>
+                        <span data-i18n="no_responsible">Sem responsável</span>
+                    <?php endif; ?>
+                </td>
+                <td><?= htmlspecialchars($evento['categoria_evento']) ?></td>
+                <td><?= htmlspecialchars($evento['data_evento']) ?></td>
+                <td><?= htmlspecialchars($evento['hora_evento']) ?></td>
+                <td>
+                    <?php if (!empty($evento['thumbnail'])): ?>
+                    <img src="/UniEvent-Project/public<?= htmlspecialchars($evento['thumbnail']) ?>" alt="Thumbnail"
                         style="width: 100px" />
                     <?php else: ?>
                     <span data-i18n="no_image">Sem imagem</span>
                     <?php endif; ?>
                 </td>
-                <td><?= htmlspecialchars($evento->getDescricao()) ?></td>
-                <td><?= htmlspecialchars($evento->getCapacidade()) ?></td>
+                <td><?= htmlspecialchars($evento['descricao']) ?></td>
+                <td><?= htmlspecialchars($evento['capacidade']) ?></td>
                 <td class="acoes">
                     <a class="botao-acao" title="Editar"
-                        href="/UniEvent-Project/public/index.php?action=visualizarAtualizarEvento&id=<?= $evento->getId() ?>">
+                        href="/UniEvent-Project/public/index.php?action=visualizarAtualizarEvento&id=<?= $evento['id'] ?>">
                         <i class="fa-solid fa-file-pen"></i>
                     </a>
 
-                    <a class="botao-acao" title="Excluir" onclick="confirmaExclusao(<?= $evento->getId() ?>)"
+                    <a class="botao-acao" title="Excluir" onclick="confirmaExclusao(<?= $evento['id'] ?>)"
                         href="javascript:void(0);">
                         <i class="fa-solid fa-trash"></i>
                     </a>
@@ -122,6 +128,7 @@
         function fecharModalExclusao() {
             document.getElementById("modal").style.display = "none";
         }
+        
     </script>
 
     <script>
@@ -142,6 +149,7 @@
                 table_actions: "Actions",
                 no_events: "No events found",
                 no_image: "No image",
+                no_responsible: "No responsible",
                 are_sure: "Are you sure you want to delete this event?",
                 btn_confirm: "Confirm",
                 btn_cancel: "Cancel"
@@ -162,6 +170,7 @@
                 table_actions: "Ações",
                 no_events: "Nenhum evento encontrado",
                 no_image: "Sem imagem",
+                no_responsible: "Sem responsável",
                 are_sure: "Tem certeza que deseja excluir este evento?",
                 btn_confirm: "Confirmar",
                 btn_cancel: "Cancelar"

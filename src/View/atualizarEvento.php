@@ -32,47 +32,56 @@
             <div class="campos-1">
                 <p class="titulos" data-i18n="title">Título</p>
                 <div class="input-container-titulo">
-                    <input type="text" name="titulo" class="input-titulo" value="<?= $evento->getNome(); ?>"
+                    <input type="text" name="titulo" class="input-titulo" value="<?= htmlspecialchars($evento['nome']); ?>"
                         data-i18n-placeholder="title_placeholder" placeholder="Digite o título" />
                 </div>
                 <p class="titulos" data-i18n="description">Descrição</p>
                 <div class="input-container-desc">
                     <textarea class="input-desc" name="descricao" required data-i18n-placeholder="desc_placeholder"
-                        placeholder="Digite a descrição"><?= $evento->getDescricao(); ?></textarea>
+                        placeholder="Digite a descrição"><?= htmlspecialchars($evento['descricao']); ?></textarea>
                 </div>
                 <p class="titulos" data-i18n="capacity">Capacidade</p>
                 <div class="input-container-cap">
                     <input type="number" name="capacidade" class="input-cap" placeholder="N° máximo de pessoas"
-                        value="<?= $evento->getCapacidade(); ?>" data-i18n-placeholder="capacity_placeholder" />
+                        value="<?= htmlspecialchars($evento['capacidade']); ?>" data-i18n-placeholder="capacity_placeholder" />
                 </div>
             </div>
             <div class="campos-2">
                 <p class="titulos" data-i18n="responsible">Responsável</p>
                 <div class="input-container-res">
-                    <select name="responsavel" class="input-res">
-                        <option value="ana">Ana</option>
+                    <select name="responsavel" class="input-res" id="responsavel" required>
+                        <option value="">Selecione um responsável</option>
+                        <?php if (isset($responsaveis) && !empty($responsaveis)): ?>
+                            <?php foreach ($responsaveis as $responsavel): ?>
+                                <option value="<?= $responsavel['id'] ?>" 
+                                    <?= ($evento['id_responsavel_evento_fk'] == $responsavel['id']) ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($responsavel['nome']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <option value="" disabled>Nenhum responsável cadastrado</option>
+                        <?php endif; ?>
                     </select>
                 </div>
                 <p class="titulos" data-i18n="image">Imagem</p>
                 <div class="input-container-img">
-                    <input type="file" name='thumbnail' id="upload" accept="image/*"
-                        value="<?= $evento->getThumbnail() ?>" />
+                    <input type="file" name='thumbnail' id="upload" accept="image/*" />
                     <label for="upload" class="upload-label">
                         <img class="img-upload"
                             style="width:290px; max-height: 140px; object-fit:cover; border-radius:10px;"
-                            src="/UniEvent-Project/public<?= htmlspecialchars($evento->getThumbnail()) ?>"
+                            src="/UniEvent-Project/public<?= htmlspecialchars($evento['thumbnail']) ?>"
                             id="preview" />
                     </label>
                 </div>
                 <div class="input-container-data">
                     <p class="titulos" data-i18n="date">Data</p>
-                    <input type="date" name="dataEvento" class="input-data" value="<?= $evento->getDataEvento() ?>" />
+                    <input type="date" name="dataEvento" class="input-data" value="<?= htmlspecialchars($evento['data_evento']) ?>" />
                 </div>
             </div>
             <div>
                 <div class="input-container-hora">
                     <p class="titulos" data-i18n="time">Hora</p>
-                    <input type="time" name="horaEvento" class="input-hora" value="<?= $evento->getHoraEvento() ?>" />
+                    <input type="time" name="horaEvento" class="input-hora" value="<?= htmlspecialchars($evento['hora_evento']) ?>" />
                 </div>
                 <p class="titulos" data-i18n="event_type">Tipo de Evento</p>
                 <div class="input-container-res">
@@ -82,7 +91,7 @@
                 </div>
                 <div class="container-botão">
                     <button type="submit" data-i18n="update_event"
-                        onclick="confirmaAtualizacao(<?= $evento->getId() ?>);event.preventDefault()">Atualizar
+                        onclick="confirmaAtualizacao(<?= $evento['id'] ?>);event.preventDefault()">Atualizar
                         Evento</button>
                 </div>
             </div>
@@ -117,7 +126,7 @@
 
             document.getElementById(
                 "formEdicao"
-            ).action = `/UniEvent-Project/public/index.php?action=atualizarEvento&id=<?= $evento->getId() ?>`;
+            ).action = `/UniEvent-Project/public/index.php?action=atualizarEvento&id=<?= $evento['id'] ?>`;
 
             document.getElementById("modal").style.display = "flex";
         }

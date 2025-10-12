@@ -1,13 +1,12 @@
 <?php
 
 namespace src\Model;
-use src\Model\Contato;
+
 class ResponsavelEvento{
 
    private $id;
    private $nome;
-   private $id_contato_fk;
-
+   private $fotoPerfil;
 
    public function __construct()
    {
@@ -29,12 +28,12 @@ class ResponsavelEvento{
       return $this->nome;
    }
 
-   public function setIdContatoFk($id_contato_fk){
-      return $this->id_contato_fk=$id_contato_fk;
+   public function setFotoPerfil($fotoPerfil){
+      return $this->fotoPerfil=$fotoPerfil;
    }
 
-   public function getIdContatoFk(){
-      return $this->id_contato_fk;
+   public function getFotoPerfil(){
+      return $this->fotoPerfil;
    }
    
 }

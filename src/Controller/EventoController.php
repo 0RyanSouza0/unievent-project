@@ -44,13 +44,15 @@ class EventoController
     public function visualizarAtualizarEvento($id) {
         try {
             $evento = $this->repository->buscarPorId($id);
+            $responsaveis = $this->repository->listarResponsaveis();
             
             if (!$evento) {
                 throw new \Exception("Evento não encontrado");
             }
             
             $this->carregarView('atualizarEvento.php', [
-                'evento' => $evento
+                'evento' => $evento,
+                'responsaveis' => $responsaveis
             ]);
             
         } catch (\Exception $e) {
@@ -113,14 +115,14 @@ class EventoController
                 $titulo = trim($_POST['titulo']);
                 $descricao = trim($_POST['descricao']);
                 $capacidade = trim($_POST['capacidade']);
-                $responsavel = trim($_POST['responsavel']);
+                $responsavelId = (int)trim($_POST['responsavel']);
                 $horaEvento = trim($_POST['horaEvento']);
                 $dataEvento = trim($_POST['dataEvento']);
                 $categoriaEvento = trim($_POST['categoriaEvento']);
 
                 if (
                     empty($titulo) || empty($descricao) ||
-                    empty($capacidade) || empty($responsavel) ||
+                    empty($capacidade) || empty($responsavelId) ||
                     empty($horaEvento) || empty($dataEvento) ||
                     empty($categoriaEvento) 
                 ) {
@@ -136,9 +138,8 @@ class EventoController
                         $evento->setThumbnail($thumbnail);
                         $evento->setHoraEvento($horaEvento);
                         $evento->setDataEvento($dataEvento);
+                        $evento->setIdResponsavelEventoFk($responsavelId);
                       
-                        header('Location: /UniEvent-Project/public/index.php?action=listarEventos');
-                           
                         if ($repository->atualizar($evento)) {
                             header('Location: /UniEvent-Project/public/index.php?action=listarEventos');
                             exit;
@@ -177,7 +178,21 @@ class EventoController
 
         $repository = new EventoRepository();
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            // Carregar a view de criação com lista de responsáveis
+            try {
+                $responsaveis = $repository->listarResponsaveis();
+                
+                $this->carregarView('criarEvento.php', [
+                    'responsaveis' => $responsaveis
+                ]);
+                
+            } catch (\Exception $e) {
+                die("ERRO: " . $e->getMessage() . 
+                    "<br>Arquivo: " . $e->getFile() . 
+                    "<br>Linha: " . $e->getLine());
+            }
+        } elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (
                 isset($_POST['titulo']) &&
                 isset($_POST['descricao']) &&
@@ -227,14 +242,14 @@ class EventoController
                 $titulo = trim($_POST['titulo']);
                 $descricao = trim($_POST['descricao']);
                 $capacidade = trim($_POST['capacidade']);
-                $responsavel = trim($_POST['responsavel']);
+                $responsavelId = (int)trim($_POST['responsavel']);
                 $horaEvento = trim($_POST['horaEvento']);
                 $dataEvento = trim($_POST['dataEvento']);
                 $categoriaEvento = trim($_POST['categoriaEvento']);
 
                 if (
                     empty($titulo) || empty($descricao) ||
-                    empty($capacidade) || empty($responsavel) ||
+                    empty($capacidade) || empty($responsavelId) ||
                     empty($horaEvento) || empty($dataEvento) ||
                     empty($categoriaEvento) || $thumbnail === null
                 ) {
@@ -255,6 +270,7 @@ class EventoController
                         $evento->setThumbnail($thumbnail);
                         $evento->setHoraEvento($horaEvento);
                         $evento->setDataEvento($dataEvento);
+                        $evento->setIdResponsavelEventoFk($responsavelId);
                       
                         echo 'Dados enviados';
                         

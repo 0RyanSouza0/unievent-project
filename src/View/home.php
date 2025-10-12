@@ -36,8 +36,7 @@ ob_start();
     </header>
 
     <div class="funcionalidades">
-        <a href="criarEvento.php" class="criar-evento"
-            action="/UniEvent-Project/public/index.php?action=listarResponsaveis">
+        <a href="/UniEvent-Project/public/index.php?action=processarEvento" class="criar-evento">
             <div class="criar-evento">
                 <img src="assets/images/img-criar-evento.png" alt="" class="img-criar-evento" />
                 <p class="txt-funcionalidade-evento" data-i18n="create_event">
