@@ -17,13 +17,15 @@
         <p>Gerenciar Usuarios</p>
     </header>
 
-    <form action="/UniEvent-Project/public/index.php?action=updateResponsavel" class="campos-3" method="post">
+    <form action="/UniEvent-Project/public/index.php?action=updateResponsavel" class="campos-3" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" name="id" value="1" />
 
         <label>Nome: </label>
         <input type="text" name="nome" class="input-res" required />
 
-        <label>Telefone: </label>
-        <input type="text" name="telefone_contato" class="input-res" required />
+        <label>Foto de Perfil: </label>
+        <input type="file" name="fotoPerfil" class="input-res" accept="image/*" />
 
         <input type="submit" value="Enviar">
         </div>

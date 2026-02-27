@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/styleCriarEvento.css" />
+    <link rel="stylesheet" href="/UniEvent-Project/src/View/assets/css/styleCriarEvento.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
@@ -15,10 +15,10 @@
 <body>
     <header>
         <div class="container-logo">
-            <img src="assets/images/logo3.png" alt="Logo" class="logo" />
+            <img src="/UniEvent-Project/src/View/assets/images/logo3.png" alt="Logo" class="logo" />
             <p data-i18n="create_event_title">Criar Evento</p>
         </div>
-        <a href="./home.php" class="b-voltar"><i class="fa-solid fa-arrow-left"></i><span data-i18n="back_button"
+        <a href="/UniEvent-Project/src/View/home.php" class="b-voltar"><i class="fa-solid fa-arrow-left"></i><span data-i18n="back_button"
                 style="border:none;">Voltar</span></a>
     </header>
 
@@ -46,8 +46,17 @@
             <div class="campos-2">
                 <p class="titulos" data-i18n="label_responsible">Responsável</p>
                 <div class="input-container-res">
-                    <select name="responsavel" id="responsavel" class="input-res">
-                        <option value="ana">Ana</option>
+                    <select name="responsavel" id="responsavel" class="input-res" required>
+                        <option value="">Selecione um responsável</option>
+                        <?php if (isset($responsaveis) && !empty($responsaveis)): ?>
+                            <?php foreach ($responsaveis as $responsavel): ?>
+                                <option value="<?= $responsavel['id'] ?>">
+                                    <?= htmlspecialchars($responsavel['nome']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <option value="" disabled>Nenhum responsável cadastrado</option>
+                        <?php endif; ?>
                     </select>
                 </div>
 
@@ -56,7 +65,7 @@
                     <input type="file" name="thumbnail" id="upload" accept="image/*" />
                     <label for="upload" class="upload-label">
                         <input type="hidden" />
-                        <img class="img-upload" src="assets/images/upload.png" id="preview" />
+                        <img class="img-upload" src="/UniEvent-Project/src/View/assets/images/upload.png" id="preview" />
                     </label>
                 </div>
 
@@ -87,7 +96,7 @@
         <div class="container-modal" id="modal">
             <div class="content-modal">
                 <button type="reset" id="btn-fechar"><i class="fa-solid fa-xmark"></i></button>
-                <img src="assets/images/warning.png" id="emote">
+                <img src="/UniEvent-Project/src/View/assets/images/warning.png" id="emote">
                 <p id="conteudo" data-i18n="create"> Tem certeza que deseja criar o evento?</p>
                 <p id="conteudo2" data-i18n="fills"> Preencha todos os campos ou verifique se a data ou a hora é valida.
                 </p>
@@ -104,7 +113,7 @@
 
 
 
-    <script src="assets/js/buttonTiposEvento.js"></script>
+    <script src="/UniEvent-Project/src/View/assets/js/buttonTiposEvento.js"></script>
 
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
@@ -128,6 +137,34 @@
         var capacidade = document.getElementById("capacidade");
         const conteudo = document.getElementById("conteudo");
         const btnModal = document.getElementById("btnmodal");
+
+        // Função para aplicar tema ao select de responsável
+        function aplicarTemaSelect() {
+            const selectResponsavel = document.getElementById("responsavel");
+            const isDarkMode = document.body.classList.contains("dark-mode");
+            
+            if (isDarkMode) {
+                // Modo escuro: fundo preto com letras brancas
+                selectResponsavel.style.color = "#272727";
+                selectResponsavel.style.backgroundColor = "#fff";
+                // Aplicar estilo às opções
+                const options = selectResponsavel.querySelectorAll("option");
+                options.forEach(option => {
+                    option.style.color = "#272727";
+                    option.style.backgroundColor = "#fff";
+                });
+            } else {
+                // Modo claro: fundo branco com letras pretas
+                selectResponsavel.style.color = "#fff";
+                selectResponsavel.style.backgroundColor = "#272727";
+                // Aplicar estilo às opções
+                const options = selectResponsavel.querySelectorAll("option");
+                options.forEach(option => {
+                    option.style.color = "#fff";
+                    option.style.backgroundColor = "#272727";
+                });
+            }
+        }
 
         const dataString = data;
 
@@ -188,7 +225,7 @@
                 modal.style.position = 'fixed';
                 btnModal.style.display = 'none';
                 emote.style.display = 'flex';
-                emote.src = 'assets/images/emoteError.png';
+                emote.src = '/UniEvent-Project/src/View/assets/images/emoteError.png';
                 conteudo2.style.textAlign = 'center';
                 conteudo2.style.display = 'flex';
                 conteudo.style.display = 'none';
@@ -202,7 +239,7 @@
 
                 modal.style.display = 'flex';
                 emote.style.display = 'flex';
-                emote.src = 'assets/images/emoteAcess.png';
+                emote.src = '/UniEvent-Project/src/View/assets/images/emoteAcess.png';
                 btnModal.style.display = 'block';
                 modal.style.position = 'fixed';
                 conteudo.style.display = 'flex';
@@ -308,15 +345,32 @@
         }
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
-        const savedTheme = localStorage.getItem("theme");
-        if (savedTheme === "dark") {
-            document.body.classList.add("dark-mode");
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+            }
 
-        const savedLang = localStorage.getItem("lang") || "pt";
-        setLanguage(savedLang);
-    });
+            const savedLang = localStorage.getItem("lang") || "pt";
+            setLanguage(savedLang);
+            
+            // Aplicar tema ao select de responsável
+            aplicarTemaSelect();
+            
+            // Observer para detectar mudanças no tema
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                        aplicarTemaSelect();
+                    }
+                });
+            });
+            
+            observer.observe(document.body, {
+                attributes: true,
+                attributeFilter: ['class']
+            });
+        });
     </script>
 </body>
 

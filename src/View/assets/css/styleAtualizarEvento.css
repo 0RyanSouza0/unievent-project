@@ -203,13 +203,14 @@ textarea {
   font-family: var(--primary-font);
   color: var(--primary-white);
   font-size: 17px;
-  background-color: transparent;
+  background-color: var(--primary-black);
   outline: none;
   border: 0 none;
 }
 
 .dark-mode .input-res {
   color: var(--primary-black);
+  background-color: var(--primary-white);
 }
 
 .input-container-img {

@@ -3,39 +3,46 @@
 namespace src\Controller;
 
 use PDOException;
-use src\Model\Contato;
 use src\Model\ResponsavelEvento;
-use src\Repository\ContatoRepository;
-use src\Service\ContatoService;
+use src\Repository\ResponsavelEventoRepository;
+
 class ResponsavelEventoController{
 
     public function processarFormulario(){
-        $repository = new ContatoRepository();
+        $repository = new ResponsavelEventoRepository();
 
         if($_SERVER['REQUEST_METHOD']== 'POST'){
-            if(
-            isset($_POST['email_contato'])&&
-            isset($_POST['telefone_contato'])&&
-            isset($_POST['nome'])
-            
-            ){
+            if(isset($_POST['nome'])){
                 
-                $email_contato=trim($_POST['email_contato']);
-                
-                $telefone_contato=trim($_POST['telefone_contato']);
                 $nome=trim($_POST['nome']);
-                if(empty($email_contato)|| empty($telefone_contato)|| empty($nome)){
+                $fotoPerfil = '';
+                
+                // Processar upload da foto
+                if(isset($_FILES['fotoPerfil']) && $_FILES['fotoPerfil']['error'] == 0){
+                    $uploadDir = __DIR__ . '/../View/assets/images/uploads/';
+                    if(!is_dir($uploadDir)){
+                        mkdir($uploadDir, 0777, true);
+                    }
+                    
+                    $fileName = uniqid() . '_' . $_FILES['fotoPerfil']['name'];
+                    $uploadPath = $uploadDir . $fileName;
+                    
+                    if(move_uploaded_file($_FILES['fotoPerfil']['tmp_name'], $uploadPath)){
+                        $fotoPerfil = 'assets/images/uploads/' . $fileName;
+                    }
+                }
+                
+                if(empty($nome)){
                     echo "preencha todos os campos";
                 }
                 else{  
                         try{
-                            $contato = new Contato();
-                            $contato->setEmailContato($email_contato);
-                            $contato->setTelefoneContato($telefone_contato);
                             $responsavel = new ResponsavelEvento();
                             $responsavel->setNome($nome);
+                            $responsavel->setFotoPerfil($fotoPerfil);
                             
-                            return header('Location: ../src/View/home.php')&& $repository->save($contato,$responsavel);
+                            $repository->save($responsavel);
+                            return header('Location: ../src/View/home.php');
                         }catch(PDOException $e){
                             echo "Error".$e;
                         }
@@ -44,20 +51,43 @@ class ResponsavelEventoController{
             }
         }
     }
+    
     public function processarUpdateResponsavel() {
-        $repository = new ContatoRepository();
+        $repository = new ResponsavelEventoRepository();
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            if (isset($_POST['nome'])&&isset($_POST['telefone_contato'])) {
+            if (isset($_POST['nome']) && isset($_POST['id'])) {
+                $id = (int)$_POST['id'];
                 $nome=trim($_POST['nome']);
-                $telefone_contato=trim($_POST['telefone_contato']);
+                $fotoPerfil = '';
 
-                if (empty($nome) && empty($telefone_contato)) {
+                // Processar upload da foto
+                if(isset($_FILES['fotoPerfil']) && $_FILES['fotoPerfil']['error'] == 0){
+                    $uploadDir = __DIR__ . '/../View/assets/images/uploads/';
+                    if(!is_dir($uploadDir)){
+                        mkdir($uploadDir, 0777, true);
+                    }
+                    
+                    $fileName = uniqid() . '_' . $_FILES['fotoPerfil']['name'];
+                    $uploadPath = $uploadDir . $fileName;
+                    
+                    if(move_uploaded_file($_FILES['fotoPerfil']['tmp_name'], $uploadPath)){
+                        $fotoPerfil = 'assets/images/uploads/' . $fileName;
+                    }
+                }
+
+                if (empty($nome)) {
                     echo 'Preencha todos os campos.';
                 } else {
                     try {
-                        return $repository->updateResponsavel(1, $nome, $telefone_contato);
+                        $responsavel = new ResponsavelEvento();
+                        $responsavel->setId($id);
+                        $responsavel->setNome($nome);
+                        $responsavel->setFotoPerfil($fotoPerfil);
+                        
+                        $repository->update($responsavel);
+                        return true;
                     } catch(PDOException $e){
                         echo "Error".$e;
                     }

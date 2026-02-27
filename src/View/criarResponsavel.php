@@ -23,7 +23,7 @@
     </header>
 
     <form action="/UniEvent-Project/public/index.php?action=processarResponsavel" method="post" id="formulario"
-        class="campos">
+        class="campos" enctype="multipart/form-data">
         <div>
             <p class="titulos" data-i18n="label_name">Nome Responsável</p>
             <div class="input-container-titulo">
@@ -32,17 +32,10 @@
             </div>
         </div>
         <div>
-            <p class="titulos" data-i18n="label_email">Email</p>
+            <p class="titulos" data-i18n="label_photo">Foto de Perfil</p>
             <div class="input-container-cap">
-                <input type="email" name="email_contato" id="email" class="input-cap" required
-                    data-i18n-placeholder="placeholder_email" placeholder="Digite o email" />
-            </div>
-        </div>
-        <div>
-            <p class="titulos" data-i18n="label_phone">Telefone</p>
-            <div class="input-container-cap">
-                <input type="number" name="telefone_contato" id="telefone" class="input-res" required
-                    data-i18n-placeholder="placeholder_phone" placeholder="Digite o telefone" />
+                <input type="file" name="fotoPerfil" id="fotoPerfil" class="input-cap" accept="image/*"
+                    data-i18n-placeholder="placeholder_photo" />
             </div>
         </div>
 
@@ -73,17 +66,13 @@
         const emoteError = document.getElementById("emote");
         const emoteAcess = document.getElementById("emoteAcess");
         var nome = document.getElementById("nome");
-        var email = document.getElementById("email");
-        var telefone = document.getElementById("telefone");
+        var fotoPerfil = document.getElementById("fotoPerfil");
         const conteudo = document.getElementById("conteudo");
         const btnModal = document.getElementById("btn-modal");
 
         function validaform() {
             if (
-                nome.value.trim() === "" ||
-                email.value.trim() === "" ||
-                telefone.value.trim() === "" ||
-                !validarEmail(email.value)
+                nome.value.trim() === ""
             ) {
                 const modal = document.getElementById('modal');
                 const conteudo = document.getElementById('conteudo');
@@ -115,11 +104,6 @@
             }
         };
 
-        function validarEmail(email) {
-            const regex = /^[a-zA-Z0-9._%+-]+@fatec\.sp\.gov\.br$/;
-            return regex.test(email);
-        }
-
         const btnFechar = document.getElementById("btn-fechar");
 
         function fecharModal() {
@@ -135,13 +119,11 @@
                 create_responsible: "Create Responsible",
                 back: "Back",
                 label_name: "Responsible Name",
-                label_email: "Email",
-                label_phone: "Phone",
+                label_photo: "Profile Photo",
                 placeholder_name: "Responsible Name",
-                placeholder_email: "Enter email",
-                placeholder_phone: "Enter phone number",
+                placeholder_photo: "Select profile photo",
                 send: "Send",
-                create: "Are you sure to create this event?",
+                create: "Are you sure to create this responsible?",
                 fills: "Fill in all the fields",
                 btn_create: "Create"
             },
@@ -150,12 +132,13 @@
                 create_responsible: "Criar Responsável",
                 back: "Voltar",
                 label_name: "Nome Responsável",
-                label_email: "Email",
-                label_phone: "Telefone",
+                label_photo: "Foto de Perfil",
                 placeholder_name: "Nome Responsável",
-                placeholder_email: "Digite o email",
-                placeholder_phone: "Digite o telefone",
-                send: "Enviar"
+                placeholder_photo: "Selecione a foto de perfil",
+                send: "Enviar",
+                create: "Tem certeza que deseja criar o responsável?",
+                fills: "Preencha todos os campos",
+                btn_create: "Criar"
             }
         };
 

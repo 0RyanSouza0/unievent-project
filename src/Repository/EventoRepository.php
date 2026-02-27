@@ -38,24 +38,31 @@ class EventoRepository {
     }
 
     public function listarTodos(): array {
-        $stmt = $this->pdo->query("SELECT * FROM evento");
+        $stmt = $this->pdo->query("
+            SELECT e.*, r.nome as responsavel_nome, r.fotoPerfil as responsavel_foto
+            FROM evento e 
+            LEFT JOIN responsavelevento r ON e.id_responsavel_evento_fk = r.id
+            ORDER BY e.data_evento DESC
+        ");
     
-        // Configuração correta do fetch mode
-        $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Evento::class);
-        $eventos = $stmt->fetchAll();
+        $eventos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         return $eventos;
     }
 
-    public function buscarPorId($id): ?Evento {
+    public function buscarPorId($id): ?array {
         try {
-            $query = "SELECT * FROM evento WHERE id = :id";
+            $query = "
+                SELECT e.*, r.nome as responsavel_nome, r.fotoPerfil as responsavel_foto
+                FROM evento e 
+                LEFT JOIN responsavelevento r ON e.id_responsavel_evento_fk = r.id
+                WHERE e.id = :id
+            ";
             $stmt = $this->pdo->prepare($query);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
             
-            $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, Evento::class);
-            $evento = $stmt->fetch();
+            $evento = $stmt->fetch(PDO::FETCH_ASSOC);
             
             return $evento ?: null;
             
@@ -75,8 +82,8 @@ class EventoRepository {
             $this->pdo->beginTransaction();
 
         
-            $sql = "INSERT INTO evento (nome, descricao, categoria_evento, hora_evento, data_evento, capacidade, thumbnail) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO evento (nome, descricao, categoria_evento, hora_evento, data_evento, capacidade, thumbnail, id_responsavel_evento_fk) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([
                 $evento->getNome(),
@@ -85,8 +92,12 @@ class EventoRepository {
                 $evento->getHoraEvento(),
                 $evento->getDataEvento(),
                 $evento->getCapacidade(),
-                $evento->getThumbnail()
+                $evento->getThumbnail(),
+                $evento->getIdResponsavelEventoFk()
             ]);
+
+            $id = $this->pdo->lastInsertId();
+            $evento->setId($id);
 
             $this->pdo->commit(); 
 
@@ -108,7 +119,7 @@ class EventoRepository {
 
             if(!empty($evento->getThumbnail())){
             $sql = "UPDATE evento SET nome = :nome, descricao = :descricao, categoria_evento = :categoria_evento, hora_evento = :hora_evento, data_evento = :data_evento,
-                        capacidade = :capacidade, thumbnail = :thumbnail WHERE id = :id";
+                        capacidade = :capacidade, thumbnail = :thumbnail, id_responsavel_evento_fk = :id_responsavel WHERE id = :id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([
                 ':nome' => $evento->getNome(),
@@ -118,6 +129,7 @@ class EventoRepository {
                 ':data_evento' => $evento->getDataEvento(),
                 ':capacidade' => $evento->getCapacidade(),
                 ':thumbnail' => $evento->getThumbnail(),
+                ':id_responsavel' => $evento->getIdResponsavelEventoFk(),
                 ':id' => $evento->getId()
             ]);
 
@@ -126,7 +138,7 @@ class EventoRepository {
             return $stmt->rowCount() > 0;
         }else{
             $sql = "UPDATE evento SET nome = :nome, descricao = :descricao, categoria_evento = :categoria_evento, hora_evento = :hora_evento, data_evento = :data_evento,
-                        capacidade = :capacidade WHERE id = :id";
+                        capacidade = :capacidade, id_responsavel_evento_fk = :id_responsavel WHERE id = :id";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([
                 ':nome' => $evento->getNome(),
@@ -135,6 +147,7 @@ class EventoRepository {
                 ':hora_evento' => $evento->getHoraEvento(),
                 ':data_evento' => $evento->getDataEvento(),
                 ':capacidade' => $evento->getCapacidade(),
+                ':id_responsavel' => $evento->getIdResponsavelEventoFk(),
                 ':id' => $evento->getId()
             ]);
 
@@ -147,6 +160,21 @@ class EventoRepository {
             throw $e;
         }
     }
+    public function listarResponsaveis(): array {
+        try {
+            // Garantir que a conexão está ativa
+            if (!$this->pdo) {
+                $connection = new Connection();
+                $this->pdo = $connection->getConnection();
+            }
+            
+            $stmt = $this->pdo->query("SELECT id, nome, fotoPerfil FROM responsavelevento ORDER BY nome");
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw $e;
+        }
+    }
+
     public static function getAll(){
         try{    
             $conexao = new Connection();
